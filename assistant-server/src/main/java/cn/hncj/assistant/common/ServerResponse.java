@@ -23,6 +23,7 @@ enum ResponseCode {
 /**
  * 封装返回结果
  */
+@SuppressWarnings("unused")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ServerResponse<T> implements Serializable {
     private Integer code;
@@ -41,7 +42,7 @@ public class ServerResponse<T> implements Serializable {
      * @return ServerResponse
      */
     public static <T> ServerResponse<T> createSuccess(String msg, T data) {
-        ServerResponse<T> successResponse = new ServerResponse<T>();
+        ServerResponse<T> successResponse = new ServerResponse<>();
         successResponse.setCode(ResponseCode.SUCCESS.getCode());
         successResponse.setMsg(msg);
         successResponse.setData(data);
@@ -55,7 +56,7 @@ public class ServerResponse<T> implements Serializable {
      * @return ServerResponse
      */
     public static <T> ServerResponse<T> createSuccess(String msg) {
-        ServerResponse<T> successResponse = new ServerResponse<T>();
+        ServerResponse<T> successResponse = new ServerResponse<>();
         successResponse.setCode(ResponseCode.SUCCESS.getCode());
         successResponse.setMsg(msg);
         successResponse.setData(null);
@@ -69,9 +70,10 @@ public class ServerResponse<T> implements Serializable {
      * @return ServerResponse
      */
     public static <T> ServerResponse<T> createError(String errorMsg) {
-        ServerResponse<T> errorResponse = new ServerResponse<T>();
+        ServerResponse<T> errorResponse = new ServerResponse<>();
         errorResponse.setCode(ResponseCode.ERROR.getCode());
         errorResponse.setMsg(errorMsg);
+        errorResponse.setData(null);
         return errorResponse;
     }
 
