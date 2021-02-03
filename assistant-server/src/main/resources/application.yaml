@@ -1,2 +1,15 @@
 server:
   port: 8080
+
+# 数据源
+spring:
+  datasource:
+    username: root
+    password: mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mybatis?serverTimezone=UTC
+
+# 整合mybatis
+mybatis:
+  type-aliases-package: cn.hncj.assistant.pojo
+  mapper-locations: classpath:mybatis/mappers/*.xml

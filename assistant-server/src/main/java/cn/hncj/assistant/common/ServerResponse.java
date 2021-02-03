@@ -33,7 +33,6 @@ public class ServerResponse<T> implements Serializable {
     ServerResponse() {
     }
 
-
     /**
      * 创建一个只有消息的成功的response
      *
