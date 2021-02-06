@@ -5,9 +5,9 @@ server:
 spring:
   datasource:
     username: root
-    password: mysql
+    password: wsfyz
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/mybatis?serverTimezone=UTC
+    url: jdbc:mysql://123.56.156.212:3306/hncj_course_assistant?serverTimezone=UTC&useSSL=true
 
 # 整合mybatis
 mybatis:
