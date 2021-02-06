@@ -5,6 +5,7 @@ import cn.hncj.assistant.mapper.TeacherMapper;
 import cn.hncj.assistant.mapper.UserMapper;
 import cn.hncj.assistant.pojo.Teacher;
 import cn.hncj.assistant.pojo.User;
+import cn.hncj.assistant.service.AdministratorService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +22,7 @@ class MainApplicationTests {
     TeacherMapper teacherMapper;
 
     @Autowired
-    AdministratorMapper administratorMapper;
+    AdministratorService administratorService;
 
     @Test
     void testMybatis() {
@@ -40,7 +41,7 @@ class MainApplicationTests {
 //            System.out.println(teacher);
 //        }
 
-        System.out.println(administratorMapper.findAdministratorByLogin("root", "E10ADC3949BA59ABBE56E057F20F883E"));
+        System.out.println(administratorService.findAdministratorByLogin("root", "E10ADC3949BA59ABBE56E057F20F883E"));
     }
 
 }
