@@ -8,7 +8,12 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface AdministratorMapper {
-    public Administrator findAdministratorByLogin(
+    Administrator findAdministratorByLogin(
+            @Param("administrator_id") String administrator_id,
+            @Param("administrator_password") String administrator_password
+    );
+
+    int verifyAdministrator(
             @Param("administrator_id") String administrator_id,
             @Param("administrator_password") String administrator_password
     );

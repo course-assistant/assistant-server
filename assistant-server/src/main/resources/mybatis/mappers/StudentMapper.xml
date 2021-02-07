@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
-<mapper namespace="cn.hncj.assistant.mapper.TeacherMapper">
-    <select id="verifyTeacher" resultType="int">
-        select count(*) from teacher
-        where teacher_id = #{teacher_id} and teacher_password = #{teacher_password};
+<mapper namespace="cn.hncj.assistant.mapper.StudentMapper">
+    <select id="verifyStudent" resultType="int">
+        select count(*) from student
+        where student_id = #{student_id} and student_password = #{student_password};
     </select>
 </mapper>

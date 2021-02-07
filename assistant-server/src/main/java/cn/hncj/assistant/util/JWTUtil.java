@@ -7,7 +7,6 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-import java.util.Calendar;
 import java.util.Map;
 
 /**
@@ -33,9 +32,9 @@ public class JWTUtil {
         JWTCreator.Builder builder = JWT.create();
 
         // 默认7天过期
-        Calendar instance = Calendar.getInstance();
-        instance.add(Calendar.DATE, 7);
-        builder.withExpiresAt(instance.getTime());
+//        Calendar instance = Calendar.getInstance();
+//        instance.add(Calendar.DATE, 7);
+//        builder.withExpiresAt(instance.getTime());
 
         payload.forEach((k, v) -> {
             //noinspection Convert2MethodRef

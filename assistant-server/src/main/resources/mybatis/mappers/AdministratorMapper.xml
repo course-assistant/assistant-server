@@ -9,4 +9,10 @@
         select * from administrator
         where administrator_id = #{administrator_id} and administrator_password = #{administrator_password};
     </select>
+
+
+    <select id="verifyAdministrator" resultType="int">
+        select count(*) from administrator
+        where administrator_id = #{administrator_id} and administrator_password = #{administrator_password};
+    </select>
 </mapper>

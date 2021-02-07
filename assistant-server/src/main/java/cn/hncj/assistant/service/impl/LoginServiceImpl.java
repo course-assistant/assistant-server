@@ -1,12 +1,151 @@
 package cn.hncj.assistant.service.impl;
 
+import cn.hncj.assistant.mapper.AdministratorMapper;
+import cn.hncj.assistant.mapper.StudentMapper;
+import cn.hncj.assistant.mapper.TeacherMapper;
 import cn.hncj.assistant.service.LoginService;
+import cn.hncj.assistant.util.JWTUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
+@SuppressWarnings("DuplicatedCode")
 @Service
 public class LoginServiceImpl implements LoginService {
-    @Override
-    public void administratorLogin() {
 
+    AdministratorMapper administratorMapper;
+    TeacherMapper teacherMapper;
+    StudentMapper studentMapper;
+
+    @Autowired
+    public void setAdministratorMapper(AdministratorMapper administratorMapper) {
+        this.administratorMapper = administratorMapper;
+    }
+
+    @Autowired
+    public void setTeacherMapper(TeacherMapper teacherMapper) {
+        this.teacherMapper = teacherMapper;
+    }
+
+    @Autowired
+    public void setStudentMapper(StudentMapper studentMapper) {
+        this.studentMapper = studentMapper;
+    }
+
+
+    /**
+     * 仅验证管理员账号和密码
+     *
+     * @param administrator_id       管理员账号
+     * @param administrator_password 管理员密码
+     * @return boolean
+     */
+    @Override
+    public boolean verifyAdministrator(String administrator_id, String administrator_password) {
+        return administratorMapper.verifyAdministrator(administrator_id, administrator_password) > 0;
+    }
+
+    /**
+     * 验证管理员账号和密码并分发token
+     *
+     * @param administrator_id       管理员账号
+     * @param administrator_password 管理员密码
+     * @return boolean
+     */
+    @Override
+    public Map<String, Object> verifyAdministratorAndIssueToken(String administrator_id, String administrator_password) {
+        HashMap<String, Object> map = new HashMap<>();
+        // 验证结果
+        boolean result = verifyAdministrator(administrator_id, administrator_password);
+        // 添加验证结果
+        if (result) {
+            map.put("result", true);
+            // 添加token
+            HashMap<String, String> payload = new HashMap<>();
+            payload.put("administrator_id", administrator_id);
+            String token = JWTUtil.issueToken(payload);
+            map.put("token", token);
+            return map;
+        }
+        map.put("result", false);
+        return map;
+    }
+
+    /**
+     * 仅验证教师账号和密码
+     *
+     * @param teacher_id       管理员账号
+     * @param teacher_password 管理员密码
+     * @return boolean
+     */
+    @Override
+    public boolean verifyTeacher(String teacher_id, String teacher_password) {
+        return teacherMapper.verifyTeacher(teacher_id, teacher_password) > 0;
+    }
+
+    /**
+     * 验证教师账号和密码并分发token
+     *
+     * @param teacher_id       管理员账号
+     * @param teacher_password 管理员密码
+     * @return boolean
+     */
+    @Override
+    public Map<String, Object> verifyTeacherAndIssueToken(String teacher_id, String teacher_password) {
+        HashMap<String, Object> map = new HashMap<>();
+        // 验证结果
+        boolean result = verifyTeacher(teacher_id, teacher_password);
+        // 添加验证结果
+        if (result) {
+            map.put("result", true);
+            // 添加token
+            HashMap<String, String> payload = new HashMap<>();
+            payload.put("teacher_id", teacher_id);
+            String token = JWTUtil.issueToken(payload);
+            map.put("token", token);
+            return map;
+        }
+        map.put("result", false);
+        return map;
+    }
+
+    /**
+     * 仅验证学生账号和密码
+     *
+     * @param student_id       管理员账号
+     * @param student_password 管理员密码
+     * @return boolean
+     */
+    @Override
+    public boolean verifyStudent(String student_id, String student_password) {
+        return studentMapper.verifyStudent(student_id, student_password) > 0;
+    }
+
+    /**
+     * 验证学生账号和密码并分发token
+     *
+     * @param student_id       管理员账号
+     * @param student_password 管理员密码
+     * @return boolean
+     */
+    @Override
+    public Map<String, Object> verifyStudentAndIssueToken(String student_id, String student_password) {
+        HashMap<String, Object> map = new HashMap<>();
+        // 验证结果
+        boolean result = verifyStudent(student_id, student_password);
+        // 添加验证结果
+        if (result) {
+            map.put("result", true);
+            // 添加token
+            HashMap<String, String> payload = new HashMap<>();
+            payload.put("student_id", student_id);
+            String token = JWTUtil.issueToken(payload);
+            map.put("token", token);
+            return map;
+        }
+        map.put("result", false);
+        return map;
     }
 }
