@@ -21,15 +21,17 @@ public class TeacherController {
     }
 
     @PostMapping("/add")
-    public ServerResponse<Object> addTeacher(String id, String administrator_id, String name, int sex, String phone, String email) {
-        try {
-            teacherService.insertTeacher(id, administrator_id, name, sex, phone, email);
-            HashMap<String, String> data = new HashMap<>();
-            data.put("teacher_id", id);
-            return ServerResponse.createSuccess("添加成功", data);
-        } catch (Exception e) {
-            return ServerResponse.createError(e.getMessage());
-        }
+    public ServerResponse<Object> addTeacher(String id, String administrator_id, String name, Integer sex, String phone, String email) {
+//        try {
+        teacherService.insertTeacher(id, administrator_id, name, sex, phone, email);
+        HashMap<String, String> data = new HashMap<>();
+        data.put("teacher_id", id);
+        return ServerResponse.createSuccess("添加成功", data);
+//        } catch (NullPointerException e) {
+//            return ServerResponse.createError("请填入完整参数！");
+//        } catch (IllegalArgumentException e) {
+//            return ServerResponse.createError(e.getMessage());
+//        }
     }
 
 

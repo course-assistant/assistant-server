@@ -16,7 +16,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public int insertTeacher(String id, String administrator_id, String name, int sex, String phone, String email) {
+    public int insertTeacher(String id, String administrator_id, String name, Integer sex, String phone, String email) {
         // 判断字段合法性
         if (sex > 1 || sex < 0) {
             throw new IllegalArgumentException("参数不合法：sex应该为0或1");

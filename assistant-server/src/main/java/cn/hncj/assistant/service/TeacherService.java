@@ -5,7 +5,7 @@ public interface TeacherService {
             String id,
             String administrator_id,
             String name,
-            int sex,
+            Integer sex,
             String phone,
             String email
     );
