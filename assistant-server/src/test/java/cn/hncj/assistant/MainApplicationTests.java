@@ -1,9 +1,7 @@
 package cn.hncj.assistant;
 
-import cn.hncj.assistant.mapper.AdministratorMapper;
 import cn.hncj.assistant.mapper.TeacherMapper;
 import cn.hncj.assistant.mapper.UserMapper;
-import cn.hncj.assistant.pojo.Teacher;
 import cn.hncj.assistant.pojo.User;
 import cn.hncj.assistant.service.AdministratorService;
 import org.junit.jupiter.api.Test;
@@ -41,7 +39,10 @@ class MainApplicationTests {
 //            System.out.println(teacher);
 //        }
 
-        System.out.println(administratorService.findAdministratorByLogin("root", "E10ADC3949BA59ABBE56E057F20F883E"));
+//        System.out.println(administratorService.findAdministratorByLogin("root", "E10ADC3949BA59ABBE56E057F20F883E"));
+
+//        teacherMapper.insertTeacher("777777777", "root", "张三", 1, "11111111111", "");
+
     }
 
 }
