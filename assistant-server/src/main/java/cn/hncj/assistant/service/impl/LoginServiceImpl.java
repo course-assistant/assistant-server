@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 验证用户传入的用户名和密码是否正确
+ * 如果正确则返回token令牌
+ */
 @SuppressWarnings("DuplicatedCode")
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -19,6 +23,7 @@ public class LoginServiceImpl implements LoginService {
     TeacherMapper teacherMapper;
     StudentMapper studentMapper;
 
+    /* Setter */
     @Autowired
     public void setAdministratorMapper(AdministratorMapper administratorMapper) {
         this.administratorMapper = administratorMapper;
@@ -33,6 +38,7 @@ public class LoginServiceImpl implements LoginService {
     public void setStudentMapper(StudentMapper studentMapper) {
         this.studentMapper = studentMapper;
     }
+    /* Setter */
 
 
     /**
@@ -61,15 +67,15 @@ public class LoginServiceImpl implements LoginService {
         boolean result = verifyAdministrator(administrator_id, administrator_password);
         // 添加验证结果
         if (result) {
-            map.put("result", true);
+            map.put("authorized", true);
             // 添加token
             HashMap<String, String> payload = new HashMap<>();
-            payload.put("administrator_id", administrator_id);
+            payload.put("id", administrator_id);
             String token = JWTUtil.issueToken(payload);
             map.put("token", token);
             return map;
         }
-        map.put("result", false);
+        map.put("authorized", false);
         return map;
     }
 
@@ -99,15 +105,15 @@ public class LoginServiceImpl implements LoginService {
         boolean result = verifyTeacher(teacher_id, teacher_password);
         // 添加验证结果
         if (result) {
-            map.put("result", true);
+            map.put("authorized", true);
             // 添加token
             HashMap<String, String> payload = new HashMap<>();
-            payload.put("teacher_id", teacher_id);
+            payload.put("id", teacher_id);
             String token = JWTUtil.issueToken(payload);
             map.put("token", token);
             return map;
         }
-        map.put("result", false);
+        map.put("authorized", false);
         return map;
     }
 
@@ -137,15 +143,15 @@ public class LoginServiceImpl implements LoginService {
         boolean result = verifyStudent(student_id, student_password);
         // 添加验证结果
         if (result) {
-            map.put("result", true);
+            map.put("authorized", true);
             // 添加token
             HashMap<String, String> payload = new HashMap<>();
-            payload.put("student_id", student_id);
+            payload.put("id", student_id);
             String token = JWTUtil.issueToken(payload);
             map.put("token", token);
             return map;
         }
-        map.put("result", false);
+        map.put("authorized", false);
         return map;
     }
 }
