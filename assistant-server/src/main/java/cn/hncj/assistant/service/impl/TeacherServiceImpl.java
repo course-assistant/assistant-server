@@ -1,9 +1,12 @@
 package cn.hncj.assistant.service.impl;
 
 import cn.hncj.assistant.mapper.TeacherMapper;
+import cn.hncj.assistant.pojo.Teacher;
 import cn.hncj.assistant.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
@@ -13,6 +16,11 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     public void setTeacherMapper(TeacherMapper teacherMapper) {
         this.teacherMapper = teacherMapper;
+    }
+
+    @Override
+    public List<Teacher> selectTeachers(Integer start, Integer size) {
+        return teacherMapper.selectTeachers(start, size);
     }
 
     @Override

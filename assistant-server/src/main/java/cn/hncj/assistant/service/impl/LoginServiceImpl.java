@@ -71,6 +71,7 @@ public class LoginServiceImpl implements LoginService {
             // 添加token
             HashMap<String, String> payload = new HashMap<>();
             payload.put("id", administrator_id);
+            payload.put("type", "1");
             String token = JWTUtil.issueToken(payload);
             map.put("token", token);
             return map;
@@ -109,6 +110,7 @@ public class LoginServiceImpl implements LoginService {
             // 添加token
             HashMap<String, String> payload = new HashMap<>();
             payload.put("id", teacher_id);
+            payload.put("type", "2");
             String token = JWTUtil.issueToken(payload);
             map.put("token", token);
             return map;
@@ -147,6 +149,7 @@ public class LoginServiceImpl implements LoginService {
             // 添加token
             HashMap<String, String> payload = new HashMap<>();
             payload.put("id", student_id);
+            payload.put("type", "3");
             String token = JWTUtil.issueToken(payload);
             map.put("token", token);
             return map;

@@ -1,7 +1,10 @@
 package cn.hncj.assistant.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Teacher implements Serializable {
     private Integer teacher_id;
     private String administrator_id;
