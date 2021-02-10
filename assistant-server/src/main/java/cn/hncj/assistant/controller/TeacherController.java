@@ -1,5 +1,6 @@
 package cn.hncj.assistant.controller;
 
+import cn.hncj.assistant.annotation.Authentication;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,13 @@ public class TeacherController {
     // 管理员有权限访问此接口
     @GetMapping("/all")
     public ServerResponse<Object> all(Integer start, Integer size) {
+        return ServerResponse.createSuccess("查询成功", teacherService.selectTeachers(start, size));
+    }
+
+    // 管理员有权限访问此接口
+    @GetMapping("/all2")
+    @Authentication(permission = Authentication.ADMIN)
+    public ServerResponse<Object> all2(Integer start, Integer size) {
         return ServerResponse.createSuccess("查询成功", teacherService.selectTeachers(start, size));
     }
 

@@ -15,12 +15,12 @@ public class Teacher implements Serializable {
     private String teacher_phone;
     private String teacher_email;
     private String teacher_wx;
-    private Short teacher_Status;
+    private Short teacher_status;
 
     public Teacher() {
     }
 
-    public Teacher(Integer teacher_id, String administrator_id, String teacher_name, String teacher_password, Short teacher_sex, String teacher_avatar, String teacher_phone, String teacher_email, String teacher_wx, Short teacher_Status) {
+    public Teacher(Integer teacher_id, String administrator_id, String teacher_name, String teacher_password, Short teacher_sex, String teacher_avatar, String teacher_phone, String teacher_email, String teacher_wx, Short teacher_status) {
         this.teacher_id = teacher_id;
         this.administrator_id = administrator_id;
         this.teacher_name = teacher_name;
@@ -30,7 +30,7 @@ public class Teacher implements Serializable {
         this.teacher_phone = teacher_phone;
         this.teacher_email = teacher_email;
         this.teacher_wx = teacher_wx;
-        this.teacher_Status = teacher_Status;
+        this.teacher_status = teacher_status;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Teacher implements Serializable {
                 ", teacher_phone='" + teacher_phone + '\'' +
                 ", teacher_email='" + teacher_email + '\'' +
                 ", teacher_wx='" + teacher_wx + '\'' +
-                ", teacher_Status=" + teacher_Status +
+                ", teacher_Status=" + teacher_status +
                 '}';
     }
 
@@ -121,11 +121,11 @@ public class Teacher implements Serializable {
         this.teacher_wx = teacher_wx;
     }
 
-    public Short getTeacher_Status() {
-        return teacher_Status;
+    public Short getTeacher_status() {
+        return teacher_status;
     }
 
-    public void setTeacher_Status(Short teacher_Status) {
-        this.teacher_Status = teacher_Status;
+    public void setTeacher_Status(Short teacher_status) {
+        this.teacher_status = teacher_status;
     }
 }
