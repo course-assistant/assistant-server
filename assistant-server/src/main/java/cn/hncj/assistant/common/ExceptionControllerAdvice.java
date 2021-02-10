@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import java.net.ConnectException;
+
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
 
@@ -36,7 +38,13 @@ public class ExceptionControllerAdvice {
         return ServerResponse.createError("服务器内部异常");
     }
 
+    // 数据库连接异常
+//    @ExceptionHandler(Communication)
+//    public Object connectException() {
+//        return ServerResponse.createError("数据库连接超时");
+//    }
 
+    // 其他异常
     @ExceptionHandler(Exception.class)
     public Object exceptionHandler() {
         return ServerResponse.createError("服务器异常");

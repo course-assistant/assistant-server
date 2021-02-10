@@ -1,6 +1,6 @@
 package cn.hncj.assistant.pointcut;
 
-import cn.hncj.assistant.annotation.Authentication;
+import cn.hncj.assistant.annotation.CheckRole;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.util.JWTUtil;
 import com.auth0.jwt.interfaces.DecodedJWT;
@@ -26,19 +26,19 @@ import java.lang.reflect.Method;
  */
 @Aspect
 @Component
-public class CheckAuthorizationPointcut {
+public class CheckAuthenticationPointcut {
 
-    final static Logger logger = LoggerFactory.getLogger(CheckAuthorizationPointcut.class);
+    final static Logger logger = LoggerFactory.getLogger(CheckAuthenticationPointcut.class);
 
     /**
      * 切点
      * 验证带有 @Authentication 注解的controller方法
      */
-    @Pointcut(value = "@annotation(cn.hncj.assistant.annotation.Authentication)")
-    private void permissionCheckCut() {
+    @Pointcut(value = "@annotation(cn.hncj.assistant.annotation.CheckRole)")
+    private void checkAuthentication() {
     }
 
-    @Around("permissionCheckCut()")
+    @Around("checkAuthentication()")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
         logger.info("进行token验证");
 
@@ -46,7 +46,7 @@ public class CheckAuthorizationPointcut {
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) requestAttributes;
         if (servletRequestAttributes == null) {
-            throw new ServerException("服务器内部异常");
+            throw new ServerException("服务器异常：requests接收失败");
         }
         HttpServletRequest request = servletRequestAttributes.getRequest();
         String token = request.getHeader("token");
@@ -55,28 +55,45 @@ public class CheckAuthorizationPointcut {
             throw new ServerException("权限验证失败，token为null");
         }
 
-
         // 获取方法上 @Authentication注解 的参数
         Signature signature = pjp.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
         Method targetMethod = methodSignature.getMethod();
-        Authentication authentication = targetMethod.getAnnotation(Authentication.class);
-        String permission = authentication.permission();
+        CheckRole annotation = targetMethod.getAnnotation(CheckRole.class);
+        String requiredRole = annotation.role();
+        String providedId;
+        String providedRole;
 
+        // 这里捕获一下异常，统统抛出 token无效
         // 获取token中的permission，如果出现异常则为JWT校验失败
         try {
             DecodedJWT decodedJWT = JWTUtil.verifyToken(token);
-            String id = decodedJWT.getClaim("id").asString();
-            String type = decodedJWT.getClaim("type").asString();
-            logger.info("请求id：[{}]", id);
-            logger.info("角色：[{}]", type);
+            providedId = decodedJWT.getClaim("id").asString();
+            providedRole = decodedJWT.getClaim("role").asString();
+            // JWT里没有包含id和role信息
+            if (providedId == null || providedRole == null) {
+                throw new ServerException("权限验证失败，token无效 id或role为空");
+            }
+            logger.info("请求id：[{}]", providedId);
+            logger.info("providedRole：[{}]", providedRole);
+            logger.info("requiredRole：[{}]", requiredRole);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new ServerException("权限验证失败，token为无效");
+            throw new ServerException("权限验证失败，token无效");
         }
-        System.out.println("当前接口请求的permission :{" + permission + "}");
-//        throw new ServerException("没有权限");
-        // 放行
-        return pjp.proceed();
+
+        /*
+         * requiredRole：要求的role
+         * providedRole：传入的role
+         * 验证权限，验证规则：
+         * 如果 providedRole 为 admin 直接判定有权限
+         * 如果 providedRole 为 teacher或student，那么只能 requiredRole和providedRole 完全匹配才有权限
+         */
+        if (CheckRole.ADMIN.equals(providedRole) || requiredRole.equals(providedRole)) {
+            logger.info("验证通过");
+            return pjp.proceed();
+        }
+        throw new ServerException("权限不匹配");
+
     }
 }

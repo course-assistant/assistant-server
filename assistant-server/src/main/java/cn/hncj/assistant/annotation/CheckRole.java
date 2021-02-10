@@ -10,9 +10,11 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Authentication {
+public @interface CheckRole {
 
-    String ADMIN = "1";
+    String ADMIN = "administrator";
+    String TEACHER = "teacher";
+    String STUDENT = "student";
 
-    String permission() default "";
+    String role() default "";
 }
