@@ -4,13 +4,13 @@ package cn.hncj.assistant.annotation;
 import java.lang.annotation.*;
 
 /**
- * 权限认证
+ * 角色验证
  */
 
 @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface CheckRole {
+public @interface RoleCheck {
 
     String ADMIN = "administrator";
     String TEACHER = "teacher";

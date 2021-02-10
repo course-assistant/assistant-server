@@ -1,5 +1,6 @@
 package cn.hncj.assistant.service.impl;
 
+import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.mapper.AdministratorMapper;
 import cn.hncj.assistant.mapper.StudentMapper;
 import cn.hncj.assistant.mapper.TeacherMapper;
@@ -71,7 +72,7 @@ public class LoginServiceImpl implements LoginService {
             // 添加token
             HashMap<String, String> payload = new HashMap<>();
             payload.put("id", administrator_id);
-            payload.put("role", "administrator");
+            payload.put("role", RoleCheck.ADMIN);
             String token = JWTUtil.issueToken(payload);
             map.put("token", token);
             return map;
@@ -110,7 +111,7 @@ public class LoginServiceImpl implements LoginService {
             // 添加token
             HashMap<String, String> payload = new HashMap<>();
             payload.put("id", teacher_id);
-            payload.put("role", "teacher");
+            payload.put("role", RoleCheck.TEACHER);
             String token = JWTUtil.issueToken(payload);
             map.put("token", token);
             return map;
@@ -149,7 +150,7 @@ public class LoginServiceImpl implements LoginService {
             // 添加token
             HashMap<String, String> payload = new HashMap<>();
             payload.put("id", student_id);
-            payload.put("role", "student");
+            payload.put("role", RoleCheck.STUDENT);
             String token = JWTUtil.issueToken(payload);
             map.put("token", token);
             return map;

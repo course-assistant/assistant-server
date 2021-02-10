@@ -1,6 +1,6 @@
 package cn.hncj.assistant.pointcut;
 
-import cn.hncj.assistant.annotation.CheckRole;
+import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.util.JWTUtil;
 import com.auth0.jwt.interfaces.DecodedJWT;
@@ -34,7 +34,7 @@ public class CheckAuthenticationPointcut {
      * 切点
      * 验证带有 @Authentication 注解的controller方法
      */
-    @Pointcut(value = "@annotation(cn.hncj.assistant.annotation.CheckRole)")
+    @Pointcut(value = "@annotation(cn.hncj.assistant.annotation.RoleCheck)")
     private void checkAuthentication() {
     }
 
@@ -59,7 +59,7 @@ public class CheckAuthenticationPointcut {
         Signature signature = pjp.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
         Method targetMethod = methodSignature.getMethod();
-        CheckRole annotation = targetMethod.getAnnotation(CheckRole.class);
+        cn.hncj.assistant.annotation.RoleCheck annotation = targetMethod.getAnnotation(RoleCheck.class);
         String requiredRole = annotation.role();
         String providedId;
         String providedRole;
@@ -89,7 +89,7 @@ public class CheckAuthenticationPointcut {
          * 如果 providedRole 为 admin 直接判定有权限
          * 如果 providedRole 为 teacher或student，那么只能 requiredRole和providedRole 完全匹配才有权限
          */
-        if (CheckRole.ADMIN.equals(providedRole) || requiredRole.equals(providedRole)) {
+        if (RoleCheck.ADMIN.equals(providedRole) || requiredRole.equals(providedRole)) {
             logger.info("验证通过");
             return pjp.proceed();
         }

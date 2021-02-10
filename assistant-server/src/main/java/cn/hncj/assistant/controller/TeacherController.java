@@ -1,6 +1,6 @@
 package cn.hncj.assistant.controller;
 
-import cn.hncj.assistant.annotation.CheckRole;
+import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class TeacherController {
      * @param size  个数
      */
     @GetMapping("/all")
-    @CheckRole(role = CheckRole.ADMIN)
+    @RoleCheck(role = RoleCheck.ADMIN)
     public ServerResponse<Object> all(Integer start, Integer size) {
         return ServerResponse.createSuccess("查询成功", teacherService.selectTeachers(start, size));
     }

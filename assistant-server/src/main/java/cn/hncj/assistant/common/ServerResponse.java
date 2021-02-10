@@ -1,24 +1,11 @@
 package cn.hncj.assistant.common;
 
 
+import cn.hncj.assistant.constance.ResponseCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
 
-enum ResponseCode {
-    SUCCESS(200),
-    ERROR(401);
-
-    private int code;
-
-    public int getCode() {
-        return code;
-    }
-
-    ResponseCode(int code) {
-        this.code = code;
-    }
-}
 
 /**
  * 封装返回结果
@@ -42,7 +29,7 @@ public class ServerResponse<T> implements Serializable {
      */
     public static <T> ServerResponse<T> createSuccess(String msg, T data) {
         ServerResponse<T> successResponse = new ServerResponse<>();
-        successResponse.setCode(ResponseCode.SUCCESS.getCode());
+        successResponse.setCode(ResponseCode.OK.getCode());
         successResponse.setMsg(msg);
         successResponse.setData(data);
         return successResponse;
@@ -56,7 +43,7 @@ public class ServerResponse<T> implements Serializable {
      */
     public static <T> ServerResponse<T> createSuccess(String msg) {
         ServerResponse<T> successResponse = new ServerResponse<>();
-        successResponse.setCode(ResponseCode.SUCCESS.getCode());
+        successResponse.setCode(ResponseCode.OK.getCode());
         successResponse.setMsg(msg);
         successResponse.setData(null);
         return successResponse;
@@ -75,6 +62,22 @@ public class ServerResponse<T> implements Serializable {
         errorResponse.setData(null);
         return errorResponse;
     }
+
+
+    /**
+     * 创建一个服务器内部错误的response
+     *
+     * @param errorMsg 失败消息
+     * @return ServerResponse
+     */
+    public static <T> ServerResponse<T> createInternalError(String errorMsg) {
+        ServerResponse<T> errorResponse = new ServerResponse<>();
+        errorResponse.setCode(ResponseCode.INTERNAL_ERROR.getCode());
+        errorResponse.setMsg(errorMsg);
+        errorResponse.setData(null);
+        return errorResponse;
+    }
+
 
     public Integer getCode() {
         return code;

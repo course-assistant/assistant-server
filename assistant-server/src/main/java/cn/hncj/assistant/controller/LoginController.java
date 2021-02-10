@@ -1,6 +1,7 @@
 package cn.hncj.assistant.controller;
 
 import cn.hncj.assistant.common.ServerResponse;
+import cn.hncj.assistant.constance.ResponseCode;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.LoginService;
 import org.junit.jupiter.api.Test;
