@@ -1,13 +1,21 @@
 server:
   port: 8686
 
-# 数据源
+# 远程数据库数据源
+#spring:
+#  datasource:
+#    username: root
+#    password: wsfyz
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://123.56.156.212:3306/hncj_course_assistant?serverTimezone=UTC&useSSL=true
+
+# 本地数据库数据源
 spring:
   datasource:
     username: root
-    password: wsfyz
+    password: mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://123.56.156.212:3306/hncj_course_assistant?serverTimezone=UTC&useSSL=true
+    url: jdbc:mysql://127.0.0.1:3306/hncj_course_assistant?serverTimezone=UTC&useSSL=true
 
 # 整合mybatis
 mybatis:
