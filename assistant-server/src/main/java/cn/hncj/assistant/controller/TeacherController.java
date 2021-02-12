@@ -4,10 +4,7 @@ import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
@@ -22,6 +19,7 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
+    @CrossOrigin
     @PostMapping("/add")
     public ServerResponse<Object> addTeacher(String id, String administrator_id, String name, Integer sex, String phone, String email) {
         teacherService.insertTeacher(id, administrator_id, name, sex, phone, email);
@@ -38,6 +36,7 @@ public class TeacherController {
      * @param start 初始位置
      * @param size  个数
      */
+    @CrossOrigin
     @GetMapping("/all")
     @RoleCheck(role = RoleCheck.ADMIN)
     public ServerResponse<Object> all(Integer start, Integer size) {

@@ -1,7 +1,6 @@
 package cn.hncj.assistant.controller;
 
 import cn.hncj.assistant.common.ServerResponse;
-import cn.hncj.assistant.constance.ResponseCode;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.LoginService;
 import org.junit.jupiter.api.Test;
@@ -9,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,14 +32,16 @@ public class LoginController {
     }
 
 
+    @CrossOrigin
     @PostMapping("/login")
     public ServerResponse<Object> login(String username, String password, @RequestParam("type") Short type) {
+        logger.info("登录接口");
+        logger.info("username：{}", username);
+        logger.info("password：{}", password);
+        logger.info("type：{}", type);
         if (type < 1 || type > 3) {
             throw new ServerException("type 只能为 1 2 3");
         }
-        logger.info("username：" + username);
-        logger.info("password：" + password);
-        logger.info("type：" + type);
         Map<String, Object> verification;
         // 验证对应的授权
         switch (type) {
