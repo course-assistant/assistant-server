@@ -1,8 +1,11 @@
 package cn.hncj.assistant.controller;
 
+import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.LoginService;
+import cn.hncj.assistant.util.JWTUtil;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,9 +39,9 @@ public class LoginController {
     @PostMapping("/login")
     public ServerResponse<Object> login(String username, String password, @RequestParam("type") Short type) {
         logger.info("登录接口");
-        logger.info("username：{}", username);
-        logger.info("password：{}", password);
-        logger.info("type：{}", type);
+        logger.info("username: {}", username);
+        logger.info("password: {}", password);
+        logger.info("type: {}", type);
         if (type < 1 || type > 3) {
             throw new ServerException("type 只能为 1 2 3");
         }
@@ -70,6 +73,41 @@ public class LoginController {
         return ServerResponse.createError("用户名或密码不正确！");
     }
 
+
+    @CrossOrigin
+    @PostMapping("/authentication")
+    public ServerResponse<Object> tokenAuthentication(@RequestParam("token") String token, @RequestParam("type") Short type) {
+        logger.info("身份验证");
+        logger.info("token: {}", token);
+        logger.info("type: {}", type);
+        if (type < 1 || type > 3) {
+            throw new ServerException("type 只能为 1 2 3");
+        }
+        try {
+            DecodedJWT decodedJWT = JWTUtil.verifyToken(token);
+            String role = decodedJWT.getClaim("role").asString();
+            switch (type) {
+                // 学生
+                case 3:
+                    if (RoleCheck.STUDENT.equals(role)) {
+                        return ServerResponse.createSuccess("验证成功");
+                    }
+                    // 教师
+                case 2:
+                    if (RoleCheck.TEACHER.equals(role)) {
+                        return ServerResponse.createSuccess("验证成功");
+                    }
+                    // 管理员
+                default:
+                    if (RoleCheck.ADMIN.equals(role)) {
+                        return ServerResponse.createSuccess("验证成功");
+                    }
+            }
+            return ServerResponse.createError("权限验证失败");
+        } catch (Exception e) {
+            return ServerResponse.createError("权限验证失败");
+        }
+    }
 
     @Test
     public void test() {
