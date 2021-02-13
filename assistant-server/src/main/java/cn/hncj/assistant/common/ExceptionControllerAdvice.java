@@ -8,7 +8,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 
 /**
- * 统一异常处理
+ * 进行统一异常处理的类
  */
 @RestControllerAdvice
 public class ExceptionControllerAdvice {

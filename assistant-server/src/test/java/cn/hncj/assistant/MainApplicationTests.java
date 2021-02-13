@@ -2,9 +2,7 @@ package cn.hncj.assistant;
 
 import cn.hncj.assistant.mapper.TeacherMapper;
 import cn.hncj.assistant.mapper.UserMapper;
-import cn.hncj.assistant.pojo.Teacher;
-import cn.hncj.assistant.pojo.User;
-import cn.hncj.assistant.service.AdministratorService;
+import cn.hncj.assistant.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,9 +17,6 @@ class MainApplicationTests {
 
     @Autowired
     TeacherMapper teacherMapper;
-
-    @Autowired
-    AdministratorService administratorService;
 
     @Test
     void testMybatis() {

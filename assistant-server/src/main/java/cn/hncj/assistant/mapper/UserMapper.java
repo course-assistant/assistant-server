@@ -1,6 +1,6 @@
 package cn.hncj.assistant.mapper;
 
-import cn.hncj.assistant.pojo.User;
+import cn.hncj.assistant.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

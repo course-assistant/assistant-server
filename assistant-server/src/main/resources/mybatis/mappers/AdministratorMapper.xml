@@ -5,11 +5,6 @@
 
 <!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
 <mapper namespace="cn.hncj.assistant.mapper.AdministratorMapper">
-    <select id="findAdministratorByLogin" resultType="administrator">
-        select * from administrator
-        where administrator_id = #{administrator_id} and administrator_password = #{administrator_password};
-    </select>
-
 
     <select id="verifyAdministrator" resultType="int">
         select count(*) from administrator

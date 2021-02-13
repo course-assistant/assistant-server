@@ -1,6 +1,6 @@
 package cn.hncj.assistant.mapper;
 
-import cn.hncj.assistant.pojo.Teacher;
+import cn.hncj.assistant.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

@@ -118,18 +118,31 @@ payload有两个附加部分
 {
     "code": 200,
     "msg": "查询成功",
-    "data": [
-        {
-            "teacher_id": 888888888,
-            "administrator_id": "root",
-            "teacher_name": "张妍琰",
-            "teacher_sex": 0,
-            "teacher_avatar": "avatar",
-            "teacher_phone": "13512345678",
-            "teacher_email": "123@qq.com",
-            "teacher_Status": 1
-        }
-    ]
+    "data": {
+        "total": 41,
+        "teachers": [
+            {
+                "teacher_id": 1829171,
+                "administrator_id": "root",
+                "teacher_name": "茅个也",
+                "teacher_sex": 0,
+                "teacher_avatar": "avatar",
+                "teacher_phone": "13541862228",
+                "teacher_email": "315883908@hncj.com",
+                "teacher_status": 1
+            },
+            {
+                "teacher_id": 14096088,
+                "administrator_id": "root",
+                "teacher_name": "庞你国",
+                "teacher_sex": 0,
+                "teacher_avatar": "avatar",
+                "teacher_phone": "13588479572",
+                "teacher_email": "220966597@hncj.com",
+                "teacher_status": 0
+            }
+        ]
+    }
 }
 ```
 

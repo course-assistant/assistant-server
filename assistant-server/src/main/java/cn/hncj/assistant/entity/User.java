@@ -1,4 +1,4 @@
-package cn.hncj.assistant.pojo;
+package cn.hncj.assistant.entity;
 
 import java.io.Serializable;
 

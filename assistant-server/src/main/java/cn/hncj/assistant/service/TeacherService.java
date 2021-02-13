@@ -1,13 +1,12 @@
 package cn.hncj.assistant.service;
 
 import cn.hncj.assistant.dto.TeacherDTO;
-import cn.hncj.assistant.pojo.Teacher;
+import cn.hncj.assistant.entity.Teacher;
 
 import java.util.List;
 
+@SuppressWarnings({"UnusedReturnValue", "unused"})
 public interface TeacherService {
-
-    List<Teacher> selectTeachers(Integer start, Integer size);
 
 
     /**
@@ -20,6 +19,7 @@ public interface TeacherService {
     TeacherDTO selectTeacherByPage(Integer start, Integer size);
 
 
+    /* 添加教师 */
     int insertTeacher(
             String id,
             String administrator_id,

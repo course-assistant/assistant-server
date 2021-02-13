@@ -19,5 +19,5 @@ spring:
 
 # 整合mybatis
 mybatis:
-  type-aliases-package: cn.hncj.assistant.pojo
+  type-aliases-package: cn.hncj.assistant.entity
   mapper-locations: classpath:mybatis/mappers/*.xml
