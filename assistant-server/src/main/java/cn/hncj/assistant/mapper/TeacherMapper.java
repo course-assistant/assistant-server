@@ -25,6 +25,9 @@ public interface TeacherMapper {
     List<Teacher> selectTeachers(Integer start, Integer size);
 
 
+    /* 教师数量 */
+    Integer countTeacher();
+
     /* 添加教师 */
     int insertTeacher(
             @Param("teacher_id") String teacher_id,

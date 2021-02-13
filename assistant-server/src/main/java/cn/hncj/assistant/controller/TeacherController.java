@@ -3,6 +3,8 @@ package cn.hncj.assistant.controller;
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.service.TeacherService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,7 @@ import java.util.HashMap;
 public class TeacherController {
 
     TeacherService teacherService;
+    final static Logger logger = LoggerFactory.getLogger(TeacherController.class);
 
     @Autowired
     public void setTeacherService(TeacherService teacherService) {
@@ -40,7 +43,8 @@ public class TeacherController {
     @GetMapping("/all")
     @RoleCheck(role = RoleCheck.ADMIN)
     public ServerResponse<Object> all(Integer start, Integer size) {
-        return ServerResponse.createSuccess("查询成功", teacherService.selectTeachers(start, size));
+        logger.info("查询教师");
+        return ServerResponse.createSuccess("查询成功", teacherService.selectTeacherByPage(start, size));
     }
 
 

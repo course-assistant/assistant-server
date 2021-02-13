@@ -18,6 +18,10 @@
         limit #{start}, #{size};
     </select>
 
+    <!-- 教师数量 -->
+    <select id="countTeacher" resultType="int">
+        select count(*) from teacher;
+    </select>
 
     <insert id="insertTeacher">
         insert into teacher

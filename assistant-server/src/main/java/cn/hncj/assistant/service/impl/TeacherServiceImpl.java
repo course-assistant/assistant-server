@@ -1,5 +1,6 @@
 package cn.hncj.assistant.service.impl;
 
+import cn.hncj.assistant.dto.TeacherDTO;
 import cn.hncj.assistant.mapper.TeacherMapper;
 import cn.hncj.assistant.pojo.Teacher;
 import cn.hncj.assistant.service.TeacherService;
@@ -22,6 +23,22 @@ public class TeacherServiceImpl implements TeacherService {
     public List<Teacher> selectTeachers(Integer start, Integer size) {
         return teacherMapper.selectTeachers(start, size);
     }
+
+    /**
+     * 分页查询教师
+     *
+     * @param start start
+     * @param size  size
+     * @return TeacherDTO
+     */
+    @Override
+    public TeacherDTO selectTeacherByPage(Integer start, Integer size) {
+        TeacherDTO teacherDTO = new TeacherDTO();
+        teacherDTO.setCount(teacherMapper.countTeacher());
+        teacherDTO.setTeachers(teacherMapper.selectTeachers(start, size));
+        return teacherDTO;
+    }
+
 
     @Override
     public int insertTeacher(String id, String administrator_id, String name, Integer sex, String phone, String email) {
