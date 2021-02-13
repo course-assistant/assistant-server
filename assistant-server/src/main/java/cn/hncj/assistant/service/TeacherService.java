@@ -12,11 +12,11 @@ public interface TeacherService {
     /**
      * 分页查询教师
      *
-     * @param start start
+     * @param page page
      * @param size  size
      * @return TeacherDTO
      */
-    TeacherDTO selectTeacherByPage(Integer start, Integer size);
+    TeacherDTO selectTeacherByPage(Integer page, Integer size);
 
 
     /* 添加教师 */

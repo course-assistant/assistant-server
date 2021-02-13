@@ -19,15 +19,16 @@ public class TeacherServiceImpl implements TeacherService {
     /**
      * 分页查询教师
      *
-     * @param start start
-     * @param size  size
+     * @param page page
+     * @param size size
      * @return TeacherDTO
      */
     @Override
-    public TeacherDTO selectTeacherByPage(Integer start, Integer size) {
+    public TeacherDTO selectTeacherByPage(Integer page, Integer size) {
         TeacherDTO teacherDTO = new TeacherDTO();
         teacherDTO.setTotal(teacherMapper.countTeacher());
-        teacherDTO.setTeachers(teacherMapper.selectTeachers(start, size));
+        // 实现根据页数分页查询
+        teacherDTO.setTeachers(teacherMapper.selectTeachers(page * size, size));
         return teacherDTO;
     }
 

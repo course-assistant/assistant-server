@@ -36,15 +36,15 @@ public class TeacherController {
      * 分页查询教师
      * 管理员有权限访问此接口
      *
-     * @param start 初始位置
-     * @param size  个数
+     * @param page 页数
+     * @param size 个数
      */
     @CrossOrigin
     @GetMapping("/all")
     @RoleCheck(role = RoleCheck.ADMIN)
-    public ServerResponse<Object> all(Integer start, Integer size) {
+    public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
         logger.info("查询教师");
-        return ServerResponse.createSuccess("查询成功", teacherService.selectTeacherByPage(start, size));
+        return ServerResponse.createSuccess("查询成功", teacherService.selectTeacherByPage(page, size));
     }
 
 
