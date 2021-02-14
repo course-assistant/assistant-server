@@ -29,5 +29,12 @@ public class StudentController {
         return ServerResponse.createSuccess("查询成功", studentService.selectStudentByPage(page, size));
     }
 
-
+    /* 删除学生 */
+    @PostMapping("/delete")
+    @RoleCheck(role = RoleCheck.ADMIN)
+    public ServerResponse<Object> delete(@RequestParam("id") String id) {
+        log.info("删除学生");
+        studentService.deleteStudentById(id);
+        return ServerResponse.createSuccess("删除成功");
+    }
 }
