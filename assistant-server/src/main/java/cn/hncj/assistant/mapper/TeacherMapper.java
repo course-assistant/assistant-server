@@ -38,6 +38,9 @@ public interface TeacherMapper {
             @Param("teacher_status") Integer teacher_status
     );
 
+    /* 删除教师 */
+    Integer deleteTeacherById(@Param("teacher_id") String teacher_id);
+
     /* 添加教师 */
     int insertTeacher(
             @Param("teacher_id") String teacher_id,

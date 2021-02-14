@@ -3,6 +3,7 @@ package cn.hncj.assistant.controller;
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.service.TeacherService;
+import cn.hncj.assistant.util.MD5Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/teacher")
 public class TeacherController {
@@ -22,7 +24,6 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
-    @CrossOrigin
     @PostMapping("/add")
     public ServerResponse<Object> addTeacher(String id, String administrator_id, String name, Integer sex, String phone, String email) {
         teacherService.insertTeacher(id, administrator_id, name, sex, phone, email);
@@ -39,7 +40,6 @@ public class TeacherController {
      * @param page 页数
      * @param size 个数
      */
-    @CrossOrigin
     @GetMapping("/all")
     @RoleCheck(role = RoleCheck.ADMIN)
     public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
@@ -47,5 +47,25 @@ public class TeacherController {
         return ServerResponse.createSuccess("查询成功", teacherService.selectTeacherByPage(page, size));
     }
 
+
+    /* 重置教师 */
+    @PostMapping("/reset")
+    @RoleCheck(role = RoleCheck.ADMIN)
+    public ServerResponse<Object> reset(@RequestParam("id") String id) {
+        log.info("重置教师");
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("teacher_id", id);
+        map.put("teacher_password", MD5Util.MD5EncodeUpper("000000"));
+        teacherService.updateTeacher(map);
+        return ServerResponse.createSuccess("重置成功");
+    }
+
+    /* 删除 */
+    @PostMapping("/delete")
+    @RoleCheck(role = RoleCheck.ADMIN)
+    public ServerResponse<Object> delete(@RequestParam("id") String id) {
+        teacherService.deleteTeacherById(id);
+        return ServerResponse.createSuccess("删除成功");
+    }
 
 }

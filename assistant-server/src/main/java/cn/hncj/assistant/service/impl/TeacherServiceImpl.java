@@ -45,6 +45,11 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherMapper.updateTeacher(teacher_id, teacher_password, teacher_avatar, teacher_phone, teacher_email, teacher_status);
     }
 
+    @Override
+    public Integer deleteTeacherById(String id) {
+        return teacherMapper.deleteTeacherById(id);
+    }
+
 
     @Override
     public int insertTeacher(String id, String administrator_id, String name, Integer sex, String phone, String email) {

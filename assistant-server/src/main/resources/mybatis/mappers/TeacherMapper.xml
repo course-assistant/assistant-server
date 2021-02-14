@@ -36,6 +36,14 @@
         where teacher_id=#{teacher_id}
     </update>
 
+
+    <!-- 删除教师 -->
+    <delete id="deleteTeacherById">
+        delete from teacher
+        where teacher_id = #{teacher_id}
+    </delete>
+
+
     <insert id="insertTeacher">
         insert into teacher
         values (#{teacher_id},#{administrator_id},#{teacher_name},'670B14728AD9902AECBA32E22FA4F6BD',#{teacher_Sex},'avatar',#{teacher_phone},#{teacher_email},'',1);

@@ -22,6 +22,9 @@ public interface TeacherService {
     /* 修改教师 */
     Integer updateTeacher(Map<String, Object> map);
 
+    /* 删除教师 */
+    Integer deleteTeacherById(String id);
+
     /* 添加教师 */
     int insertTeacher(
             String id,
