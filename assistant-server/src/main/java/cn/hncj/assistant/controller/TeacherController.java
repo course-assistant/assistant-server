@@ -2,6 +2,7 @@ package cn.hncj.assistant.controller;
 
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
+import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.TeacherService;
 import cn.hncj.assistant.util.MD5Util;
 import org.slf4j.Logger;
@@ -60,12 +61,30 @@ public class TeacherController {
         return ServerResponse.createSuccess("重置成功");
     }
 
-    /* 删除 */
+    /* 删除教师 */
     @PostMapping("/delete")
     @RoleCheck(role = RoleCheck.ADMIN)
     public ServerResponse<Object> delete(@RequestParam("id") String id) {
+        log.info("删除教师");
         teacherService.deleteTeacherById(id);
         return ServerResponse.createSuccess("删除成功");
+    }
+
+    /* 改变状态 */
+    @PostMapping("/status")
+    @RoleCheck(role = RoleCheck.ADMIN)
+    public ServerResponse<Object> status(@RequestParam("id") String id, @RequestParam("status") Integer status) {
+        log.info("改变状态");
+        log.info("id: {}", id);
+        log.info("status: {}", status);
+        if (status < 0 || status > 1) {
+            throw new ServerException("status只能为 0或1");
+        }
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("teacher_id", id);
+        map.put("teacher_status", status);
+        teacherService.updateTeacher(map);
+        return ServerResponse.createSuccess("修改成功");
     }
 
 }
