@@ -28,6 +28,16 @@ public interface TeacherMapper {
     /* 教师数量 */
     Integer countTeacher();
 
+    /* 修改教师 */
+    Integer updateTeacher(
+            @Param("teacher_id") String teacher_id,
+            @Param("teacher_password") String teacher_password,
+            @Param("teacher_avatar") String teacher_avatar,
+            @Param("teacher_phone") String teacher_phone,
+            @Param("teacher_email") String teacher_email,
+            @Param("teacher_status") Integer teacher_status
+    );
+
     /* 添加教师 */
     int insertTeacher(
             @Param("teacher_id") String teacher_id,

@@ -6,6 +6,8 @@ import cn.hncj.assistant.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class TeacherServiceImpl implements TeacherService {
 
@@ -30,6 +32,17 @@ public class TeacherServiceImpl implements TeacherService {
         // 实现根据页数分页查询
         teacherDTO.setTeachers(teacherMapper.selectTeachers(page * size, size));
         return teacherDTO;
+    }
+
+    @Override
+    public Integer updateTeacher(Map<String, Object> map) {
+        String teacher_id = (String) map.get("teacher_id");
+        String teacher_password = (String) map.get("teacher_password");
+        String teacher_avatar = (String) map.get("teacher_avatar");
+        String teacher_phone = (String) map.get("teacher_phone");
+        String teacher_email = (String) map.get("teacher_email");
+        Integer teacher_status = (Integer) map.get("teacher_status");
+        return teacherMapper.updateTeacher(teacher_id, teacher_password, teacher_avatar, teacher_phone, teacher_email, teacher_status);
     }
 
 

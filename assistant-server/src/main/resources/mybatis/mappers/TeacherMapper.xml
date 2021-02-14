@@ -5,11 +5,16 @@
 
 <!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
 <mapper namespace="cn.hncj.assistant.mapper.TeacherMapper">
+    <!-- 验证教师账号和密码 -->
     <select id="verifyTeacher" resultType="int">
         select count(*) from teacher
         where teacher_id = #{teacher_id} and teacher_password = #{teacher_password};
     </select>
 
+    <!-- 教师数量 -->
+    <select id="countTeacher" resultType="int">
+        select count(*) from teacher;
+    </select>
 
     <!-- 查询所有教师 -->
     <select id="selectTeachers" resultType="teacher">
@@ -18,10 +23,18 @@
         limit #{start}, #{size};
     </select>
 
-    <!-- 教师数量 -->
-    <select id="countTeacher" resultType="int">
-        select count(*) from teacher;
-    </select>
+    <!-- 修改教师 -->
+    <update id="updateTeacher">
+        update teacher
+        <set>
+            <if test="teacher_password != null">teacher_password=#{teacher_password},</if>
+            <if test="teacher_avatar != null">teacher_avatar=#{teacher_avatar},</if>
+            <if test="teacher_phone != null">teacher_phone=#{teacher_phone},</if>
+            <if test="teacher_email != null">teacher_email=#{teacher_email}</if>
+            <if test="teacher_status != null">teacher_status=#{teacher_status}</if>
+        </set>
+        where teacher_id=#{teacher_id}
+    </update>
 
     <insert id="insertTeacher">
         insert into teacher
