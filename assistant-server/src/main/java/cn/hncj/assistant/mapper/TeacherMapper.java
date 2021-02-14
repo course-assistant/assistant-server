@@ -20,13 +20,12 @@ public interface TeacherMapper {
      */
     int verifyTeacher(String teacher_id, String teacher_password);
 
+    /* 教师数量 */
+    Integer countTeacher();
 
     /* 查询所有教师 */
     List<Teacher> selectTeachers(Integer start, Integer size);
 
-
-    /* 教师数量 */
-    Integer countTeacher();
 
     /* 修改教师 */
     Integer updateTeacher(

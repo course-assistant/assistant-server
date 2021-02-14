@@ -18,7 +18,7 @@
 
     <!-- 查询所有教师 -->
     <select id="selectTeachers" resultType="teacher">
-        select teacher_id,administrator_id,teacher_name,teacher_sex,teacher_avatar,teacher_phone,teacher_email,teacher_Status
+        select teacher_id,administrator_id,teacher_name,teacher_sex,teacher_avatar,teacher_phone,teacher_email,teacher_status
         from teacher
         limit #{start}, #{size};
     </select>

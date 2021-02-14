@@ -18,13 +18,7 @@ public class TeacherServiceImpl implements TeacherService {
         this.teacherMapper = teacherMapper;
     }
 
-    /**
-     * 分页查询教师
-     *
-     * @param page page
-     * @param size size
-     * @return TeacherDTO
-     */
+    /* 分页查询教师 */
     @Override
     public TeacherDTO selectTeacherByPage(Integer page, Integer size) {
         TeacherDTO teacherDTO = new TeacherDTO();

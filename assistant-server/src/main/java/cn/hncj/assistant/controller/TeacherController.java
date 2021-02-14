@@ -16,7 +16,6 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/teacher")
 public class TeacherController {
-
     TeacherService teacherService;
     final static Logger log = LoggerFactory.getLogger(TeacherController.class);
 
@@ -34,13 +33,7 @@ public class TeacherController {
     }
 
 
-    /**
-     * 分页查询教师
-     * 管理员有权限访问此接口
-     *
-     * @param page 页数
-     * @param size 个数
-     */
+    /* 分页查询教师 */
     @GetMapping("/all")
     @RoleCheck(role = RoleCheck.ADMIN)
     public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {

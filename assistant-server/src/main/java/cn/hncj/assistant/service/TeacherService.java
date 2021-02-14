@@ -9,15 +9,8 @@ import java.util.Map;
 public interface TeacherService {
 
 
-    /**
-     * 分页查询教师
-     *
-     * @param page page
-     * @param size size
-     * @return TeacherDTO
-     */
+    /* 分页查询教师 */
     TeacherDTO selectTeacherByPage(Integer page, Integer size);
-
 
     /* 修改教师 */
     Integer updateTeacher(Map<String, Object> map);

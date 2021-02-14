@@ -228,3 +228,52 @@ payload有两个附加部分
 ```
 
 <br>
+
+## 学生
+
+### 查询所有学生
+
+- 请求路径：student/all
+- 请求方法：get
+- 请求参数
+
+| 参数名 | 参数说明 | 类型 | 备注     |
+| ------ | -------- | ---- | -------- |
+| page   | 页数     | int  | 不能为空 |
+| size   | 个数     | int  | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "total": 41,
+        "students": [
+            {
+                "student_id": "068307974",
+                "administrator_id": "root",
+                "student_name": "祝在生",
+                "student_sex": 0,
+                "student_avatar": "avatar",
+                "student_phone": "13586213072",
+                "student_email": "369591871@hncj.com",
+                "student_status": 1
+            },
+            {
+                "student_id": "069013628",
+                "administrator_id": "root",
+                "student_name": "臧要你",
+                "student_sex": 1,
+                "student_avatar": "avatar",
+                "student_phone": "13576310912",
+                "student_email": "528746772@hncj.com",
+                "student_status": 1
+            }
+        ]
+    }
+}
+```
+
+<br>

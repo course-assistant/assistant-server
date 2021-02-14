@@ -1,6 +1,7 @@
 package cn.hncj.assistant;
 
 import cn.hncj.assistant.entity.User;
+import cn.hncj.assistant.mapper.StudentMapper;
 import cn.hncj.assistant.mapper.TeacherMapper;
 import cn.hncj.assistant.mapper.UserMapper;
 import cn.hncj.assistant.service.TeacherService;
@@ -19,6 +20,9 @@ class MainApplicationTests {
 
     @Autowired
     TeacherMapper teacherMapper;
+
+    @Autowired
+    StudentMapper studentMapper;
 
     @Autowired
     TeacherService teacherService;
