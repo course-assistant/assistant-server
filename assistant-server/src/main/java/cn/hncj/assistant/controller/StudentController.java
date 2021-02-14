@@ -2,11 +2,14 @@ package cn.hncj.assistant.controller;
 
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
+import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @CrossOrigin
 @RestController
@@ -37,4 +40,36 @@ public class StudentController {
         studentService.deleteStudentById(id);
         return ServerResponse.createSuccess("删除成功");
     }
+
+    /* 修改学生 */
+    @PostMapping("/update")
+    @RoleCheck(role = RoleCheck.STUDENT)
+    public ServerResponse<Object> update(
+            @RequestParam("id") String id,
+            String password,
+            String email,
+            String phone,
+            String avatar
+    ) {
+        HashMap<String, Object> map = new HashMap<>();
+        if (password != null) {
+            map.put("student_password", password);
+        }
+        if (email != null) {
+            map.put("student_email", email);
+        }
+        if (password != null) {
+            map.put("student_phone", phone);
+        }
+        if (email != null) {
+            map.put("student_avatar", avatar);
+        }
+        if (map.isEmpty()) {
+            throw new ServerException("请至少传入一个参数");
+        }
+        map.put("student_id", id);
+        studentService.updateStudent(map);
+        return ServerResponse.createSuccess("修改成功");
+    }
+
 }
