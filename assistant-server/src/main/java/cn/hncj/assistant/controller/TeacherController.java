@@ -87,4 +87,27 @@ public class TeacherController {
         return ServerResponse.createSuccess("修改成功");
     }
 
+    /* 修改教师 */
+    @PostMapping("/update")
+    @RoleCheck(role = RoleCheck.TEACHER)
+    public ServerResponse<Object> update(
+            @RequestParam("id") String id,
+            String phone,
+            String email
+    ) {
+        HashMap<String, Object> map = new HashMap<>();
+        if (phone != null) {
+            map.put("teacher_phone", phone);
+        }
+        if (email != null) {
+            map.put("teacher_email", email);
+        }
+        if(map.isEmpty()){
+            throw new ServerException("请至少传入一个参数");
+        }
+        map.put("teacher_id", id);
+        teacherService.updateTeacher(map);
+        return ServerResponse.createSuccess("修改成功");
+    }
+
 }
