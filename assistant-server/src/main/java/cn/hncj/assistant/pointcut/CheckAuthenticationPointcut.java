@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
 @Component
 public class CheckAuthenticationPointcut {
 
-    final static Logger logger = LoggerFactory.getLogger(CheckAuthenticationPointcut.class);
+    final static Logger log = LoggerFactory.getLogger(CheckAuthenticationPointcut.class);
 
     /**
      * 切点
@@ -40,7 +40,7 @@ public class CheckAuthenticationPointcut {
 
     @Around("checkAuthentication()")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
-        logger.info("进行token验证");
+        log.info("进行token验证");
 
         // 获取request，获取header
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
@@ -50,7 +50,7 @@ public class CheckAuthenticationPointcut {
         }
         HttpServletRequest request = servletRequestAttributes.getRequest();
         String token = request.getHeader("token");
-        logger.info("待验证的token:{}", token);
+        log.info("待验证的token:{}", token);
         if (token == null) {
             throw new ServerException("权限验证失败，token为null");
         }
@@ -74,9 +74,9 @@ public class CheckAuthenticationPointcut {
             if (providedId == null || providedRole == null) {
                 throw new ServerException("权限验证失败，token无效 id或role为空");
             }
-            logger.info("请求id：[{}]", providedId);
-            logger.info("providedRole：[{}]", providedRole);
-            logger.info("requiredRole：[{}]", requiredRole);
+            log.info("请求id：[{}]", providedId);
+            log.info("providedRole：[{}]", providedRole);
+            log.info("requiredRole：[{}]", requiredRole);
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServerException("权限验证失败，token无效");
@@ -90,7 +90,7 @@ public class CheckAuthenticationPointcut {
          * 如果 providedRole 为 teacher或student，那么只能 requiredRole和providedRole 完全匹配才有权限
          */
         if (RoleCheck.ADMIN.equals(providedRole) || requiredRole.equals(providedRole)) {
-            logger.info("验证通过");
+            log.info("验证通过");
             return pjp.proceed();
         }
         throw new ServerException("权限不匹配");

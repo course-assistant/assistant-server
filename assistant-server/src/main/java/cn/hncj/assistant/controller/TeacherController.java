@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class TeacherController {
 
     TeacherService teacherService;
-    final static Logger logger = LoggerFactory.getLogger(TeacherController.class);
+    final static Logger log = LoggerFactory.getLogger(TeacherController.class);
 
     @Autowired
     public void setTeacherService(TeacherService teacherService) {
@@ -43,7 +43,7 @@ public class TeacherController {
     @GetMapping("/all")
     @RoleCheck(role = RoleCheck.ADMIN)
     public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
-        logger.info("查询教师");
+        log.info("查询教师");
         return ServerResponse.createSuccess("查询成功", teacherService.selectTeacherByPage(page, size));
     }
 

@@ -24,7 +24,7 @@ import java.util.Map;
 @RestController
 public class LoginController {
 
-    final static Logger logger = LoggerFactory.getLogger(LoginController.class);
+    final static Logger log = LoggerFactory.getLogger(LoginController.class);
 
 
     private LoginService loginService;
@@ -38,10 +38,10 @@ public class LoginController {
     @CrossOrigin
     @PostMapping("/login")
     public ServerResponse<Object> login(String username, String password, @RequestParam("type") Short type) {
-        logger.info("登录接口");
-        logger.info("username: {}", username);
-        logger.info("password: {}", password);
-        logger.info("type: {}", type);
+        log.info("登录接口");
+        log.info("username: {}", username);
+        log.info("password: {}", password);
+        log.info("type: {}", type);
         if (type < 1 || type > 3) {
             throw new ServerException("type 只能为 1 2 3");
         }
@@ -77,9 +77,9 @@ public class LoginController {
     @CrossOrigin
     @PostMapping("/authentication")
     public ServerResponse<Object> tokenAuthentication(@RequestParam("token") String token, @RequestParam("type") Short type) {
-        logger.info("身份验证");
-        logger.info("token: {}", token);
-        logger.info("type: {}", type);
+        log.info("身份验证");
+        log.info("token: {}", token);
+        log.info("type: {}", type);
         if (type < 1 || type > 3) {
             throw new ServerException("type 只能为 1 2 3");
         }

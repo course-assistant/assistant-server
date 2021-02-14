@@ -1,7 +1,7 @@
 server:
   port: 8686
 
-# 远程数据库数据源
+# 远程数据库数据源 Hikari
 #spring:
 #  datasource:
 #    username: root
@@ -9,15 +9,38 @@ server:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://123.56.156.212:3306/hncj_course_assistant?serverTimezone=UTC&useSSL=true
 
-# 本地数据库数据源
+# 本地数据库数据源 Hikari
 spring:
   datasource:
     username: root
     password: mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/hncj_course_assistant?serverTimezone=UTC&useSSL=true
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 60
+      minimum-idle: 10
+
+
+# 本地数据库数据源 Druid
+#spring:
+#  datasource:
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    username: root
+#    password: mysql
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/hncj_course_assistant?serverTimezone=UTC&useSSL=true
+
 
 # 整合mybatis
 mybatis:
   type-aliases-package: cn.hncj.assistant.entity
   mapper-locations: classpath:mybatis/mappers/*.xml
+
+
+# 日志等级debug，输出mybatis的日志
+logging:
+  level:
+    cn.hncj.assistant.mapper.*: debug
+
+
