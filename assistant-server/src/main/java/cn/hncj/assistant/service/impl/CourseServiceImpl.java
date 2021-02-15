@@ -6,6 +6,7 @@ import cn.hncj.assistant.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -68,5 +69,18 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> findDeletedCourseByTeacherId(String id, Integer page, Integer size) {
         return courseMapper.selectDeletedCourses(id, page * size, size);
+    }
+
+    /**
+     * 添加课程
+     *
+     * @param teacher_id 教师id
+     * @param name       name
+     * @param cover      cover
+     * @return int
+     */
+    @Override
+    public Integer insertCourse(String teacher_id, String name, String cover) {
+        return courseMapper.insertCourse(teacher_id, name, new Date(), cover);
     }
 }

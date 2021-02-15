@@ -54,4 +54,11 @@
         </set>
         where course_id=#{course_id}
     </update>
+
+
+    <!-- 添加课程 -->
+    <insert id="insertCourse">
+        insert into course(teacher_id,course_name,course_cover,course_date,course_status)
+        values (#{teacher_id},#{course_name},#{course_cover},#{course_date},1);
+    </insert>
 </mapper>

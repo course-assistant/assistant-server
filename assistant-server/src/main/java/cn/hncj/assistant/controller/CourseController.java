@@ -20,6 +20,15 @@ public class CourseController {
 
     final static Logger log = LoggerFactory.getLogger(CourseController.class);
 
+    /**
+     * 查询课程
+     *
+     * @param id     教师id
+     * @param page   page
+     * @param size   size
+     * @param status status
+     * @return courses
+     */
     @GetMapping("/find")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> findStarted(
@@ -53,6 +62,25 @@ public class CourseController {
             default:
                 return ServerResponse.createSuccess("查询成功", courseService.findCourseByTeacherId(id, page, size));
         }
+    }
+
+
+    /**
+     * 添加课程
+     *
+     * @param teacher_id 教师id
+     * @param name       name
+     * @param cover      cover
+     * @return response
+     */
+    @PostMapping("/insert")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> insert(
+            @RequestParam("teacher_id") String teacher_id,
+            @RequestParam("name") String name,
+            @RequestParam("cover") String cover) {
+        courseService.insertCourse(teacher_id, name, cover);
+        return ServerResponse.createSuccess("添加成功");
     }
 
 }

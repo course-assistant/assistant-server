@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -91,6 +92,22 @@ public interface CourseMapper {
             @Param("course_name") String course_name,
             @Param("course_cover") String course_cover,
             @Param("course_status") Integer course_status
+    );
+
+
+    /**
+     * 添加课程
+     * @param teacher_id 所属教师id
+     * @param course_name name
+     * @param course_date date
+     * @param course_cover cover
+     * @return int
+     */
+    Integer insertCourse(
+            String teacher_id,
+            String course_name,
+            Date course_date,
+            String course_cover
     );
 
 }
