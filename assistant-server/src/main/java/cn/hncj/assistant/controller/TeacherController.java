@@ -63,22 +63,6 @@ public class TeacherController {
         return ServerResponse.createSuccess("删除成功");
     }
 
-    /* 改变状态 */
-    @PostMapping("/status")
-    @RoleCheck(RoleCheck.ADMIN)
-    public ServerResponse<Object> status(@RequestParam("id") String id, @RequestParam("status") Integer status) {
-        log.info("改变状态");
-        log.info("id: {}", id);
-        log.info("status: {}", status);
-        if (status < 0 || status > 1) {
-            throw new ServerException("status只能为 0或1");
-        }
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("teacher_id", id);
-        map.put("teacher_status", status);
-        teacherService.updateTeacher(map);
-        return ServerResponse.createSuccess("修改成功");
-    }
 
     /* 修改教师 */
     @PostMapping("/update")
@@ -99,6 +83,24 @@ public class TeacherController {
             throw new ServerException("请至少传入一个参数");
         }
         map.put("teacher_id", id);
+        teacherService.updateTeacher(map);
+        return ServerResponse.createSuccess("修改成功");
+    }
+
+
+    /* 改变状态 */
+    @PostMapping("/status")
+    @RoleCheck(RoleCheck.ADMIN)
+    public ServerResponse<Object> status(@RequestParam("id") String id, @RequestParam("status") Integer status) {
+        log.info("修改教师状态");
+        log.info("id: {}", id);
+        log.info("status: {}", status);
+        if (status < 0 || status > 1) {
+            throw new ServerException("status只能为 0或1");
+        }
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("teacher_id", id);
+        map.put("teacher_status", status);
         teacherService.updateTeacher(map);
         return ServerResponse.createSuccess("修改成功");
     }

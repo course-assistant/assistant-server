@@ -4,6 +4,7 @@ import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.StudentService;
+import cn.hncj.assistant.util.MD5Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,20 @@ public class StudentController {
         log.info("查询学生");
         return ServerResponse.createSuccess("查询成功", studentService.selectStudentByPage(page, size));
     }
+
+
+    /* 重置教师 */
+    @PostMapping("/reset")
+    @RoleCheck(RoleCheck.ADMIN)
+    public ServerResponse<Object> reset(@RequestParam("id") String id) {
+        log.info("重置学生");
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("student_id", id);
+        map.put("student_password", MD5Util.MD5EncodeUpper("000000"));
+        studentService.updateStudent(map);
+        return ServerResponse.createSuccess("重置成功");
+    }
+
 
     /* 删除学生 */
     @PostMapping("/delete")
@@ -68,6 +83,23 @@ public class StudentController {
             throw new ServerException("请至少传入一个参数");
         }
         map.put("student_id", id);
+        studentService.updateStudent(map);
+        return ServerResponse.createSuccess("修改成功");
+    }
+
+    /* 改变状态 */
+    @PostMapping("/status")
+    @RoleCheck(RoleCheck.ADMIN)
+    public ServerResponse<Object> status(@RequestParam("id") String id, @RequestParam("status") Integer status) {
+        log.info("修改学生状态");
+        log.info("student_id: {}", id);
+        log.info("student_status: {}", status);
+        if (status < 0 || status > 1) {
+            throw new ServerException("status只能为 0或1");
+        }
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("student_id", id);
+        map.put("student_status", status);
         studentService.updateStudent(map);
         return ServerResponse.createSuccess("修改成功");
     }
