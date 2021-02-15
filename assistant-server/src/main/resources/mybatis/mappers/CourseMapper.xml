@@ -5,9 +5,18 @@
 
 <!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
 <mapper namespace="cn.hncj.assistant.mapper.CourseMapper">
+    <!-- 分页查询使所有课程 -->
+    <select id="selectCourses" resultType="course">
+        select * from course
+        where teacher_id = #{teacher_id}
+        limit #{start},#{size};
+    </select>
+
+
     <!-- 分页查询正在进行的课程 -->
     <select id="selectStartedCourses" resultType="course">
         select * from started_course
+        where teacher_id = #{teacher_id}
         limit #{start},#{size};
     </select>
 
@@ -15,6 +24,7 @@
     <!-- 分页查询已结束的课程 -->
     <select id="selectEndedCourses" resultType="course">
         select * from ended_course
+        where teacher_id = #{teacher_id}
         limit #{start},#{size};
     </select>
 
@@ -22,6 +32,7 @@
     <!-- 分页查询已删除的课程 -->
     <select id="selectDeletedCourses" resultType="course">
         select * from deleted_course
+        where teacher_id = #{teacher_id}
         limit #{start},#{size};
     </select>
 
@@ -32,7 +43,7 @@
         where course_id = #{course_id};
     </delete>
 
-    
+
     <!-- 修改课程 -->
     <update id="updateCourse">
         update course

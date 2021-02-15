@@ -14,13 +14,31 @@ import java.util.List;
 public interface CourseMapper {
 
     /**
+     * 分页查询使所有课程
+     *
+     * @param start start
+     * @param size  size
+     * @return list
+     */
+    List<Course> selectCourses(
+            @Param("teacher_id") String teacher_id,
+            @Param("start") Integer start,
+            @Param("size") Integer size
+    );
+
+
+    /**
      * 分页查询正在进行的课程
      *
      * @param start start
      * @param size  size
      * @return list
      */
-    List<Course> selectStartedCourses(@Param("start") Integer start, @Param("size") Integer size);
+    List<Course> selectStartedCourses(
+            @Param("teacher_id") String teacher_id,
+            @Param("start") Integer start,
+            @Param("size") Integer size
+    );
 
 
     /**
@@ -30,7 +48,11 @@ public interface CourseMapper {
      * @param size  size
      * @return list
      */
-    List<Course> selectEndedCourses(@Param("start") Integer start, @Param("size") Integer size);
+    List<Course> selectEndedCourses(
+            @Param("teacher_id") String teacher_id,
+            @Param("start") Integer start,
+            @Param("size") Integer size
+    );
 
 
     /**
@@ -40,7 +62,11 @@ public interface CourseMapper {
      * @param size  size
      * @return list
      */
-    List<Course> selectDeletedCourses(@Param("start") Integer start, @Param("size") Integer size);
+    List<Course> selectDeletedCourses(
+            @Param("teacher_id") String teacher_id,
+            @Param("start") Integer start,
+            @Param("size") Integer size
+    );
 
 
     /**
