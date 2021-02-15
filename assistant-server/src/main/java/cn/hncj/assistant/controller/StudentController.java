@@ -26,7 +26,7 @@ public class StudentController {
 
     /* 分页查询学生 */
     @GetMapping("/all")
-    @RoleCheck(role = RoleCheck.ADMIN)
+    @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
         log.info("查询学生");
         return ServerResponse.createSuccess("查询成功", studentService.selectStudentByPage(page, size));
@@ -34,7 +34,7 @@ public class StudentController {
 
     /* 删除学生 */
     @PostMapping("/delete")
-    @RoleCheck(role = RoleCheck.ADMIN)
+    @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> delete(@RequestParam("id") String id) {
         log.info("删除学生");
         studentService.deleteStudentById(id);
@@ -43,7 +43,7 @@ public class StudentController {
 
     /* 修改学生 */
     @PostMapping("/update")
-    @RoleCheck(role = RoleCheck.STUDENT)
+    @RoleCheck(RoleCheck.STUDENT)
     public ServerResponse<Object> update(
             @RequestParam("id") String id,
             String password,

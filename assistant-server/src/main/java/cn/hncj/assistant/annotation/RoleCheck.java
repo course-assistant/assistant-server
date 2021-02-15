@@ -16,5 +16,5 @@ public @interface RoleCheck {
     String TEACHER = "teacher";
     String STUDENT = "student";
 
-    String role() default "";
+    String value() default "";
 }

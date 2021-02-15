@@ -35,7 +35,7 @@ public class TeacherController {
 
     /* 分页查询教师 */
     @GetMapping("/all")
-    @RoleCheck(role = RoleCheck.ADMIN)
+    @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
         log.info("查询教师");
         return ServerResponse.createSuccess("查询成功", teacherService.selectTeacherByPage(page, size));
@@ -44,7 +44,7 @@ public class TeacherController {
 
     /* 重置教师 */
     @PostMapping("/reset")
-    @RoleCheck(role = RoleCheck.ADMIN)
+    @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> reset(@RequestParam("id") String id) {
         log.info("重置教师");
         HashMap<String, Object> map = new HashMap<>();
@@ -56,7 +56,7 @@ public class TeacherController {
 
     /* 删除教师 */
     @PostMapping("/delete")
-    @RoleCheck(role = RoleCheck.ADMIN)
+    @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> delete(@RequestParam("id") String id) {
         log.info("删除教师");
         teacherService.deleteTeacherById(id);
@@ -65,7 +65,7 @@ public class TeacherController {
 
     /* 改变状态 */
     @PostMapping("/status")
-    @RoleCheck(role = RoleCheck.ADMIN)
+    @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> status(@RequestParam("id") String id, @RequestParam("status") Integer status) {
         log.info("改变状态");
         log.info("id: {}", id);
@@ -82,7 +82,7 @@ public class TeacherController {
 
     /* 修改教师 */
     @PostMapping("/update")
-    @RoleCheck(role = RoleCheck.TEACHER)
+    @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> update(
             @RequestParam("id") String id,
             String phone,

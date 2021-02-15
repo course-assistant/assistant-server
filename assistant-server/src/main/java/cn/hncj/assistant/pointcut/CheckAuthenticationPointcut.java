@@ -60,7 +60,7 @@ public class CheckAuthenticationPointcut {
         MethodSignature methodSignature = (MethodSignature) signature;
         Method targetMethod = methodSignature.getMethod();
         cn.hncj.assistant.annotation.RoleCheck annotation = targetMethod.getAnnotation(RoleCheck.class);
-        String requiredRole = annotation.role();
+        String requiredRole = annotation.value();
         String providedId;
         String providedRole;
 
