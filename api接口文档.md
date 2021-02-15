@@ -29,7 +29,7 @@ token采用 JWT 格式
 payload有两个附加部分
 
 - id：已授权的id
-- type：id的用户类型
+- role：id的用户类型
 
 <br>
 

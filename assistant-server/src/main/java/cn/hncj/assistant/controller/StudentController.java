@@ -66,6 +66,7 @@ public class StudentController {
             String phone,
             String avatar
     ) {
+        log.info("修改学生");
         HashMap<String, Object> map = new HashMap<>();
         if (password != null) {
             map.put("student_password", password);
@@ -73,10 +74,10 @@ public class StudentController {
         if (email != null) {
             map.put("student_email", email);
         }
-        if (password != null) {
+        if (phone != null) {
             map.put("student_phone", phone);
         }
-        if (email != null) {
+        if (avatar != null) {
             map.put("student_avatar", avatar);
         }
         if (map.isEmpty()) {
