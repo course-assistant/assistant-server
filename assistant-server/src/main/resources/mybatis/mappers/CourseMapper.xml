@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
+<mapper namespace="cn.hncj.assistant.mapper.CourseMapper">
+    <!-- 分页查询正在进行的课程 -->
+    <select id="selectStartedCourses" resultType="course">
+        select * from started_course
+        limit #{start},#{size};
+    </select>
+
+
+    <!-- 分页查询已结束的课程 -->
+    <select id="selectEndedCourses" resultType="course">
+        select * from ended_course
+        limit #{start},#{size};
+    </select>
+
+
+    <!-- 分页查询已删除的课程 -->
+    <select id="selectDeletedCourses" resultType="course">
+        select * from deleted_course
+        limit #{start},#{size};
+    </select>
+
+
+    <!-- 删除课程 -->
+    <delete id="deleteCourseById" parameterType="int">
+        delete from course
+        where course_id = #{course_id};
+    </delete>
+
+    
+    <!-- 修改课程 -->
+    <update id="updateCourse">
+        update course
+        <set>
+            <if test="course_name != null">course_name=#{course_name},</if>
+            <if test="course_cover != null">course_cover=#{course_cover},</if>
+            <if test="course_status != null">course_status=#{course_status}</if>
+        </set>
+        where course_id=#{course_id}
+    </update>
+</mapper>

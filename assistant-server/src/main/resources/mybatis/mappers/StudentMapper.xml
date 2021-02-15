@@ -30,7 +30,7 @@
             <if test="student_password != null">student_password=#{student_password},</if>
             <if test="student_avatar != null">student_avatar=#{student_avatar},</if>
             <if test="student_phone != null">student_phone=#{student_phone},</if>
-            <if test="student_email != null">student_email=#{student_email}</if>
+            <if test="student_email != null">student_email=#{student_email},</if>
             <if test="student_status != null">student_status=#{student_status}</if>
         </set>
         where student_id=#{student_id}

@@ -1,6 +1,7 @@
 package cn.hncj.assistant;
 
 import cn.hncj.assistant.entity.User;
+import cn.hncj.assistant.mapper.CourseMapper;
 import cn.hncj.assistant.mapper.StudentMapper;
 import cn.hncj.assistant.mapper.TeacherMapper;
 import cn.hncj.assistant.mapper.UserMapper;
@@ -27,6 +28,9 @@ class MainApplicationTests {
     @Autowired
     TeacherService teacherService;
 
+    @Autowired
+    CourseMapper courseMapper;
+
     @Test
     void testMybatis() {
         List<User> users = userMapper.getUsers();
@@ -39,6 +43,10 @@ class MainApplicationTests {
     @Test
     void testMapper() {
 
+        courseMapper.updateCourse(3,
+                "测测测试",
+                "cover",
+                1);
     }
 
     @Test
