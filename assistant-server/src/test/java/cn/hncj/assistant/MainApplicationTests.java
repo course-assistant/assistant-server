@@ -48,10 +48,7 @@ class MainApplicationTests {
     @Test
     void testMapper() {
 
-        courseMapper.updateCourse(3,
-                "测测测试",
-                "cover",
-                1);
+
     }
 
     @Test

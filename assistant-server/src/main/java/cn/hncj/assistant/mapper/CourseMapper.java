@@ -89,6 +89,7 @@ public interface CourseMapper {
      */
     Integer updateCourse(
             @Param("course_id") Integer course_id,
+            @Param("teacher_id") String teacher_id,
             @Param("course_name") String course_name,
             @Param("course_cover") String course_cover,
             @Param("course_status") Integer course_status

@@ -52,7 +52,7 @@
             <if test="course_cover != null">course_cover=#{course_cover},</if>
             <if test="course_status != null">course_status=#{course_status}</if>
         </set>
-        where course_id=#{course_id}
+        where course_id=#{course_id} and teacher_id = #{teacher_id}
     </update>
 
 

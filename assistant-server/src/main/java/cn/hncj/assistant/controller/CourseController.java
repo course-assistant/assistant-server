@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @CrossOrigin
 @RestController
@@ -79,8 +81,52 @@ public class CourseController {
             @RequestParam("teacher_id") String teacher_id,
             @RequestParam("name") String name,
             @RequestParam("cover") String cover) {
+        log.info("添加课程");
         courseService.insertCourse(teacher_id, name, cover);
         return ServerResponse.createSuccess("添加成功");
+    }
+
+
+    /**
+     * 修改课程
+     *
+     * @param teacher_id teacher_id
+     * @param course_id  course_id
+     * @param name       name
+     * @param cover      cover
+     * @param status     status
+     * @return response
+     */
+    @PostMapping("/update")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> update(
+            @RequestParam("teacher_id") String teacher_id,
+            @RequestParam("course_id") Integer course_id,
+            String name,
+            String cover,
+            Integer status
+    ) {
+        log.info("修改课程");
+        log.info("name: {}",name);
+        log.info("cover: {}",cover);
+        log.info("status: {}",status);
+        HashMap<String, Object> map = new HashMap<>();
+        if (name != null) {
+            map.put("course_name", name);
+        }
+        if (cover != null) {
+            map.put("course_cover", cover);
+        }
+        if (status != null) {
+            map.put("course_status", status);
+        }
+        if (map.isEmpty()) {
+            throw new ServerException("请至少传入一个参数");
+        }
+        map.put("teacher_id", teacher_id);
+        map.put("course_id", course_id);
+        courseService.updateCourse(map);
+        return ServerResponse.createSuccess("修改成功");
     }
 
 }
