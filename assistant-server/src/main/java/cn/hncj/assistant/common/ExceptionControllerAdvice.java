@@ -47,9 +47,10 @@ public class ExceptionControllerAdvice {
 //    }
 
     // 其他异常
-//    @ExceptionHandler(Exception.class)
-//    public Object exceptionHandler() {
-//        return ServerResponse.createInternalError("服务器异常");
-//    }
+    @ExceptionHandler(Exception.class)
+    public Object exceptionHandler(Exception e) {
+        e.printStackTrace();
+        return ServerResponse.createInternalError("服务器异常");
+    }
 
 }

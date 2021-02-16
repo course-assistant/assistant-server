@@ -51,7 +51,6 @@ public class StudentController {
     @PostMapping("/delete")
     @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> delete(@RequestParam("id") String id) {
-        log.info("删除学生");
         studentService.deleteStudentById(id);
         return ServerResponse.createSuccess("删除成功");
     }
@@ -66,7 +65,6 @@ public class StudentController {
             String phone,
             String avatar
     ) {
-        log.info("修改学生");
         HashMap<String, Object> map = new HashMap<>();
         if (password != null) {
             map.put("student_password", password);
@@ -92,9 +90,6 @@ public class StudentController {
     @PostMapping("/status")
     @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> status(@RequestParam("id") String id, @RequestParam("status") Integer status) {
-        log.info("修改学生状态");
-        log.info("student_id: {}", id);
-        log.info("student_status: {}", status);
         if (status < 0 || status > 1) {
             throw new ServerException("status只能为 0或1");
         }

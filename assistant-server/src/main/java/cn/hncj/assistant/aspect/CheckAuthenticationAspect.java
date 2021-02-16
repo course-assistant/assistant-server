@@ -1,4 +1,4 @@
-package cn.hncj.assistant.pointcut;
+package cn.hncj.assistant.aspect;
 
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.exception.ServerException;
@@ -26,9 +26,9 @@ import java.lang.reflect.Method;
  */
 @Aspect
 @Component
-public class CheckAuthenticationPointcut {
+public class CheckAuthenticationAspect {
 
-    final static Logger log = LoggerFactory.getLogger(CheckAuthenticationPointcut.class);
+    final static Logger log = LoggerFactory.getLogger(CheckAuthenticationAspect.class);
 
     /**
      * 切点

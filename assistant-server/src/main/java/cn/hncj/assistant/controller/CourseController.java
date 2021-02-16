@@ -4,6 +4,7 @@ import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.CourseService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
+@Slf4j
 @CrossOrigin
 @RestController
 @RequestMapping("/course")
@@ -19,8 +21,6 @@ public class CourseController {
 
     @Autowired
     CourseService courseService;
-
-    final static Logger log = LoggerFactory.getLogger(CourseController.class);
 
     /**
      * 查询课程
@@ -39,11 +39,6 @@ public class CourseController {
             @RequestParam("size") Integer size,
             Integer status
     ) {
-        log.info("查询正在进行的课程");
-        log.info("id: {}", id);
-        log.info("page: {}", page);
-        log.info("size: {}", size);
-        log.info("status: {}", status);
         // 根据情况返回
         if (status == null) {
             return ServerResponse.createSuccess("查询成功", courseService.findCourseByTeacherId(id, page, size));
@@ -81,7 +76,6 @@ public class CourseController {
             @RequestParam("teacher_id") String teacher_id,
             @RequestParam("name") String name,
             @RequestParam("cover") String cover) {
-        log.info("添加课程");
         courseService.insertCourse(teacher_id, name, cover);
         return ServerResponse.createSuccess("添加成功");
     }

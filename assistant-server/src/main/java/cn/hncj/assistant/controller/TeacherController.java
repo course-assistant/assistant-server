@@ -37,7 +37,6 @@ public class TeacherController {
     @GetMapping("/all")
     @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
-        log.info("查询教师");
         return ServerResponse.createSuccess("查询成功", teacherService.selectTeacherByPage(page, size));
     }
 
@@ -46,7 +45,6 @@ public class TeacherController {
     @PostMapping("/reset")
     @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> reset(@RequestParam("id") String id) {
-        log.info("重置教师");
         HashMap<String, Object> map = new HashMap<>();
         map.put("teacher_id", id);
         map.put("teacher_password", MD5Util.MD5EncodeUpper("000000"));
@@ -58,7 +56,6 @@ public class TeacherController {
     @PostMapping("/delete")
     @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> delete(@RequestParam("id") String id) {
-        log.info("删除教师");
         teacherService.deleteTeacherById(id);
         return ServerResponse.createSuccess("删除成功");
     }
@@ -92,9 +89,6 @@ public class TeacherController {
     @PostMapping("/status")
     @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> status(@RequestParam("id") String id, @RequestParam("status") Integer status) {
-        log.info("修改教师状态");
-        log.info("id: {}", id);
-        log.info("status: {}", status);
         if (status < 0 || status > 1) {
             throw new ServerException("status只能为 0或1");
         }
