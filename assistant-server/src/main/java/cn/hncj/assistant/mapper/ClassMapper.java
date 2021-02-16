@@ -6,10 +6,21 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 
+
+@SuppressWarnings("UnusedReturnValue")
 @Mapper
 @Repository
 public interface ClassMapper extends BaseMapper<Class> {
+
+    /**
+     * 根据课程id查询班级
+     *
+     * @param course_id course_id
+     * @return class
+     */
+    List<Class> selectByCourseId(@Param("course_id") String course_id);
 
     /**
      * 修改班级名
@@ -19,5 +30,6 @@ public interface ClassMapper extends BaseMapper<Class> {
      * @return int
      */
     Integer updateName(@Param("class_id") Integer class_id, @Param("class_name") String class_name);
+
 
 }

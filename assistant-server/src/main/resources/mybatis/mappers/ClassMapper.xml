@@ -5,7 +5,14 @@
 
 <!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
 <mapper namespace="cn.hncj.assistant.mapper.ClassMapper">
+    <!-- 根据课程id查询班级 -->
+    <select id="selectByCourseId" resultType="class">
+        select * from class
+        where course_id = #{course_id};
+    </select>
 
+
+    <!-- 修改班级名 -->
     <update id="updateName">
         update class
         set class_name = #{class_name}
