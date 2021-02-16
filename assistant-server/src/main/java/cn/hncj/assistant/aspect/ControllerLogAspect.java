@@ -26,6 +26,7 @@ public class ControllerLogAspect {
         Object target = joinPoint.getTarget();
         Object[] args = joinPoint.getArgs();
 
+        System.out.println();
         log.info("执行方法: {}.{}", target.getClass().getSimpleName(), signature.getName());
         log.info("传递参数: {}", Arrays.toString(args));
     }

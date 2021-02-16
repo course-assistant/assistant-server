@@ -33,15 +33,22 @@ spring:
 
 
 # 整合mybatis
-mybatis:
-  type-aliases-package: cn.hncj.assistant.entity
+#mybatis:
+#  type-aliases-package: cn.hncj.assistant.entity
+#  mapper-locations: classpath:mybatis/mappers/*.xml
+
+# mybatis-plus
+mybatis-plus:
   mapper-locations: classpath:mybatis/mappers/*.xml
+  type-aliases-package: cn.hncj.assistant.entity
+  configuration:
+    map-underscore-to-camel-case: false
 
 
 # 日志等级debug，输出mybatis的日志
 logging:
-#  pattern:
-#    console: "%d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n "
+  #  pattern:
+  #    console: "%d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n "
   level:
     # 将mapper的日志设为debug
     cn.hncj.assistant.mapper.*: debug

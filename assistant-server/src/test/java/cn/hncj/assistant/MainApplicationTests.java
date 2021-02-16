@@ -2,17 +2,13 @@ package cn.hncj.assistant;
 
 import cn.hncj.assistant.entity.Course;
 import cn.hncj.assistant.entity.User;
-import cn.hncj.assistant.mapper.CourseMapper;
-import cn.hncj.assistant.mapper.StudentMapper;
-import cn.hncj.assistant.mapper.TeacherMapper;
-import cn.hncj.assistant.mapper.UserMapper;
+import cn.hncj.assistant.mapper.*;
 import cn.hncj.assistant.service.CourseService;
 import cn.hncj.assistant.service.TeacherService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.HashMap;
 import java.util.List;
 
 @SpringBootTest
@@ -36,6 +32,9 @@ class MainApplicationTests {
     @Autowired
     CourseService courseService;
 
+    @Autowired
+    ClassMapper classMapper;
+
     @Test
     void testMybatis() {
         List<User> users = userMapper.getUsers();
@@ -47,7 +46,21 @@ class MainApplicationTests {
 
     @Test
     void testMapper() {
+//        List<Class> classes = classMapper.selectList(null);
+//        for (Class aClass : classes) {
+//            System.out.println(aClass);
+//        }
+//        Class aClass = classMapper.selectById(1);
+//
+//        System.out.println(aClass);
 
+//        classMapper.insert(new Class(3, 1, "三班"));
+
+//        Integer integer = classMapper.selectCount(null);
+//        System.out.println(integer);
+
+        classMapper.updateName(1, "一班");
+        classMapper.updateName(2, "二班");
 
     }
 
