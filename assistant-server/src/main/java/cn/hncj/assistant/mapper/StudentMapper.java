@@ -1,6 +1,7 @@
 package cn.hncj.assistant.mapper;
 
 import cn.hncj.assistant.entity.Student;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,7 @@ import java.util.List;
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 @Mapper
 @Repository
-public interface StudentMapper {
+public interface StudentMapper extends BaseMapper<Student> {
     /* 验证学生账号和密码 */
     int verifyStudent(String student_id, String student_password);
 

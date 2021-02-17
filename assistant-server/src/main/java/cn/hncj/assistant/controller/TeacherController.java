@@ -24,11 +24,20 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
-    @PostMapping("/add")
-    public ServerResponse<Object> addTeacher(String id, String administrator_id, String name, Integer sex, String phone, String email) {
+
+    /* 添加教师 */
+    @PostMapping("/insert")
+    @RoleCheck(RoleCheck.ADMIN)
+    public ServerResponse<Object> insert(
+            @RequestParam("id") String id,
+            @RequestParam("administrator_id") String administrator_id,
+            @RequestParam("name") String name,
+            Integer sex,
+            String phone,
+            String email) {
         teacherService.insertTeacher(id, administrator_id, name, sex, phone, email);
         HashMap<String, String> data = new HashMap<>();
-        data.put("teacher_id", id);
+        data.put("id", id);
         return ServerResponse.createSuccess("添加成功", data);
     }
 

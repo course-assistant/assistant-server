@@ -1,10 +1,13 @@
 package cn.hncj.assistant.common;
 
 import cn.hncj.assistant.exception.ServerException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
+import java.sql.SQLIntegrityConstraintViolationException;
 
 
 /**
@@ -51,6 +54,13 @@ public class ExceptionControllerAdvice {
     public Object exceptionHandler(Exception e) {
         e.printStackTrace();
         return ServerResponse.createInternalError("服务器异常");
+    }
+
+
+    /* 数据库相关异常 */
+    @ExceptionHandler(DuplicateKeyException.class)
+    public Object DuplicateKeyException(){
+        return ServerResponse.createInternalError("数据库试图插入重复的值");
     }
 
 }

@@ -1,6 +1,8 @@
 package cn.hncj.assistant.service.impl;
 
 import cn.hncj.assistant.dto.TeacherDTO;
+import cn.hncj.assistant.entity.Teacher;
+import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.mapper.TeacherMapper;
 import cn.hncj.assistant.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,18 +48,24 @@ public class TeacherServiceImpl implements TeacherService {
 
 
     @Override
-    public int insertTeacher(String id, String administrator_id, String name, Integer sex, String phone, String email) {
+    public int insertTeacher(String id, String administrator_id, String name, Integer sex, String phone, String email) throws ServerException {
         // 判断字段合法性
-        if (sex > 1 || sex < 0) {
-            throw new IllegalArgumentException("参数不合法：sex应该为0或1");
+        if (sex != null && (sex > 1 || sex < 0)) {
+            throw new ServerException("参数不合法：sex应该为0或1");
         }
-
-        // 执行
-        try {
-            return teacherMapper.insertTeacher(id, administrator_id, name, sex, phone, email);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("执行数据库异常，请检查后台日志！");
+        Teacher teacher = new Teacher();
+        teacher.setTeacher_id(id)
+                .setAdministrator_id(administrator_id)
+                .setTeacher_name(name);
+        if (sex != null) {
+            teacher.setTeacher_sex(sex);
         }
+        if (phone != null) {
+            teacher.setTeacher_phone(phone);
+        }
+        if (email != null) {
+            teacher.setTeacher_email(email);
+        }
+        return teacherMapper.insert(teacher);
     }
 }

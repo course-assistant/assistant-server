@@ -1,6 +1,7 @@
 package cn.hncj.assistant.mapper;
 
 import cn.hncj.assistant.entity.Teacher;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface TeacherMapper {
+public interface TeacherMapper extends BaseMapper<Teacher> {
 
     /**
      * 验证教师账号和密码
@@ -40,13 +41,5 @@ public interface TeacherMapper {
     /* 删除教师 */
     Integer deleteTeacherById(@Param("teacher_id") String teacher_id);
 
-    /* 添加教师 */
-    int insertTeacher(
-            @Param("teacher_id") String teacher_id,
-            @Param("administrator_id") String administrator_id,
-            @Param("teacher_name") String teacher_name,
-            @Param("teacher_Sex") Integer teacher_Sex,
-            @Param("teacher_phone") String teacher_phone,
-            @Param("teacher_email") String teacher_email
-    );
+
 }
