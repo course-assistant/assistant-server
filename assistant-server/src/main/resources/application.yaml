@@ -47,8 +47,8 @@ mybatis-plus:
 
 # 日志等级debug，输出mybatis的日志
 logging:
-  #  pattern:
-  #    console: "%d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n "
+#  pattern:
+#    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{20} - [%method,%line] : %msg%n"
   level:
     # 将mapper的日志设为debug
     cn.hncj.assistant.mapper.*: debug

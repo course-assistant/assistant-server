@@ -38,12 +38,12 @@ public class StudentController {
     @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> insert(
             @RequestParam("id") String id,
-            @RequestParam("administrator_id") String administrator_id,
+            @RequestParam("admin_id") String admin_id,
             @RequestParam("name") String name,
             Integer sex,
             String phone,
             String email) {
-        studentService.insertStudent(id, administrator_id, name, sex, phone, email);
+        studentService.insertStudent(id, admin_id, name, sex, phone, email);
         HashMap<String, String> data = new HashMap<>();
         data.put("id", id);
         return ServerResponse.createSuccess("添加成功", data);
