@@ -1,6 +1,7 @@
 package cn.hncj.assistant.service;
 
 import cn.hncj.assistant.dto.TeacherDTO;
+import cn.hncj.assistant.entity.Teacher;
 
 import java.util.Map;
 
@@ -8,9 +9,15 @@ import java.util.Map;
 @SuppressWarnings({"UnusedReturnValue", "unused"})
 public interface TeacherService {
 
-
     /* 分页查询教师 */
     TeacherDTO selectTeacherByPage(Integer page, Integer size);
+
+    /**
+     * 根据id查询教师
+     * @param id id
+     * @return teacher
+     */
+    Teacher selectById(String id);
 
     /* 修改教师 */
     Integer updateTeacher(Map<String, Object> map);

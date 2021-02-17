@@ -30,6 +30,23 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherDTO;
     }
 
+    /**
+     * 根据id查询教师
+     *
+     * @param id id
+     * @return teacher
+     */
+    @Override
+    public Teacher selectById(String id) {
+        Teacher teacher = teacherMapper.selectById(id);
+        if (teacher == null) {
+            return null;
+        }
+        // 将密码和wx置空
+        teacher.setTeacher_password(null).setTeacher_wx(null);
+        return teacher;
+    }
+
     @Override
     public Integer updateTeacher(Map<String, Object> map) {
         String teacher_id = (String) map.get("teacher_id");

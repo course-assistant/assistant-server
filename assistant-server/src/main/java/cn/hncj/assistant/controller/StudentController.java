@@ -2,6 +2,7 @@ package cn.hncj.assistant.controller;
 
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
+import cn.hncj.assistant.entity.Student;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.StudentService;
 import cn.hncj.assistant.util.MD5Util;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
+@SuppressWarnings("SpellCheckingInspection")
 @CrossOrigin
 @RestController
 @RequestMapping("/student")
@@ -32,6 +34,19 @@ public class StudentController {
         log.info("查询学生");
         return ServerResponse.createSuccess("查询成功", studentService.selectStudentByPage(page, size));
     }
+
+
+    /* 根据id查询 */
+    @GetMapping("/selectbyid")
+    @RoleCheck(RoleCheck.ADMIN)
+    public ServerResponse<Object> selectbyid(@RequestParam("id") String id) {
+        Student student = studentService.selectById(id);
+        if (student == null) {
+            return ServerResponse.createSuccess("查询结果为空");
+        }
+        return ServerResponse.createSuccess("查询成功", student);
+    }
+
 
     /* 添加学生 */
     @PostMapping("/insert")

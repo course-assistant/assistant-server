@@ -2,6 +2,7 @@ package cn.hncj.assistant.controller;
 
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
+import cn.hncj.assistant.entity.Teacher;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.TeacherService;
 import cn.hncj.assistant.util.MD5Util;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
+@SuppressWarnings("SpellCheckingInspection")
 @CrossOrigin
 @RestController
 @RequestMapping("/teacher")
@@ -47,6 +49,18 @@ public class TeacherController {
     @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
         return ServerResponse.createSuccess("查询成功", teacherService.selectTeacherByPage(page, size));
+    }
+
+
+    /* 根据id查询 */
+    @GetMapping("/selectbyid")
+    @RoleCheck(RoleCheck.ADMIN)
+    public ServerResponse<Object> selectbyid(@RequestParam("id") String id) {
+        Teacher teacher = teacherService.selectById(id);
+        if (teacher == null) {
+            return ServerResponse.createSuccess("查询结果为空");
+        }
+        return ServerResponse.createSuccess("查询成功", teacherService.selectById(id));
     }
 
 

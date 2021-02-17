@@ -31,6 +31,14 @@ payload有两个附加部分
 - id：已授权的id
 - role：id的用户类型
 
+前端获取token后，统一使用下面的key进行存储：
+
+管理员token：`hncj_management_admin_token`
+
+教师token：`hncj_management_teacher_token`
+
+学生token：`hncj_management_student_token`
+
 <br>
 
 ## 2. 登录验证
@@ -137,6 +145,38 @@ payload有两个附加部分
                 "teacher_status": 0
             }
         ]
+    }
+}
+```
+
+<br>
+
+### 根据教师id查询教师
+
+- 请求路径：teacher/selectbyid
+- 请求方法：get
+- 权限：管理员
+- 请求参数
+
+| 参数名 | 参数说明 | 类型   | 备注     |
+| ------ | -------- | ------ | -------- |
+| id     | 教师id   | string | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "teacher_id": "888888888",
+        "administrator_id": "root",
+        "teacher_name": "张妍琰",
+        "teacher_sex": 0,
+        "teacher_avatar": "avatar",
+        "teacher_phone": "13512345678",
+        "teacher_email": "123@qq.com",
+        "teacher_status": 1
     }
 }
 ```
@@ -310,6 +350,38 @@ payload有两个附加部分
     }
 }
 ```
+
+### 根据学生id查询学生
+
+- 请求路径：student/selectbyid
+- 请求方法：get
+- 权限：管理员
+- 请求参数
+
+| 参数名 | 参数说明 | 类型   | 备注     |
+| ------ | -------- | ------ | -------- |
+| id     | 教师id   | string | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "student_id": "081417137",
+        "administrator_id": "root",
+        "student_name": "吴硕",
+        "student_sex": 1,
+        "student_avatar": "avatar",
+        "student_phone": "15139744921",
+        "student_email": "1234@qq.com",
+        "student_status": 1
+    }
+}
+```
+
+<br>
 
 <br>
 

@@ -47,7 +47,6 @@ public class ControllerLogAspect {
         Object[] args = pjp.getArgs();
 
         // 执行前
-        System.out.println();
         log.info("执行方法: {}.{}", target.getClass().getSimpleName(), signature.getName());
         log.info("传递参数: {}", Arrays.toString(args));
 
@@ -58,7 +57,7 @@ public class ControllerLogAspect {
 
         // 执行后
         log.info("执行完成: {}.{}", target.getClass().getSimpleName(), signature.getName());
-        log.info("耗时: {}ms", time);
+        log.info("耗时: {}ms\n", time);
 
         return proceed;
     }

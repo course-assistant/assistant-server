@@ -28,6 +28,22 @@ public class StudentServiceImpl implements StudentService {
         return studentDTO;
     }
 
+    /**
+     * 根据学生id查询学生
+     *
+     * @param id id
+     * @return student
+     */
+    @Override
+    public Student selectById(String id) {
+        Student student = studentMapper.selectById(id);
+        if (student == null){
+            return null;
+        }
+        student.setStudent_password(null).setStudent_wx(null);
+        return student;
+    }
+
     @Override
     public int insertStudent(String id, String administrator_id, String name, Integer sex, String phone, String email) throws ServerException {
         // 判断字段合法性
