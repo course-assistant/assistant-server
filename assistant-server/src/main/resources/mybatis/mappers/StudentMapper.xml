@@ -11,10 +11,6 @@
         where student_id = #{student_id} and student_password = #{student_password};
     </select>
 
-    <!-- 学生数量 -->
-    <select id="countStudent" resultType="int">
-        select count(*) from student;
-    </select>
 
     <!-- 查询所有学生 -->
     <select id="selectStudents" resultType="student">
@@ -22,6 +18,7 @@
         from student
         limit #{start}, #{size};
     </select>
+
 
     <!-- 修改学生 -->
     <update id="updateStudent">
@@ -35,12 +32,5 @@
         </set>
         where student_id=#{student_id}
     </update>
-
-
-    <!-- 删除教师 -->
-    <delete id="deleteStudentById">
-        delete from student
-        where student_id = #{student_id}
-    </delete>
 
 </mapper>

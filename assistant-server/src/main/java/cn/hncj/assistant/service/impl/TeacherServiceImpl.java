@@ -24,7 +24,7 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public TeacherDTO selectTeacherByPage(Integer page, Integer size) {
         TeacherDTO teacherDTO = new TeacherDTO();
-        teacherDTO.setTotal(teacherMapper.countTeacher());
+        teacherDTO.setTotal(teacherMapper.selectCount(null));
         // 实现根据页数分页查询
         teacherDTO.setTeachers(teacherMapper.selectTeachers(page * size, size));
         return teacherDTO;
@@ -43,7 +43,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public Integer deleteTeacherById(String id) {
-        return teacherMapper.deleteTeacherById(id);
+        return teacherMapper.deleteById(id);
     }
 
 

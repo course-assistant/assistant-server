@@ -101,6 +101,11 @@ public class CourseServiceImpl implements CourseService {
      */
     @Override
     public Integer insertCourse(String teacher_id, String name, String cover) {
-        return courseMapper.insertCourse(teacher_id, name, new Date(), cover);
+        Course course = new Course()
+                .setTeacher_id(teacher_id)
+                .setCourse_name(name)
+                .setCourse_cover(cover)
+                .setCourse_date(new Date());
+        return courseMapper.insert(course);
     }
 }

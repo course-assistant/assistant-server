@@ -21,8 +21,6 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
      */
     int verifyTeacher(String teacher_id, String teacher_password);
 
-    /* 教师数量 */
-    Integer countTeacher();
 
     /* 查询所有教师 */
     List<Teacher> selectTeachers(Integer start, Integer size);
@@ -37,9 +35,5 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
             @Param("teacher_email") String teacher_email,
             @Param("teacher_status") Integer teacher_status
     );
-
-    /* 删除教师 */
-    Integer deleteTeacherById(@Param("teacher_id") String teacher_id);
-
 
 }

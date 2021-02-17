@@ -11,11 +11,6 @@
         where teacher_id = #{teacher_id} and teacher_password = #{teacher_password};
     </select>
 
-    <!-- 教师数量 -->
-    <select id="countTeacher" resultType="int">
-        select count(*) from teacher;
-    </select>
-
     <!-- 查询所有教师 -->
     <select id="selectTeachers" resultType="teacher">
         select teacher_id,administrator_id,teacher_name,teacher_sex,teacher_avatar,teacher_phone,teacher_email,teacher_status
@@ -35,13 +30,5 @@
         </set>
         where teacher_id=#{teacher_id}
     </update>
-
-
-    <!-- 删除教师 -->
-    <delete id="deleteTeacherById">
-        delete from teacher
-        where teacher_id = #{teacher_id}
-    </delete>
-
 
 </mapper>

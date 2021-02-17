@@ -23,7 +23,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDTO selectStudentByPage(Integer page, Integer size) {
         StudentDTO studentDTO = new StudentDTO();
-        studentDTO.setTotal(studentMapper.countStudent());
+        studentDTO.setTotal(studentMapper.selectCount(null));
         studentDTO.setStudents(studentMapper.selectStudents(page * size, size));
         return studentDTO;
     }
@@ -63,6 +63,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Integer deleteStudentById(String id) {
-        return studentMapper.deleteStudentById(id);
+        return studentMapper.deleteById(id);
     }
 }

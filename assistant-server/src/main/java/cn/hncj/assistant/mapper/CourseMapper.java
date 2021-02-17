@@ -1,6 +1,7 @@
 package cn.hncj.assistant.mapper;
 
 import cn.hncj.assistant.entity.Course;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ import java.util.List;
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 @Mapper
 @Repository
-public interface CourseMapper {
+public interface CourseMapper extends BaseMapper<Course> {
 
     /**
      * 分页查询使所有课程
@@ -69,14 +70,6 @@ public interface CourseMapper {
             @Param("size") Integer size
     );
 
-
-    /**
-     * 删除课程
-     *
-     * @param course_id id
-     * @return int
-     */
-    Integer deleteCourseById(@Param("course_id") Integer course_id);
 
 
     /**
