@@ -8,6 +8,9 @@ public enum ResponseCode {
     /* 请求成功 */
     OK(200),
 
+    /* 查询结果为空 */
+    EMPTY_QUERY(300),
+
     /* 客户端错误 */
     ERROR(400),
 

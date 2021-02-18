@@ -15,61 +15,21 @@ import java.util.List;
 @Repository
 public interface CourseMapper extends BaseMapper<Course> {
 
+
     /**
      * 分页查询使所有课程
      *
-     * @param start start
-     * @param size  size
+     * @param start  start
+     * @param size   size
+     * @param status status
      * @return list
      */
-    List<Course> selectCourses(
+    List<Course> selectCourseByTeacherId(
             @Param("teacher_id") String teacher_id,
             @Param("start") Integer start,
-            @Param("size") Integer size
+            @Param("size") Integer size,
+            @Param("status") Integer status
     );
-
-
-    /**
-     * 分页查询正在进行的课程
-     *
-     * @param start start
-     * @param size  size
-     * @return list
-     */
-    List<Course> selectStartedCourses(
-            @Param("teacher_id") String teacher_id,
-            @Param("start") Integer start,
-            @Param("size") Integer size
-    );
-
-
-    /**
-     * 分页查询已结束的课程
-     *
-     * @param start start
-     * @param size  size
-     * @return list
-     */
-    List<Course> selectEndedCourses(
-            @Param("teacher_id") String teacher_id,
-            @Param("start") Integer start,
-            @Param("size") Integer size
-    );
-
-
-    /**
-     * 分页查询已删除的课程
-     *
-     * @param start start
-     * @param size  size
-     * @return list
-     */
-    List<Course> selectDeletedCourses(
-            @Param("teacher_id") String teacher_id,
-            @Param("start") Integer start,
-            @Param("size") Integer size
-    );
-
 
 
     /**

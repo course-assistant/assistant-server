@@ -2,6 +2,7 @@ package cn.hncj.assistant.controller;
 
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
+import cn.hncj.assistant.dto.StudentDTO;
 import cn.hncj.assistant.entity.Student;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.StudentService;
@@ -31,7 +32,11 @@ public class StudentController {
     @GetMapping("/all")
     @RoleCheck(RoleCheck.ADMIN)
     public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size, String condition) {
-        return ServerResponse.createSuccess("查询成功", studentService.selectStudentByPage(page, size, condition));
+        StudentDTO studentDTO = studentService.selectStudentByPage(page, size, condition);
+        if (studentDTO.getStudents().isEmpty()) {
+            return ServerResponse.createEmptyQuery();
+        }
+        return ServerResponse.createSuccess("查询成功", studentDTO);
     }
 
 
@@ -41,7 +46,7 @@ public class StudentController {
     public ServerResponse<Object> selectbyid(@RequestParam("id") String id) {
         Student student = studentService.selectById(id);
         if (student == null) {
-            return ServerResponse.createSuccess("查询结果为空");
+            return ServerResponse.createEmptyQuery();
         }
         return ServerResponse.createSuccess("查询成功", student);
     }

@@ -2,15 +2,15 @@ package cn.hncj.assistant.controller;
 
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
+import cn.hncj.assistant.entity.Course;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Slf4j
@@ -39,26 +39,23 @@ public class CourseController {
             @RequestParam("size") Integer size,
             Integer status
     ) {
+        List<Course> courses;
         // 根据情况返回
         if (status == null) {
-            return ServerResponse.createSuccess("查询成功", courseService.findCourseByTeacherId(id, page, size));
+            courses = courseService.selectCourseByTeacherId(id, page, size, 0);
+            if (courses.isEmpty()) {
+                return ServerResponse.createEmptyQuery();
+            }
+            return ServerResponse.createSuccess("查询成功", courses);
         }
-        if (status < 1 || status > 3) {
-            throw new ServerException("status只能为 1 2 3");
+        if (status < 0 || status > 3) {
+            throw new ServerException("status只能为0 1 2 3");
         }
-        switch (status) {
-            case 1:
-                return ServerResponse.createSuccess("查询成功", courseService.findStartedCourseByTeacherId(id, page, size));
-
-            case 2:
-                return ServerResponse.createSuccess("查询成功", courseService.findEndedCourseByTeacherId(id, page, size));
-
-            case 3:
-                return ServerResponse.createSuccess("查询成功", courseService.findDeletedCourseByTeacherId(id, page, size));
-
-            default:
-                return ServerResponse.createSuccess("查询成功", courseService.findCourseByTeacherId(id, page, size));
+        courses = courseService.selectCourseByTeacherId(id, page, size, status);
+        if (courses.isEmpty()) {
+            return ServerResponse.createEmptyQuery();
         }
+        return ServerResponse.createSuccess("查询成功", courses);
     }
 
 

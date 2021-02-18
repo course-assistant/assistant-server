@@ -20,57 +20,72 @@ public class CourseServiceImpl implements CourseService {
         this.courseMapper = courseMapper;
     }
 
-    /**
-     * 根据教师id分页查询所有课程
-     *
-     * @param id   id
-     * @param page page
-     * @param size size
-     * @return course
-     */
-    @Override
-    public List<Course> findCourseByTeacherId(String id, Integer page, Integer size) {
-        return courseMapper.selectCourses(id, page * size, size);
-    }
 
     /**
-     * 根据教师id分页查询正在教的课程
+     * 根据教师id分页查询课程
      *
-     * @param id   id
-     * @param page page
-     * @param size size
+     * @param id     教师id
+     * @param page   page
+     * @param size   size
+     * @param status status
      * @return course
      */
     @Override
-    public List<Course> findStartedCourseByTeacherId(String id, Integer page, Integer size) {
-        return courseMapper.selectStartedCourses(id, page * size, size);
+    public List<Course> selectCourseByTeacherId(String id, Integer page, Integer size, Integer status) {
+        return courseMapper.selectCourseByTeacherId(id, page * size, size, status);
     }
 
-    /**
-     * 根据教师id分页查询已结束的课程
-     *
-     * @param id   id
-     * @param page page
-     * @param size size
-     * @return course
-     */
-    @Override
-    public List<Course> findEndedCourseByTeacherId(String id, Integer page, Integer size) {
-        return courseMapper.selectEndedCourses(id, page * size, size);
-    }
-
-    /**
-     * 根据教师id分页查询已删除的课程
-     *
-     * @param id   id
-     * @param page page
-     * @param size size
-     * @return course
-     */
-    @Override
-    public List<Course> findDeletedCourseByTeacherId(String id, Integer page, Integer size) {
-        return courseMapper.selectDeletedCourses(id, page * size, size);
-    }
+//    /**
+//     * 根据教师id分页查询所有课程
+//     *
+//     * @param id   id
+//     * @param page page
+//     * @param size size
+//     * @return course
+//     */
+//    @Override
+//    public List<Course> findCourseByTeacherId(String id, Integer page, Integer size) {
+//        return courseMapper.selectCourses(id, page * size, size);
+//    }
+//
+//    /**
+//     * 根据教师id分页查询正在教的课程
+//     *
+//     * @param id   id
+//     * @param page page
+//     * @param size size
+//     * @return course
+//     */
+//    @Override
+//    public List<Course> findStartedCourseByTeacherId(String id, Integer page, Integer size) {
+//        return courseMapper.selectStartedCourses(id, page * size, size);
+//    }
+//
+//    /**
+//     * 根据教师id分页查询已结束的课程
+//     *
+//     * @param id   id
+//     * @param page page
+//     * @param size size
+//     * @return course
+//     */
+//    @Override
+//    public List<Course> findEndedCourseByTeacherId(String id, Integer page, Integer size) {
+//        return courseMapper.selectEndedCourses(id, page * size, size);
+//    }
+//
+//    /**
+//     * 根据教师id分页查询已删除的课程
+//     *
+//     * @param id   id
+//     * @param page page
+//     * @param size size
+//     * @return course
+//     */
+//    @Override
+//    public List<Course> findDeletedCourseByTeacherId(String id, Integer page, Integer size) {
+//        return courseMapper.selectDeletedCourses(id, page * size, size);
+//    }
 
 
     /**

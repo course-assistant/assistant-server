@@ -5,6 +5,7 @@
 
 <!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
 <mapper namespace="cn.hncj.assistant.mapper.TeacherMapper">
+
     <!-- 验证教师账号和密码 -->
     <select id="verifyTeacher" resultType="int">
         select count(*) from teacher

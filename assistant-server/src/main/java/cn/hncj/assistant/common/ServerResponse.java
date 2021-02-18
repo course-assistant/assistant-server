@@ -21,7 +21,7 @@ public class ServerResponse<T> implements Serializable {
     }
 
     /**
-     * 创建一个只有消息的成功的response
+     * 创建一个成功的response
      *
      * @param msg  消息
      * @param data 数据
@@ -48,6 +48,20 @@ public class ServerResponse<T> implements Serializable {
         successResponse.setData(null);
         return successResponse;
     }
+
+
+    /**
+     * 创建一个查询结果为空的response
+     * @return ServerResponse
+     */
+    public static <T> ServerResponse<T> createEmptyQuery() {
+        ServerResponse<T> resp = new ServerResponse<>();
+        resp.setCode(ResponseCode.EMPTY_QUERY.getCode());
+        resp.setMsg("查询结果为空");
+        resp.setData(null);
+        return resp;
+    }
+
 
     /**
      * 创建一个失败的response

@@ -9,46 +9,58 @@ import java.util.Map;
 public interface CourseService {
 
     /**
-     * 根据教师id分页查询所有课程
+     * 根据教师id分页查询课程
      *
-     * @param id   id
-     * @param page page
-     * @param size size
+     * @param id     教师id
+     * @param page   page
+     * @param size   size
+     * @param status status
      * @return course
      */
-    List<Course> findCourseByTeacherId(String id, Integer page, Integer size);
+    List<Course> selectCourseByTeacherId(String id, Integer page, Integer size, Integer status);
 
-
-    /**
-     * 根据教师id分页查询正在教的课程
-     *
-     * @param id   id
-     * @param page page
-     * @param size size
-     * @return course
-     */
-    List<Course> findStartedCourseByTeacherId(String id, Integer page, Integer size);
-
-
-    /**
-     * 根据教师id分页查询已结束的课程
-     *
-     * @param id   id
-     * @param page page
-     * @param size size
-     * @return course
-     */
-    List<Course> findEndedCourseByTeacherId(String id, Integer page, Integer size);
-
-    /**
-     * 根据教师id分页查询已删除的课程
-     *
-     * @param id   id
-     * @param page page
-     * @param size size
-     * @return course
-     */
-    List<Course> findDeletedCourseByTeacherId(String id, Integer page, Integer size);
+//
+//    /**
+//     * 根据教师id分页查询所有课程
+//     *
+//     * @param id   id
+//     * @param page page
+//     * @param size size
+//     * @return course
+//     */
+//    List<Course> findCourseByTeacherId(String id, Integer page, Integer size);
+//
+//
+//    /**
+//     * 根据教师id分页查询正在教的课程
+//     *
+//     * @param id   id
+//     * @param page page
+//     * @param size size
+//     * @return course
+//     */
+//    List<Course> findStartedCourseByTeacherId(String id, Integer page, Integer size);
+//
+//
+//    /**
+//     * 根据教师id分页查询已结束的课程
+//     *
+//     * @param id   id
+//     * @param page page
+//     * @param size size
+//     * @return course
+//     */
+//    List<Course> findEndedCourseByTeacherId(String id, Integer page, Integer size);
+//
+//    /**
+//     * 根据教师id分页查询已删除的课程
+//     *
+//     * @param id   id
+//     * @param page page
+//     * @param size size
+//     * @return course
+//     */
+//    List<Course> findDeletedCourseByTeacherId(String id, Integer page, Integer size);
 
 
     /**

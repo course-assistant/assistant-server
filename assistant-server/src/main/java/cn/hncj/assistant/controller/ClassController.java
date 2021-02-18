@@ -2,10 +2,13 @@ package cn.hncj.assistant.controller;
 
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
+import cn.hncj.assistant.entity.Class;
 import cn.hncj.assistant.service.ClassService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @SuppressWarnings({"SpringJavaAutowiredFieldsWarningInspection", "SpellCheckingInspection"})
 @Slf4j
@@ -21,11 +24,15 @@ public class ClassController {
     @GetMapping("/findbycourseid")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> selectByCourseId(@RequestParam("course_id") String course_id) {
-        return ServerResponse.createSuccess("查询成功", classService.selectByCourseId(course_id));
+        List<Class> classes = classService.selectByCourseId(course_id);
+        if (classes.isEmpty()) {
+            return ServerResponse.createEmptyQuery();
+        }
+        return ServerResponse.createSuccess("查询成功", classes);
     }
 
 
-    /* 添加/创建班级 */
+    /* 添加班级 */
     @PostMapping("insert")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> insert(
