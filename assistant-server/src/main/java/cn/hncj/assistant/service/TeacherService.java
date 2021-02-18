@@ -10,7 +10,7 @@ import java.util.Map;
 public interface TeacherService {
 
     /* 分页查询教师 */
-    TeacherDTO selectTeacherByPage(Integer page, Integer size);
+    TeacherDTO selectTeacherByPage(Integer page, Integer size, String condition);
 
     /**
      * 根据id查询教师

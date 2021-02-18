@@ -5,6 +5,7 @@ import cn.hncj.assistant.entity.Teacher;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.mapper.TeacherMapper;
 import cn.hncj.assistant.service.TeacherService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +23,20 @@ public class TeacherServiceImpl implements TeacherService {
 
     /* 分页查询教师 */
     @Override
-    public TeacherDTO selectTeacherByPage(Integer page, Integer size) {
+    public TeacherDTO selectTeacherByPage(Integer page, Integer size, String condition) {
         TeacherDTO teacherDTO = new TeacherDTO();
-        teacherDTO.setTotal(teacherMapper.selectCount(null));
-        // 实现根据页数分页查询
-        teacherDTO.setTeachers(teacherMapper.selectTeachers(page * size, size));
+        // 条件为空
+        if (condition == null) {
+            teacherDTO.setTotal(teacherMapper.selectCount(null));
+            // 实现根据页数分页查询
+            teacherDTO.setTeachers(teacherMapper.selectTeachers(page * size, size, null));
+            return teacherDTO;
+        }
+        // 条件不为空
+        teacherDTO.setTeachers(teacherMapper.selectTeachers(page * size, size, condition));
+        QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("teacher_id", condition);
+        teacherDTO.setTotal(teacherMapper.selectCount(queryWrapper));
         return teacherDTO;
     }
 

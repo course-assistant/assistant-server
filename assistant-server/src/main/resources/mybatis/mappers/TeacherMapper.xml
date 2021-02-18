@@ -13,8 +13,14 @@
 
     <!-- 查询所有教师 -->
     <select id="selectTeachers" resultType="teacher">
-        select teacher_id,administrator_id,teacher_name,teacher_sex,teacher_avatar,teacher_phone,teacher_email,teacher_status
+        select
+        teacher_id,administrator_id,teacher_name,teacher_sex,teacher_avatar,teacher_phone,teacher_email,teacher_status
         from teacher
+
+        <if test="condition != null">
+            where teacher_id like concat('%',#{condition},'%')
+        </if>
+
         limit #{start}, #{size};
     </select>
 

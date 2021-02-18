@@ -16,7 +16,7 @@ public interface StudentMapper extends BaseMapper<Student> {
     int verifyStudent(String student_id, String student_password);
 
     /* 查询所有学生 */
-    List<Student> selectStudents(Integer start, Integer size);
+    List<Student> selectStudents(Integer start, Integer size, String condition);
 
     /* 修改学生 */
     Integer updateStudent(

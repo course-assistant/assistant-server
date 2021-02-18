@@ -5,6 +5,7 @@ import cn.hncj.assistant.entity.Student;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.mapper.StudentMapper;
 import cn.hncj.assistant.service.StudentService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +22,17 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public StudentDTO selectStudentByPage(Integer page, Integer size) {
+    public StudentDTO selectStudentByPage(Integer page, Integer size, String condition) {
         StudentDTO studentDTO = new StudentDTO();
-        studentDTO.setTotal(studentMapper.selectCount(null));
-        studentDTO.setStudents(studentMapper.selectStudents(page * size, size));
+        if (condition == null) {
+            studentDTO.setTotal(studentMapper.selectCount(null));
+            studentDTO.setStudents(studentMapper.selectStudents(page * size, size, null));
+            return studentDTO;
+        }
+        studentDTO.setStudents(studentMapper.selectStudents(page * size, size, condition));
+        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("student_id", condition);
+        studentDTO.setTotal(studentMapper.selectCount(queryWrapper));
         return studentDTO;
     }
 

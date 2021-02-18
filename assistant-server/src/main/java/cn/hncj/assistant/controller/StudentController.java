@@ -30,9 +30,8 @@ public class StudentController {
     /* 分页查询学生 */
     @GetMapping("/all")
     @RoleCheck(RoleCheck.ADMIN)
-    public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
-        log.info("查询学生");
-        return ServerResponse.createSuccess("查询成功", studentService.selectStudentByPage(page, size));
+    public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size, String condition) {
+        return ServerResponse.createSuccess("查询成功", studentService.selectStudentByPage(page, size, condition));
     }
 
 

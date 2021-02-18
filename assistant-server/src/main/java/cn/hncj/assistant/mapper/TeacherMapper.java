@@ -23,7 +23,7 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
 
 
     /* 查询所有教师 */
-    List<Teacher> selectTeachers(Integer start, Integer size);
+    List<Teacher> selectTeachers(Integer start, Integer size, String condition);
 
 
     /* 修改教师 */

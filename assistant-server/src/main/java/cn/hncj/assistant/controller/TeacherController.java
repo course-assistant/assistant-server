@@ -47,8 +47,8 @@ public class TeacherController {
     /* 分页查询教师 */
     @GetMapping("/all")
     @RoleCheck(RoleCheck.ADMIN)
-    public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
-        return ServerResponse.createSuccess("查询成功", teacherService.selectTeacherByPage(page, size));
+    public ServerResponse<Object> all(@RequestParam("page") Integer page, @RequestParam("size") Integer size, String condition) {
+        return ServerResponse.createSuccess("查询成功", teacherService.selectTeacherByPage(page, size, condition));
     }
 
 

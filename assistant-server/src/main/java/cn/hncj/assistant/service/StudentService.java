@@ -9,7 +9,7 @@ import java.util.Map;
 public interface StudentService {
 
     /* 分页查询学生 */
-    StudentDTO selectStudentByPage(Integer page, Integer size);
+    StudentDTO selectStudentByPage(Integer page, Integer size, String condition);
 
 
     /**
