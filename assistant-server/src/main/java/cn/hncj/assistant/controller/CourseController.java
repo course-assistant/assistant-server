@@ -2,6 +2,7 @@ package cn.hncj.assistant.controller;
 
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
+import cn.hncj.assistant.dto.CourseDTO;
 import cn.hncj.assistant.entity.Course;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.CourseService;
@@ -33,13 +34,13 @@ public class CourseController {
      */
     @GetMapping("/find")
     @RoleCheck(RoleCheck.TEACHER)
-    public ServerResponse<Object> findStarted(
+    public ServerResponse<Object> selectCourse(
             @RequestParam("id") String id,
             @RequestParam("page") Integer page,
             @RequestParam("size") Integer size,
             Integer status
     ) {
-        List<Course> courses;
+        List<CourseDTO> courses;
         // 根据情况返回
         if (status == null) {
             courses = courseService.selectCourseByTeacherId(id, page, size, 0);

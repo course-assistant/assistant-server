@@ -1,5 +1,6 @@
 package cn.hncj.assistant.service.impl;
 
+import cn.hncj.assistant.dto.CourseDTO;
 import cn.hncj.assistant.entity.Course;
 import cn.hncj.assistant.mapper.CourseMapper;
 import cn.hncj.assistant.service.CourseService;
@@ -31,7 +32,7 @@ public class CourseServiceImpl implements CourseService {
      * @return course
      */
     @Override
-    public List<Course> selectCourseByTeacherId(String id, Integer page, Integer size, Integer status) {
+    public List<CourseDTO> selectCourseByTeacherId(String id, Integer page, Integer size, Integer status) {
         return courseMapper.selectCourseByTeacherId(id, page * size, size, status);
     }
 

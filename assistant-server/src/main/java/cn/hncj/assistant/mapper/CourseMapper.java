@@ -1,5 +1,6 @@
 package cn.hncj.assistant.mapper;
 
+import cn.hncj.assistant.dto.CourseDTO;
 import cn.hncj.assistant.entity.Course;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -24,7 +25,7 @@ public interface CourseMapper extends BaseMapper<Course> {
      * @param status status
      * @return list
      */
-    List<Course> selectCourseByTeacherId(
+    List<CourseDTO> selectCourseByTeacherId(
             @Param("teacher_id") String teacher_id,
             @Param("start") Integer start,
             @Param("size") Integer size,

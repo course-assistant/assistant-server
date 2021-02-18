@@ -7,23 +7,18 @@
 <mapper namespace="cn.hncj.assistant.mapper.CourseMapper">
 
     <!-- 分页查询使所有课程 -->
-    <select id="selectCourseByTeacherId" resultType="course">
-        select * from
-        <choose>
-            <when test="status == 1">
-                started_course
-            </when>
-            <when test="status == 2">
-                ended_course
-            </when>
-            <when test="status == 3">
-                deleted_course
-            </when>
-            <otherwise>
-                course
-            </otherwise>
-        </choose>
-        where teacher_id = #{teacher_id}
+    <select id="selectCourseByTeacherId" resultType="CourseDTO">
+        select course.course_id,course.teacher_id,teacher.teacher_name,course.course_name,course.course_cover
+
+        from course,teacher
+
+        where course.teacher_id = teacher.teacher_id
+        and teacher.teacher_id = #{teacher_id}
+
+        <if test="status != 0">
+            and course.course_status = #{status}
+        </if>
+
         limit #{start},#{size};
     </select>
 

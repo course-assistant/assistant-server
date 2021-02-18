@@ -535,20 +535,11 @@ payload有两个附加部分
     "msg": "查询成功",
     "data": [
         {
-            "course_id": 1,
+            "course_id": "1",
             "teacher_id": "888888888",
-            "course_name": "测试课程",
-            "course_cover": "cover",
-            "course_date": "2021-01-11T16:00:00.000+00:00",
-            "course_status": 1
-        },
-        {
-            "course_id": 2,
-            "teacher_id": "888888888",
-            "course_name": "测试课程22",
-            "course_cover": "cover",
-            "course_date": "2021-01-12T16:00:00.000+00:00",
-            "course_status": 1
+            "teacher_name": "张妍琰",
+            "course_name": "测试课程01",
+            "course_cover": "covver"
         }
     ]
 }

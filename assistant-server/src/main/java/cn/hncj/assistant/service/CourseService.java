@@ -1,5 +1,6 @@
 package cn.hncj.assistant.service;
 
+import cn.hncj.assistant.dto.CourseDTO;
 import cn.hncj.assistant.entity.Course;
 
 import java.util.List;
@@ -17,50 +18,7 @@ public interface CourseService {
      * @param status status
      * @return course
      */
-    List<Course> selectCourseByTeacherId(String id, Integer page, Integer size, Integer status);
-
-//
-//    /**
-//     * 根据教师id分页查询所有课程
-//     *
-//     * @param id   id
-//     * @param page page
-//     * @param size size
-//     * @return course
-//     */
-//    List<Course> findCourseByTeacherId(String id, Integer page, Integer size);
-//
-//
-//    /**
-//     * 根据教师id分页查询正在教的课程
-//     *
-//     * @param id   id
-//     * @param page page
-//     * @param size size
-//     * @return course
-//     */
-//    List<Course> findStartedCourseByTeacherId(String id, Integer page, Integer size);
-//
-//
-//    /**
-//     * 根据教师id分页查询已结束的课程
-//     *
-//     * @param id   id
-//     * @param page page
-//     * @param size size
-//     * @return course
-//     */
-//    List<Course> findEndedCourseByTeacherId(String id, Integer page, Integer size);
-//
-//    /**
-//     * 根据教师id分页查询已删除的课程
-//     *
-//     * @param id   id
-//     * @param page page
-//     * @param size size
-//     * @return course
-//     */
-//    List<Course> findDeletedCourseByTeacherId(String id, Integer page, Integer size);
+    List<CourseDTO> selectCourseByTeacherId(String id, Integer page, Integer size, Integer status);
 
 
     /**

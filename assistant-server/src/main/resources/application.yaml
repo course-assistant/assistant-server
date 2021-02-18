@@ -40,7 +40,7 @@ spring:
 # mybatis-plus
 mybatis-plus:
   mapper-locations: classpath:mybatis/mappers/*.xml
-  type-aliases-package: cn.hncj.assistant.entity
+  type-aliases-package: cn.hncj.assistant.entity, cn.hncj.assistant.dto
   configuration:
     map-underscore-to-camel-case: false
 
