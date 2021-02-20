@@ -22,6 +22,14 @@ public interface CourseService {
 
 
     /**
+     * 根据课程id查询课程
+     * @param id id
+     * @return courseDTO
+     */
+    CourseDTO findByCourseId(Integer id);
+
+
+    /**
      * 修改课程
      *
      * @param map map

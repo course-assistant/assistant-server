@@ -59,7 +59,7 @@ public class TeacherController {
 
     /* 根据id查询 */
     @GetMapping("/selectbyid")
-    @RoleCheck(RoleCheck.ADMIN)
+    @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> selectbyid(@RequestParam("id") String id) {
         Teacher teacher = teacherService.selectById(id);
         if (teacher == null) {

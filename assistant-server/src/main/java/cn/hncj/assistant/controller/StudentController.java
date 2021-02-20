@@ -42,7 +42,7 @@ public class StudentController {
 
     /* 根据id查询 */
     @GetMapping("/selectbyid")
-    @RoleCheck(RoleCheck.ADMIN)
+    @RoleCheck(RoleCheck.STUDENT)
     public ServerResponse<Object> selectbyid(@RequestParam("id") String id) {
         Student student = studentService.selectById(id);
         if (student == null) {

@@ -157,7 +157,7 @@ payload有两个附加部分
 
 - 请求路径：teacher/selectbyid
 - 请求方法：get
-- 权限：管理员
+- 权限：教师
 - 请求参数
 
 | 参数名 | 参数说明 | 类型   | 备注     |
@@ -358,7 +358,7 @@ payload有两个附加部分
 
 - 请求路径：student/selectbyid
 - 请求方法：get
-- 权限：管理员
+- 权限：学生
 - 请求参数
 
 | 参数名 | 参数说明 | 类型   | 备注     |
@@ -515,7 +515,7 @@ payload有两个附加部分
 
 ### 根据教师id查询课程
 
-- 请求路径：course/find
+- 请求路径：course/findbyteacherid
 - 请求方法：get
 - 权限：教师
 - 请求参数
@@ -542,6 +542,35 @@ payload有两个附加部分
             "course_cover": "covver"
         }
     ]
+}
+```
+
+<br>
+
+### 根据课程id查询课程
+
+- 请求路径：course/findbyid
+- 请求方法：get
+- 权限：教师
+- 请求参数
+
+| 参数名 | 参数说明 | 类型   | 备注     |
+| ------ | -------- | ------ | -------- |
+| id     | 教师id   | string | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "course_id": "1",
+        "teacher_id": "888888888",
+        "teacher_name": "张妍琰",
+        "course_name": "测试课程01",
+        "course_cover": "http://p.ananas.chaoxing.com/star3/240_130c/b7b9a80175b2d80938d72fcbfdabce24.jpg"
+    }
 }
 ```
 

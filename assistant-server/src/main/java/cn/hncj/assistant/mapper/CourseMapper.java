@@ -34,10 +34,20 @@ public interface CourseMapper extends BaseMapper<Course> {
 
 
     /**
+     * 根据课程id查询课程
+     *
+     * @param course_id course_id
+     * @return courseDTO
+     */
+    CourseDTO findByCourseId(@Param("course_id") Integer course_id);
+
+
+    /**
      * 修改课程
-     * @param course_id id
-     * @param course_name name
-     * @param course_cover cover
+     *
+     * @param course_id     id
+     * @param course_name   name
+     * @param course_cover  cover
      * @param course_status status
      * @return int
      */

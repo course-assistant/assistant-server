@@ -3,7 +3,6 @@ package cn.hncj.assistant.controller;
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.dto.CourseDTO;
-import cn.hncj.assistant.entity.Course;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 
-@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
+@SuppressWarnings({"SpringJavaAutowiredFieldsWarningInspection", "SpellCheckingInspection"})
 @Slf4j
 @CrossOrigin
 @RestController
@@ -24,7 +23,7 @@ public class CourseController {
     CourseService courseService;
 
     /**
-     * 查询课程
+     * 根据教师id查询课程
      *
      * @param id     教师id
      * @param page   page
@@ -32,7 +31,7 @@ public class CourseController {
      * @param status status
      * @return courses
      */
-    @GetMapping("/find")
+    @GetMapping("/findbyteacherid")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> selectCourse(
             @RequestParam("id") String id,
@@ -59,6 +58,18 @@ public class CourseController {
         return ServerResponse.createSuccess("查询成功", courses);
     }
 
+
+    /* 根据课程id查询课程 */
+    @GetMapping("/findbyid")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> findByCourseId(@RequestParam("id") Integer id) {
+
+        CourseDTO courseDTO = courseService.findByCourseId(id);
+        if (courseDTO == null) {
+            return ServerResponse.createEmptyQuery();
+        }
+        return ServerResponse.createSuccess("查询成功", courseDTO);
+    }
 
     /**
      * 添加课程
