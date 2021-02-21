@@ -717,7 +717,7 @@ payload有两个附加部分
 
 ## 7 周和学时
 
-### 根据课id查询周和学时
+### 根据课程id查询周和学时
 
 - 请求路径：weekperiod/select
 - 请求方法：get
@@ -731,7 +731,34 @@ payload有两个附加部分
 - 响应数据
 
 ```json
-
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": [
+        {
+            "week_id": 1,
+            "week_name": "第01周",
+            "periods": [
+                {
+                    "period_id": 1,
+                    "week_id": 1,
+                    "period_name": "第01学时",
+                    "period_content": "内容",
+                    "period_type": 1,
+                    "period_status": 1
+                },
+                {
+                    "period_id": 2,
+                    "week_id": 1,
+                    "period_name": "第02学时",
+                    "period_content": "内容",
+                    "period_type": 1,
+                    "period_status": 1
+                }
+            ]
+        }
+    ]
+}
 ```
 
 <br>

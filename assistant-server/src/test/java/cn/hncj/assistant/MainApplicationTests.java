@@ -4,6 +4,7 @@ import cn.hncj.assistant.entity.User;
 import cn.hncj.assistant.mapper.*;
 import cn.hncj.assistant.service.CourseService;
 import cn.hncj.assistant.service.TeacherService;
+import cn.hncj.assistant.service.WeekPeriodService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,6 +35,9 @@ class MainApplicationTests {
     @Autowired
     ClassMapper classMapper;
 
+    @Autowired
+    WeekPeriodService weekPeriodService;
+
     @Test
     void testMybatis() {
         List<User> users = userMapper.getUsers();
@@ -51,7 +55,7 @@ class MainApplicationTests {
 
     @Test
     void testService() {
-        courseService.insertCourse("888888888", "名字", "封面", 5, 1, 2);
+        weekPeriodService.selectWeekPeriod(1);
     }
 
 }
