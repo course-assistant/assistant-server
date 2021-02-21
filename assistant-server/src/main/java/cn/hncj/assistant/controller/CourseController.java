@@ -63,7 +63,6 @@ public class CourseController {
     @GetMapping("/findbyid")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> findByCourseId(@RequestParam("id") Integer id) {
-
         CourseDTO courseDTO = courseService.findByCourseId(id);
         if (courseDTO == null) {
             return ServerResponse.createEmptyQuery();
@@ -84,8 +83,11 @@ public class CourseController {
     public ServerResponse<Object> insert(
             @RequestParam("teacher_id") String teacher_id,
             @RequestParam("name") String name,
-            @RequestParam("cover") String cover) {
-        courseService.insertCourse(teacher_id, name, cover);
+            @RequestParam("cover") String cover,
+            @RequestParam("week") Integer week,
+            @RequestParam("odd_period") Integer odd_period,
+            @RequestParam("even_period") Integer even_period) {
+        courseService.insertCourse(teacher_id, name, cover, week, odd_period, even_period);
         return ServerResponse.createSuccess("添加成功");
     }
 
@@ -109,10 +111,6 @@ public class CourseController {
             String cover,
             Integer status
     ) {
-        log.info("修改课程");
-        log.info("name: {}",name);
-        log.info("cover: {}",cover);
-        log.info("status: {}",status);
         HashMap<String, Object> map = new HashMap<>();
         if (name != null) {
             map.put("course_name", name);

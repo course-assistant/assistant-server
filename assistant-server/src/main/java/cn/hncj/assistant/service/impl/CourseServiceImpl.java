@@ -2,24 +2,32 @@ package cn.hncj.assistant.service.impl;
 
 import cn.hncj.assistant.dto.CourseDTO;
 import cn.hncj.assistant.entity.Course;
+import cn.hncj.assistant.entity.Period;
+import cn.hncj.assistant.entity.Week;
 import cn.hncj.assistant.mapper.CourseMapper;
+import cn.hncj.assistant.mapper.PeriodMapper;
+import cn.hncj.assistant.mapper.WeekMapper;
 import cn.hncj.assistant.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Service
 public class CourseServiceImpl implements CourseService {
 
+    @Autowired
     CourseMapper courseMapper;
 
     @Autowired
-    public void setCourseMapper(CourseMapper courseMapper) {
-        this.courseMapper = courseMapper;
-    }
+    WeekMapper weekMapper;
+
+    @Autowired
+    PeriodMapper periodMapper;
 
 
     /**
@@ -83,4 +91,61 @@ public class CourseServiceImpl implements CourseService {
                 .setCourse_date(new Date());
         return courseMapper.insert(course);
     }
+
+
+    /**
+     * 添加课程
+     *
+     * @param teacher_id 教师id
+     * @param name       课程名
+     * @param cover      封面
+     * @param week       周数
+     * @param oddPeriod  单周学时数
+     * @param evenPeriod 双周学时数
+     * @return int
+     */
+    @Transactional
+    @Override
+    public Integer insertCourse(String teacher_id, String name, String cover, Integer week, Integer oddPeriod, Integer evenPeriod) {
+        // 先插入一个课程
+        Course course = new Course()
+                .setTeacher_id(teacher_id)
+                .setCourse_name(name)
+                .setCourse_cover(cover)
+                .setCourse_date(new Date());
+        courseMapper.insert(course);
+        // 获取刚刚插入的主键
+        Integer courseId = course.getCourse_id();
+
+        // 准备插入周数
+        int periodNum = 1;
+        for (int i = 1; i <= week; i++) {
+            // 插入周
+            Week newWeek = new Week()
+                    .setCourse_id(courseId)
+                    .setWeek_name(String.format("第%02d周", i));
+            weekMapper.insert(newWeek);
+            Integer weekId = newWeek.getWeek_id();
+
+            // 给每个周插入学时
+            // 判断当前周是单周还是双周
+            int num = oddPeriod;
+            if (i % 2 == 0) {
+                num = evenPeriod;
+            }
+            for (int j = 0; j < num; j++) {
+                Period period = new Period()
+                        .setWeek_id(weekId)
+                        .setPeriod_name(String.format("第%02d学时", periodNum))
+                        .setPeriod_content("内容")
+                        .setPeriod_type(1)
+                        .setPeriod_status(1);
+                periodMapper.insert(period);
+                periodNum++;
+            }
+        }
+        return null;
+    }
+
+
 }

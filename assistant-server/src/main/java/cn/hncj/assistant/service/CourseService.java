@@ -1,7 +1,6 @@
 package cn.hncj.assistant.service;
 
 import cn.hncj.assistant.dto.CourseDTO;
-import cn.hncj.assistant.entity.Course;
 
 import java.util.List;
 import java.util.Map;
@@ -51,4 +50,16 @@ public interface CourseService {
             String name,
             String cover
     );
+
+
+
+    Integer insertCourse(
+            String teacher_id,
+            String name,
+            String cover,
+            Integer week,
+            Integer oddPeriod,
+            Integer evenPeriod
+    );
+
 }

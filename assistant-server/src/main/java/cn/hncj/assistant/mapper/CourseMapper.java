@@ -60,19 +60,5 @@ public interface CourseMapper extends BaseMapper<Course> {
     );
 
 
-    /**
-     * 添加课程
-     * @param teacher_id 所属教师id
-     * @param course_name name
-     * @param course_date date
-     * @param course_cover cover
-     * @return int
-     */
-    Integer insertCourse(
-            String teacher_id,
-            String course_name,
-            Date course_date,
-            String course_cover
-    );
 
 }

@@ -1,6 +1,5 @@
 package cn.hncj.assistant;
 
-import cn.hncj.assistant.entity.Course;
 import cn.hncj.assistant.entity.User;
 import cn.hncj.assistant.mapper.*;
 import cn.hncj.assistant.service.CourseService;
@@ -52,7 +51,7 @@ class MainApplicationTests {
 
     @Test
     void testService() {
-
+        courseService.insertCourse("888888888", "名字", "封面", 5, 1, 2);
     }
 
 }
