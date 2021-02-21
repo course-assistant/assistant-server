@@ -15,6 +15,7 @@ public @interface RoleCheck {
     String ADMIN = "administrator";
     String TEACHER = "teacher";
     String STUDENT = "student";
+    String USER = "user";
 
     String value() default "";
 }

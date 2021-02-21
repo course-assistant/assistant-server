@@ -88,8 +88,13 @@ public class CheckAuthenticationAspect {
          * 验证权限，验证规则：
          * 如果 providedRole 为 admin 直接判定有权限
          * 如果 providedRole 为 teacher或student，那么只能 requiredRole和providedRole 完全匹配才有权限
+         * 如果 requiredRole 为 user，则 providedRole 为teacher或student或admin都可以
+         *
+         * 1: 提供的是管理员
+         * 2: 提供的是学生或教师
+         * 3: 需要的是user，在这里，只要过了上面的token验证，role一定有值，直接验证通过
          */
-        if (RoleCheck.ADMIN.equals(providedRole) || requiredRole.equals(providedRole)) {
+        if (RoleCheck.ADMIN.equals(providedRole) || requiredRole.equals(providedRole) ||requiredRole.equals(RoleCheck.USER)) {
             log.info("验证通过");
             return pjp.proceed();
         }
