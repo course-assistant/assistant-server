@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
+<mapper namespace="cn.hncj.assistant.mapper.WeekMapper">
+
+    <!-- 修改周 -->
+    <update id="updateWeek">
+        update week
+        set week_name = #{week_name}
+        where week_id = #{week_id};
+    </update>
+
+</mapper>

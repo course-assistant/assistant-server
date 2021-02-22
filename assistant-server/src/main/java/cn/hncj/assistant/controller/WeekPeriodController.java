@@ -26,6 +26,17 @@ public class WeekPeriodController {
     }
 
 
+    /* 给课程添加周 */
+    @PostMapping("/addweek")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> addWeek(
+            @RequestParam("course_id") Integer course_id,
+            @RequestParam("name") String name) {
+        weekPeriodService.addWeek(course_id, name);
+        return ServerResponse.createSuccess("添加成功");
+    }
+
+
     /* 修改学时 */
     @PostMapping("/updateperiod")
     @RoleCheck(RoleCheck.TEACHER)
@@ -41,6 +52,37 @@ public class WeekPeriodController {
         }
         weekPeriodService.updatePeriod(id, name, type, status);
         return ServerResponse.createSuccess("修改成功");
+    }
+
+    /* 修改周 */
+    @PostMapping("/updateweek")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> updateWeek(
+            @RequestParam("id") Integer id,
+            @RequestParam("name") String name
+    ) {
+        weekPeriodService.updateWeek(id, name);
+        return ServerResponse.createSuccess("修改成功");
+    }
+
+
+    /* 删除学时 */
+    @PostMapping("/deleteperiod")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> deletePeriod(@RequestParam("id") Integer id) {
+        weekPeriodService.deletePeriodById(id);
+        return ServerResponse.createSuccess("删除成功");
+
+    }
+
+
+    /* 删除周 */
+    @PostMapping("/deleteweek")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> deleteWeek(@RequestParam("id") Integer id) {
+        weekPeriodService.deleteWeekById(id);
+        return ServerResponse.createSuccess("删除成功");
+
     }
 
 }
