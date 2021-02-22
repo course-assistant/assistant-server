@@ -786,6 +786,30 @@ payload有两个附加部分
 
 <br>
 
+### 添加学时
+
+- 请求路径：weekperiod/addperiod
+- 请求方法：post
+- 权限：教师
+- 请求参数
+
+| 参数名  | 参数说明 | 类型   | 备注     |
+| ------- | -------- | ------ | -------- |
+| week_id | 周id     | int    | 不能为空 |
+| name    | 学时名字 | string | 不能为空 |
+| type    | 学时类型 | int    | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "添加成功"
+}
+```
+
+<br>
+
 ### 修改学时
 
 - 请求路径：weekperiod/updateperiod

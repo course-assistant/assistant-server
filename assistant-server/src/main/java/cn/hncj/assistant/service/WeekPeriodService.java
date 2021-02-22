@@ -28,6 +28,17 @@ public interface WeekPeriodService {
 
 
     /**
+     * 给周添加学时
+     *
+     * @param weekId weekId
+     * @param name   name
+     * @param type   type
+     * @return int
+     */
+    Integer addPeriod(Integer weekId, String name, Integer type);
+
+
+    /**
      * 修改学时
      *
      * @param id     学时id

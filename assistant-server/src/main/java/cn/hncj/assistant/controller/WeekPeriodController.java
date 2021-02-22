@@ -37,6 +37,18 @@ public class WeekPeriodController {
     }
 
 
+    /* 给周添加学时 */
+    @PostMapping("/addperiod")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> addPeriod(
+            @RequestParam("week_id") Integer week_id,
+            @RequestParam("name") String name,
+            @RequestParam("type") Integer type) {
+        weekPeriodService.addPeriod(week_id, name, type);
+        return ServerResponse.createSuccess("添加成功");
+    }
+
+
     /* 修改学时 */
     @PostMapping("/updateperiod")
     @RoleCheck(RoleCheck.TEACHER)

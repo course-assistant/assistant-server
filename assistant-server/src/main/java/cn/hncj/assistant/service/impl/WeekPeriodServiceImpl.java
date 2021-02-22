@@ -69,6 +69,25 @@ public class WeekPeriodServiceImpl implements WeekPeriodService {
     }
 
     /**
+     * 给周添加学时
+     *
+     * @param weekId weekId
+     * @param name   name
+     * @param type   type
+     * @return int
+     */
+    @Override
+    public Integer addPeriod(Integer weekId, String name, Integer type) {
+        Period period = new Period()
+                .setWeek_id(weekId)
+                .setPeriod_name(name)
+                .setPeriod_type(type)
+                .setPeriod_content("待添加...")
+                .setPeriod_status(1);
+        return periodMapper.insert(period);
+    }
+
+    /**
      * 修改学时
      *
      * @param id     学时id
