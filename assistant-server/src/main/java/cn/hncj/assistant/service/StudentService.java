@@ -20,6 +20,14 @@ public interface StudentService {
     Student selectById(String id);
 
 
+    /**
+     * 根据 classId 查询学生
+     * @param class_id class_id
+     * @return student
+     */
+    StudentDTO selectStudentsByClassId(Integer class_id);
+
+
     /* 添加学生 */
     int insertStudent(
             String id,

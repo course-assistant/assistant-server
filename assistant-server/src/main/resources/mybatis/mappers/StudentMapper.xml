@@ -27,6 +27,18 @@
     </select>
 
 
+    <!-- 根据 classId 查询学生 -->
+    <select id="selectStudentsByClassId" resultType="student">
+        select
+        student_id,administrator_id,student_name,student_sex,student_avatar,student_phone,student_email,student_status
+        from student
+        where student_id = any (
+            select student_id from class_student
+            where class_id = #{class_id}
+        );
+    </select>
+
+
     <!-- 修改学生 -->
     <update id="updateStudent">
         update student

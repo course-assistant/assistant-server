@@ -40,6 +40,18 @@ public class StudentController {
     }
 
 
+    /* 根据班级查询所有学生 */
+    @GetMapping("/selectbyclassid")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> selectStudentsByClassId(@RequestParam("class_id") Integer class_id) {
+        StudentDTO studentDTO = studentService.selectStudentsByClassId(class_id);
+        if (studentDTO.getStudents().isEmpty()) {
+            return ServerResponse.createEmptyQuery();
+        }
+        return ServerResponse.createSuccess("查询成功", studentDTO);
+    }
+
+
     /* 根据id查询 */
     @GetMapping("/selectbyid")
     @RoleCheck(RoleCheck.STUDENT)

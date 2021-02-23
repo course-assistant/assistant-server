@@ -386,6 +386,43 @@ payload有两个附加部分
 
 <br>
 
+### 根据班级查询所有学生
+
+- 请求路径：student/selectbyclassid
+- 请求方法：get
+- 权限：教师
+- 请求参数
+
+| 参数名   | 参数说明 | 类型 | 备注     |
+| -------- | -------- | ---- | -------- |
+| class_id | 班级id   | int  | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "total": 1,
+        "students": [
+            {
+                "student_id": "081417137",
+                "administrator_id": "root",
+                "student_name": "吴硕",
+                "student_password": "670B14728AD9902AECBA32E22FA4F6BD",
+                "student_sex": 1,
+                "student_avatar": "avatar",
+                "student_phone": "15139744921",
+                "student_email": "1234@qq.com",
+                "student_wx": "",
+                "student_status": 1
+            }
+        ]
+    }
+}
+```
+
 <br>
 
 ### 添加学生
@@ -665,6 +702,33 @@ payload有两个附加部分
             "class_name": "三班"
         }
     ]
+}
+```
+
+<br>
+
+### 根据班级id查询班级
+
+- 请求路径：class/findbyclassid
+- 请求方法：get
+- 权限：教师/学生
+- 请求参数
+
+| 参数名   | 参数说明 | 类型 | 备注     |
+| -------- | -------- | ---- | -------- |
+| class_id | 班级id   | int  | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "class_id": 1,
+        "course_id": 1,
+        "class_name": "一班"
+    }
 }
 ```
 

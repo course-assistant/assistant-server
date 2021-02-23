@@ -45,11 +45,26 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student selectById(String id) {
         Student student = studentMapper.selectById(id);
-        if (student == null){
+        if (student == null) {
             return null;
         }
         student.setStudent_password(null).setStudent_wx(null);
         return student;
+    }
+
+
+    /**
+     * 根据 classId 查询学生
+     *
+     * @param class_id class_id
+     * @return student
+     */
+    @Override
+    public StudentDTO selectStudentsByClassId(Integer class_id) {
+        StudentDTO studentDTO = new StudentDTO();
+        studentDTO.setStudents(studentMapper.selectStudentsByClassId(class_id));
+        studentDTO.setTotal(studentDTO.getStudents().size());
+        return studentDTO;
     }
 
     @Override
