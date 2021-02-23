@@ -33,6 +33,18 @@ public class ClassController {
     }
 
 
+    /* 根据班级id查询班级 */
+    @GetMapping("/findbyclassid")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> selectByClassId(@RequestParam("class_id") Integer class_id) {
+        Class cls = classService.selectByClassId(class_id);
+        if (cls == null) {
+            return ServerResponse.createEmptyQuery();
+        }
+        return ServerResponse.createSuccess("查询成功", cls);
+    }
+
+
     /* 查询班级的学生人数 */
     @GetMapping("/countbycourseid")
     @RoleCheck(RoleCheck.TEACHER)

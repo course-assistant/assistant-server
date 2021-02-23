@@ -17,6 +17,14 @@ public interface ClassService {
 
 
     /**
+     * 根据班级id查询班级
+     * @param classId classId
+     * @return class
+     */
+    Class selectByClassId(Integer classId);
+
+
+    /**
      * 查询班级的学生人数
      * @param class_id class_id
      * @return int

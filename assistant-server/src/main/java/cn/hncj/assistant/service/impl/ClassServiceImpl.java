@@ -26,6 +26,17 @@ public class ClassServiceImpl implements ClassService {
         return classMapper.selectByCourseId(course_id);
     }
 
+    /**
+     * 根据班级id查询班级
+     *
+     * @param classId classId
+     * @return class
+     */
+    @Override
+    public Class selectByClassId(Integer classId) {
+        return classMapper.selectById(classId);
+    }
+
 
     /**
      * 查询班级的学生人数
