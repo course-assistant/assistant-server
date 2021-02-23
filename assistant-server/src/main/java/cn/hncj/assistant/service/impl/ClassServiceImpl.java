@@ -28,6 +28,18 @@ public class ClassServiceImpl implements ClassService {
 
 
     /**
+     * 查询班级的学生人数
+     *
+     * @param class_id class_id
+     * @return int
+     */
+    @Override
+    public Integer countStudent(Integer class_id) {
+        return classMapper.countStudent(class_id);
+    }
+
+
+    /**
      * 添加班级
      *
      * @param course_id course_id

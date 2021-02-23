@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @SuppressWarnings({"SpringJavaAutowiredFieldsWarningInspection", "SpellCheckingInspection"})
@@ -29,6 +30,16 @@ public class ClassController {
             return ServerResponse.createEmptyQuery();
         }
         return ServerResponse.createSuccess("查询成功", classes);
+    }
+
+
+    /* 查询班级的学生人数 */
+    @GetMapping("/countbycourseid")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> countStudent(@RequestParam("class_id") Integer class_id) {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("count", classService.countStudent(class_id));
+        return ServerResponse.createSuccess("查询成功", map);
     }
 
 

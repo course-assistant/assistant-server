@@ -22,6 +22,15 @@ public interface ClassMapper extends BaseMapper<Class> {
      */
     List<Class> selectByCourseId(@Param("course_id") String course_id);
 
+
+    /**
+     * 查询班级的学生人数
+     * @param class_id class_id
+     * @return int
+     */
+    Integer countStudent(@Param("class_id") Integer class_id);
+
+
     /**
      * 修改班级名
      *

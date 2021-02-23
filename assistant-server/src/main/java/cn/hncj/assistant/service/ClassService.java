@@ -17,6 +17,14 @@ public interface ClassService {
 
 
     /**
+     * 查询班级的学生人数
+     * @param class_id class_id
+     * @return int
+     */
+    Integer countStudent(Integer class_id);
+
+
+    /**
      * 添加班级
      *
      * @param course_id course_id
