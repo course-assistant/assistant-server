@@ -7,8 +7,6 @@ import cn.hncj.assistant.entity.Teacher;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.TeacherService;
 import cn.hncj.assistant.util.MD5Util;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +18,6 @@ import java.util.HashMap;
 @RequestMapping("/teacher")
 public class TeacherController {
     TeacherService teacherService;
-    final static Logger log = LoggerFactory.getLogger(TeacherController.class);
 
     @Autowired
     public void setTeacherService(TeacherService teacherService) {
@@ -78,6 +75,19 @@ public class TeacherController {
         map.put("teacher_password", MD5Util.MD5EncodeUpper("000000"));
         teacherService.updateTeacher(map);
         return ServerResponse.createSuccess("重置成功");
+    }
+
+
+    /* 改密码 */
+    @PostMapping("/changepwd")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> changePasswoed(
+            @RequestParam("id") String id,
+            @RequestParam("oldpwd") String oldpwd,
+            @RequestParam("newpwd") String newpwd
+    ) {
+        teacherService.changePassword(id, oldpwd, newpwd);
+        return ServerResponse.createSuccess("修改成功");
     }
 
     /* 删除教师 */

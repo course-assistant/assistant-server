@@ -36,4 +36,11 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
             @Param("teacher_status") Integer teacher_status
     );
 
+
+    /* 改密码 */
+    Integer changePassword(
+            @Param("teacher_id") String teacher_id,
+            @Param("teacher_password") String password
+    );
+
 }

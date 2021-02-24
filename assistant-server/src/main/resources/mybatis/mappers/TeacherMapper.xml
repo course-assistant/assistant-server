@@ -38,4 +38,12 @@
         where teacher_id=#{teacher_id}
     </update>
 
+
+    <!-- 改密码 -->
+    <update id="changePassword">
+        update teacher
+        set teacher_password = #{teacher_password}
+        where teacher_id = #{teacher_id};
+    </update>
+
 </mapper>

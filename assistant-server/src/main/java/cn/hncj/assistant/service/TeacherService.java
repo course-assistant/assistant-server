@@ -14,6 +14,7 @@ public interface TeacherService {
 
     /**
      * 根据id查询教师
+     *
      * @param id id
      * @return teacher
      */
@@ -21,6 +22,11 @@ public interface TeacherService {
 
     /* 修改教师 */
     Integer updateTeacher(Map<String, Object> map);
+
+
+    /* 修改密码 */
+    Integer changePassword(String id, String oldPwd, String newPwd);
+
 
     /* 删除教师 */
     Integer deleteTeacherById(String id);

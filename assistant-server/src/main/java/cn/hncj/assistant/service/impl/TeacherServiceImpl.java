@@ -5,6 +5,7 @@ import cn.hncj.assistant.entity.Teacher;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.mapper.TeacherMapper;
 import cn.hncj.assistant.service.TeacherService;
+import cn.hncj.assistant.util.MD5Util;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,6 +68,22 @@ public class TeacherServiceImpl implements TeacherService {
         Integer teacher_status = (Integer) map.get("teacher_status");
         return teacherMapper.updateTeacher(teacher_id, teacher_password, teacher_avatar, teacher_phone, teacher_email, teacher_status);
     }
+
+
+    @Override
+    public Integer changePassword(String id, String oldPwd, String newPwd) {
+        // 验证密码是否正确
+        QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("teacher_id", id);
+        queryWrapper.eq("teacher_password", MD5Util.MD5EncodeUpper(oldPwd));
+        Integer count = teacherMapper.selectCount(queryWrapper);
+        if (count < 1) {
+            throw new ServerException("密码错误");
+        }
+        // 修改
+        return teacherMapper.changePassword(id, MD5Util.MD5EncodeUpper(newPwd));
+    }
+
 
     @Override
     public Integer deleteTeacherById(String id) {
