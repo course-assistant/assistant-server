@@ -31,6 +31,11 @@ public interface TeacherService {
     /* 删除教师 */
     Integer deleteTeacherById(String id);
 
+
+    /* 注销 */
+    Integer cancel(String id, String password);
+
+
     /* 添加教师 */
     int insertTeacher(
             String id,

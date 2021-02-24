@@ -99,6 +99,16 @@ public class TeacherController {
     }
 
 
+    /* 注销教师 */
+    @PostMapping("/cancel")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> cancel(
+            @RequestParam("id") String id,
+            @RequestParam("password") String password) {
+        teacherService.cancel(id, password);
+        return ServerResponse.createSuccess("注销成功");
+    }
+
     /* 修改教师 */
     @PostMapping("/update")
     @RoleCheck(RoleCheck.TEACHER)

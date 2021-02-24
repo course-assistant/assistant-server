@@ -92,6 +92,21 @@ public class TeacherServiceImpl implements TeacherService {
 
 
     @Override
+    public Integer cancel(String id, String password) {
+        // 验证密码是否正确
+        @SuppressWarnings("DuplicatedCode") QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("teacher_id", id);
+        queryWrapper.eq("teacher_password", MD5Util.MD5EncodeUpper(password));
+        Integer count = teacherMapper.selectCount(queryWrapper);
+        if (count < 1) {
+            throw new ServerException("密码错误");
+        }
+        // 修改
+        return teacherMapper.deleteById(id);
+    }
+
+
+    @Override
     public int insertTeacher(String id, String administrator_id, String name, Integer sex, String phone, String email) throws ServerException {
         // 判断字段合法性
         if (sex != null && (sex > 1 || sex < 0)) {
