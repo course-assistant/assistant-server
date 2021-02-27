@@ -1,6 +1,7 @@
 package cn.hncj.assistant;
 
 import cn.hncj.assistant.entity.User;
+import cn.hncj.assistant.entity.WeekMission;
 import cn.hncj.assistant.mapper.*;
 import cn.hncj.assistant.service.CourseService;
 import cn.hncj.assistant.service.TeacherService;
@@ -38,24 +39,29 @@ class MainApplicationTests {
     @Autowired
     WeekPeriodService weekPeriodService;
 
+    @Autowired
+    WeekMissionMapper weekMissionMapper;
+
     @Test
     void testMybatis() {
-        List<User> users = userMapper.getUsers();
-
-        for (User user : users) {
-            System.out.println(user);
-        }
+//        List<User> users = userMapper.getUsers();
+//
+//        for (User user : users) {
+//            System.out.println(user);
+//        }
     }
 
     @Test
     void testMapper() {
-        classMapper.updateName(1, "一班");
-        classMapper.updateName(2, "二班");
+//        List<WeekMission> weekMissions = weekMissionMapper.selectByCourseId(1);
+//        for (WeekMission weekMission : weekMissions) {
+//            System.out.println(weekMission);
+//        }
     }
 
     @Test
     void testService() {
-        weekPeriodService.selectWeekPeriod(1);
+//        weekPeriodService.selectWeekPeriod(1);
     }
 
 }

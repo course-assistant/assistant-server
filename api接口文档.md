@@ -1037,3 +1037,70 @@ payload有两个附加部分
 ```
 
 <br>
+
+## 8 周任务
+
+### 根据课程id查询所有周任务
+
+- 请求路径：weekmission/selectbycourseid
+- 请求方法：get
+- 权限：教师/学生
+- 请求参数
+
+| 参数名 | 参数说明 | 类型 | 备注     |
+| ------ | -------- | ---- | -------- |
+| id     | 课程id   | int  | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": [
+        {
+            "week_mission_id": 1,
+            "week_mission_name": "第01周 任务"
+        },
+        {
+            "week_mission_id": 2,
+            "week_mission_name": "第02周 任务"
+        },
+        {
+            "week_mission_id": 3,
+            "week_mission_name": "第03周 任务"
+        }
+    ]
+}
+```
+
+<br>
+
+### 根据id查询周任务
+
+- 请求路径：weekmission/selectbyid
+- 请求方法：get
+- 权限：教师/学生
+- 请求参数
+
+| 参数名 | 参数说明 | 类型 | 备注     |
+| ------ | -------- | ---- | -------- |
+| id     | 课程id   | int  | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "week_mission_id": 1,
+        "week_id": 1,
+        "week_mission_name": "第01周 任务",
+        "week_mission_content": "任务1 任务2",
+        "week_mission_status": 1
+    }
+}
+```
+
+<br>

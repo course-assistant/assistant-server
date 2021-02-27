@@ -1,5 +1,10 @@
 server:
   port: 8686
+#  ssl:
+#    key-store: classpath:keystore.p12
+#    key-store-password: 108412696
+#    keyStoreType: PKCS12
+#    keyAlias: tomcat
 
 # 远程数据库数据源 Hikari
 spring:
