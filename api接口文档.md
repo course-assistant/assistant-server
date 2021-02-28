@@ -1104,3 +1104,63 @@ payload有两个附加部分
 ```
 
 <br>
+
+## 9 随堂测试
+
+### 根据学时id查询随堂测试
+
+- 请求路径：periodtest/selecttestbyperiodid
+- 请求方法：get
+- 权限：教师/学生
+- 请求参数
+
+| 参数名 | 参数说明 | 类型 | 备注     |
+| ------ | -------- | ---- | -------- |
+| id     | 学时id   | int  | 不能为空 |
+
+- 响应数据
+
+```json
+
+```
+
+<br>
+
+## 10 课堂讨论评论
+
+### 根据学时id查询课堂讨论
+
+- 请求路径：discussioncomment/selectdissbyperiodid
+- 请求方法：get
+- 权限：教师/学生
+- 请求参数
+
+| 参数名 | 参数说明 | 类型 | 备注     |
+| ------ | -------- | ---- | -------- |
+| id     | 学时id   | int  | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": [
+        {
+            "discussion_id": 1,
+            "discussion_title": "讨论标题11",
+            "discussion_content": "这是内容....这是内容......",
+            "discussion_date": "2021-02-23T16:00:00.000+00:00"
+        },
+        {
+            "discussion_id": 2,
+            "discussion_title": "讨论标题22",
+            "discussion_content": "这是内容....这是内容......",
+            "discussion_date": "2021-02-23T16:00:00.000+00:00"
+        }
+    ]
+}
+```
+
+<br>
+

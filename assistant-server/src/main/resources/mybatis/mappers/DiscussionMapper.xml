@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
+<mapper namespace="cn.hncj.assistant.mapper.DiscussionMapper">
+
+    <!-- 根据学时id查询课堂讨论 -->
+    <select id="selectByPeriodId" resultType="discussion">
+        select discussion_id,discussion_title,discussion_content,discussion_date
+        from discussion
+        where period_id = #{period_id};
+    </select>
+
+
+</mapper>
