@@ -56,6 +56,17 @@ public class WeekPeriodServiceImpl implements WeekPeriodService {
     }
 
     /**
+     * 根据学时id查询学时
+     *
+     * @param id id
+     * @return period
+     */
+    @Override
+    public Period selectPeriodByPeriodId(Integer id) {
+        return periodMapper.selectById(id);
+    }
+
+    /**
      * 给课程添加一个周
      *
      * @param courseId courseId

@@ -26,6 +26,19 @@ public class WeekPeriodController {
     }
 
 
+    /**
+     * 根据学时id查询学时
+     *
+     * @param id id
+     * @return period
+     */
+    @GetMapping("/selectperiodbyperiodid")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> selectPeriodByPeriodId(@RequestParam("id") Integer id) {
+        return ServerResponse.createSuccess("查询成功", weekPeriodService.selectPeriodByPeriodId(id));
+    }
+
+
     /* 给课程添加周 */
     @PostMapping("/addweek")
     @RoleCheck(RoleCheck.TEACHER)

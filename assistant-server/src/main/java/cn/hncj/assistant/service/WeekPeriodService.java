@@ -2,6 +2,7 @@ package cn.hncj.assistant.service;
 
 
 import cn.hncj.assistant.dto.WeekPeriodDTO;
+import cn.hncj.assistant.entity.Period;
 
 import java.util.List;
 
@@ -15,6 +16,14 @@ public interface WeekPeriodService {
      * @return week period
      */
     List<WeekPeriodDTO> selectWeekPeriod(Integer courseId);
+
+
+    /**
+     * 根据学时id查询学时
+     * @param id id
+     * @return period
+     */
+    Period selectPeriodByPeriodId(Integer id);
 
 
     /**
