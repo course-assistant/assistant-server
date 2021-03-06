@@ -39,7 +39,8 @@ public class ExceptionControllerAdvice {
 
     // 空指针异常
     @ExceptionHandler(NullPointerException.class)
-    public Object nullPointer() {
+    public Object nullPointer(NullPointerException e) {
+        e.printStackTrace();
         return ServerResponse.createInternalError("服务器内部异常");
     }
 

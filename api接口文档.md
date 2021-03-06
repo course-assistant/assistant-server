@@ -913,7 +913,18 @@ payload有两个附加部分
 - 响应数据
 
 ```json
-
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "period_id": 1,
+        "week_id": 1,
+        "period_name": "第01学时",
+        "period_content": "内容",
+        "period_type": 1,
+        "period_status": 1
+    }
+}
 ```
 
 <br>
@@ -1140,7 +1151,24 @@ payload有两个附加部分
 - 响应数据
 
 ```json
-
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": [
+        {
+            "period_test_id": 1,
+            "period_id": 1,
+            "period_test_name": "第01学时 测试1",
+            "period_test_status": 2
+        },
+        {
+            "period_test_id": 2,
+            "period_id": 1,
+            "period_test_name": "第01学时 测试2",
+            "period_test_status": 1
+        }
+    ]
+}
 ```
 
 <br>
