@@ -4,9 +4,11 @@ import cn.hncj.assistant.dto.CourseDTO;
 import cn.hncj.assistant.entity.Course;
 import cn.hncj.assistant.entity.Period;
 import cn.hncj.assistant.entity.Week;
+import cn.hncj.assistant.entity.WeekMission;
 import cn.hncj.assistant.mapper.CourseMapper;
 import cn.hncj.assistant.mapper.PeriodMapper;
 import cn.hncj.assistant.mapper.WeekMapper;
+import cn.hncj.assistant.mapper.WeekMissionMapper;
 import cn.hncj.assistant.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,9 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     PeriodMapper periodMapper;
+
+    @Autowired
+    WeekMissionMapper weekMissionMapper;
 
 
     /**
@@ -107,6 +112,14 @@ public class CourseServiceImpl implements CourseService {
     @Transactional
     @Override
     public Integer insertCourse(String teacher_id, String name, String cover, Integer week, Integer oddPeriod, Integer evenPeriod) {
+        /*
+         * 1. 插入课程
+         * 2. 获取插入的主键
+         * 3. 给课程插入周数
+         * 4. 在插入周的同时插入周的学时
+         * 5. 给周插入周任务
+         * */
+
         // 先插入一个课程
         Course course = new Course()
                 .setTeacher_id(teacher_id)
@@ -143,6 +156,14 @@ public class CourseServiceImpl implements CourseService {
                 periodMapper.insert(period);
                 periodNum++;
             }
+
+            // 插入周任务
+            weekMissionMapper.insert(new WeekMission()
+                    .setWeek_id(newWeek.getWeek_id())
+                    .setWeek_mission_content("任务详情（待编辑）")
+                    .setWeek_mission_name(newWeek.getWeek_name() + " 任务")
+                    .setWeek_mission_status(1)
+            );
         }
         return null;
     }
