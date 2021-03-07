@@ -28,4 +28,33 @@ public class PeriodTestServiceImpl implements PeriodTestService {
         queryWrapper.eq("period_id", period_id);
         return periodTestMapper.selectList(queryWrapper);
     }
+
+    /**
+     * 给学时添加测试
+     *
+     * @param period_id period_id
+     * @param name      测试名字
+     * @return int
+     */
+    @Override
+    public Integer insertPeriodTest(Integer period_id, String name) {
+        PeriodTest periodTest = new PeriodTest()
+                .setPeriod_id(period_id)
+                .setPeriod_test_status(2)
+                .setPeriod_test_name(name);
+        return periodTestMapper.insert(periodTest);
+    }
+
+    /**
+     * 发布测试
+     *
+     * @param id id
+     * @return int
+     */
+    @Override
+    public Integer issuePeriodTest(Integer id) {
+        return periodTestMapper.issue(id);
+    }
+
+
 }
