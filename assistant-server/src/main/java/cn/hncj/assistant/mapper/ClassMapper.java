@@ -41,4 +41,13 @@ public interface ClassMapper extends BaseMapper<Class> {
     Integer updateName(@Param("class_id") Integer class_id, @Param("class_name") String class_name);
 
 
+    /**
+     * 学生选课
+     *
+     * @param student_id student_id
+     * @param class_id   class_id
+     * @return int
+     */
+    Integer selection(@Param("student_id") String student_id, @Param("class_id") Integer class_id);
+
 }

@@ -75,4 +75,16 @@ public class ClassController {
         return ServerResponse.createSuccess("删除成功");
     }
 
+
+    /* 学生选课 */
+    @PostMapping("/selection")
+    @RoleCheck(RoleCheck.STUDENT)
+    public ServerResponse<Object> selection(
+            @RequestParam("student_id") String student_id,
+            @RequestParam("invite_Code") String invite_Code
+    ) {
+        classService.selection(student_id, invite_Code);
+        return ServerResponse.createSuccess("选课成功");
+    }
+
 }

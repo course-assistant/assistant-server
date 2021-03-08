@@ -26,4 +26,11 @@
         set class_name = #{class_name}
         where class_id = #{class_id};
     </update>
+
+    <!-- 学生选课 -->
+    <insert id="selection">
+        insert into class_student
+        values(#{student_id},#{class_id});
+    </insert>
+
 </mapper>

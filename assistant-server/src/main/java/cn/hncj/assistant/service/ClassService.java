@@ -50,4 +50,14 @@ public interface ClassService {
      */
     Integer deleteClass(Integer class_id);
 
+
+    /**
+     * 学生选课
+     *
+     * @param student_id  student_id
+     * @param invite_code invite_code
+     * @return int
+     */
+    Integer selection(String student_id, String invite_code);
+
 }
