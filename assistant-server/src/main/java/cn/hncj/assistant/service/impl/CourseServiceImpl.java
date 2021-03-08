@@ -49,6 +49,22 @@ public class CourseServiceImpl implements CourseService {
         return courseMapper.selectCourseByTeacherId(id, page * size, size, status);
     }
 
+
+    /**
+     * 根据学生id分页查询课程
+     *
+     * @param id     学生id
+     * @param page   page
+     * @param size   size
+     * @param status status
+     * @return course
+     */
+    @Override
+    public List<CourseDTO> selectCourseByStudentId(String id, Integer page, Integer size, Integer status) {
+        return courseMapper.selectCourseByStudentId(id, page * size, size, status);
+    }
+
+
     /**
      * 根据课程id查询课程
      *

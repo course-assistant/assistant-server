@@ -21,6 +21,18 @@ public interface CourseService {
 
 
     /**
+     * 根据学生id分页查询课程
+     *
+     * @param id     学生id
+     * @param page   page
+     * @param size   size
+     * @param status status
+     * @return course
+     */
+    List<CourseDTO> selectCourseByStudentId(String id, Integer page, Integer size, Integer status);
+
+
+    /**
      * 根据课程id查询课程
      * @param id id
      * @return courseDTO

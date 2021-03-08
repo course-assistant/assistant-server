@@ -19,4 +19,5 @@ public class CourseDTO {
     String teacher_name;
     String course_name;
     String course_cover;
+    Integer course_status;
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 
-@SuppressWarnings({"SpringJavaAutowiredFieldsWarningInspection", "SpellCheckingInspection"})
+@SuppressWarnings({"SpringJavaAutowiredFieldsWarningInspection", "SpellCheckingInspection", "DuplicatedCode"})
 @Slf4j
 @CrossOrigin
 @RestController
@@ -33,7 +33,7 @@ public class CourseController {
      */
     @GetMapping("/findbyteacherid")
     @RoleCheck(RoleCheck.TEACHER)
-    public ServerResponse<Object> selectCourse(
+    public ServerResponse<Object> selectCourseByTeacherId(
             @RequestParam("id") String id,
             @RequestParam("page") Integer page,
             @RequestParam("size") Integer size,
@@ -52,6 +52,43 @@ public class CourseController {
             throw new ServerException("status只能为0 1 2 3");
         }
         courses = courseService.selectCourseByTeacherId(id, page, size, status);
+        if (courses.isEmpty()) {
+            return ServerResponse.createEmptyQuery();
+        }
+        return ServerResponse.createSuccess("查询成功", courses);
+    }
+
+
+    /**
+     * 根据学生id查询课程
+     *
+     * @param id     学生id
+     * @param page   page
+     * @param size   size
+     * @param status status
+     * @return courses
+     */
+    @GetMapping("/findbystudentid")
+    @RoleCheck(RoleCheck.STUDENT)
+    public ServerResponse<Object> selectCourseByStudentId(
+            @RequestParam("id") String id,
+            @RequestParam("page") Integer page,
+            @RequestParam("size") Integer size,
+            Integer status
+    ) {
+        List<CourseDTO> courses;
+        // 根据情况返回
+        if (status == null) {
+            courses = courseService.selectCourseByStudentId(id, page, size, 0);
+            if (courses.isEmpty()) {
+                return ServerResponse.createEmptyQuery();
+            }
+            return ServerResponse.createSuccess("查询成功", courses);
+        }
+        if (status < 0 || status > 3) {
+            throw new ServerException("status只能为0 1 2 3");
+        }
+        courses = courseService.selectCourseByStudentId(id, page, size, status);
         if (courses.isEmpty()) {
             return ServerResponse.createEmptyQuery();
         }

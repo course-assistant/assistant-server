@@ -33,6 +33,22 @@ public interface CourseMapper extends BaseMapper<Course> {
 
 
     /**
+     * 分页查询使所有课程
+     *
+     * @param start  start
+     * @param size   size
+     * @param status status
+     * @return list
+     */
+    List<CourseDTO> selectCourseByStudentId(
+            @Param("student_id") String student_id,
+            @Param("start") Integer start,
+            @Param("size") Integer size,
+            @Param("status") Integer status
+    );
+
+
+    /**
      * 根据课程id查询课程
      *
      * @param course_id course_id
