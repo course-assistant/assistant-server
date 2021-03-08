@@ -81,9 +81,9 @@ public class ClassController {
     @RoleCheck(RoleCheck.STUDENT)
     public ServerResponse<Object> selection(
             @RequestParam("student_id") String student_id,
-            @RequestParam("invite_Code") String invite_Code
+            @RequestParam("invite_code") String invite_code
     ) {
-        classService.selection(student_id, invite_Code);
+        classService.selection(student_id, invite_code);
         return ServerResponse.createSuccess("选课成功");
     }
 
