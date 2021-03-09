@@ -98,7 +98,7 @@ public class CourseController {
 
     /* 根据课程id查询课程 */
     @GetMapping("/findbyid")
-    @RoleCheck(RoleCheck.TEACHER)
+    @RoleCheck(RoleCheck.USER)
     public ServerResponse<Object> findByCourseId(@RequestParam("id") Integer id) {
         CourseDTO courseDTO = courseService.findByCourseId(id);
         if (courseDTO == null) {
