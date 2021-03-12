@@ -3,12 +3,15 @@ package cn.hncj.assistant.service.impl;
 import cn.hncj.assistant.dto.WeekPeriodDTO;
 import cn.hncj.assistant.entity.Period;
 import cn.hncj.assistant.entity.Week;
+import cn.hncj.assistant.entity.WeekMission;
 import cn.hncj.assistant.mapper.PeriodMapper;
 import cn.hncj.assistant.mapper.WeekMapper;
+import cn.hncj.assistant.mapper.WeekMissionMapper;
 import cn.hncj.assistant.service.WeekPeriodService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,9 @@ public class WeekPeriodServiceImpl implements WeekPeriodService {
 
     @Autowired
     WeekMapper weekMapper;
+
+    @Autowired
+    WeekMissionMapper weekMissionMapper;
 
     @Autowired
     PeriodMapper periodMapper;
@@ -74,9 +80,19 @@ public class WeekPeriodServiceImpl implements WeekPeriodService {
      * @return int
      */
     @Override
+    @Transactional
     public Integer addWeek(Integer courseId, String name) {
+        // 添加周
         Week week = new Week().setCourse_id(courseId).setWeek_name(name);
-        return weekMapper.insert(week);
+        weekMapper.insert(week);
+        // 添加周任务
+        weekMissionMapper.insert(new WeekMission()
+                .setWeek_id(week.getWeek_id())
+                .setWeek_mission_content("任务详情（待编辑）")
+                .setWeek_mission_name(week.getWeek_name() + " 任务")
+                .setWeek_mission_status(1)
+        );
+        return null;
     }
 
     /**

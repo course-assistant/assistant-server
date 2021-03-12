@@ -974,7 +974,7 @@ payload有两个附加部分
 
 <br>
 
-### 添加周
+### 添加周（附带周任务）
 
 - 请求路径：weekperiod/addweek
 - 请求方法：post
