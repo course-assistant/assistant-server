@@ -136,8 +136,14 @@ public class WeekPeriodServiceImpl implements WeekPeriodService {
      * @return int
      */
     @Override
+    @Transactional
     public Integer updateWeek(Integer id, String name) {
-        return weekMapper.updateWeek(id, name);
+        // 修改周的名字
+        weekMapper.updateWeek(id, name);
+        // 修改对应周任务的名字
+        Integer weekMissionId = weekMissionMapper.findWeekMissionIdByWeekId(id);
+        weekMissionMapper.updateName(weekMissionId, name + " 任务");
+        return null;
     }
 
     /**

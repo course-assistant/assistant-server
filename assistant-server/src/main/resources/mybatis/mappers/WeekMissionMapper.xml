@@ -16,4 +16,30 @@
             where week.course_id = #{course_id}
         );
     </select>
+
+
+    <!-- 根据周id查周任务的id -->
+    <select id="findWeekMissionIdByWeekId" resultType="int">
+        select week_mission_id
+        from week_mission
+        where week_id = #{week_id};
+    </select>
+
+
+    <!-- 修改周任务名称 -->
+    <update id="updateName">
+        update week_mission
+        set week_mission_name = #{week_mission_name}
+        where week_mission_id = #{week_mission_id};
+    </update>
+
+
+    <!-- 修改周任务内容 -->
+    <update id="updateContent">
+        update week_mission
+        set week_mission_content = #{week_mission_content}
+        where week_mission_id = #{week_mission_id};
+    </update>
+
+
 </mapper>

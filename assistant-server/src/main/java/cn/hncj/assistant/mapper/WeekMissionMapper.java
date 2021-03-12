@@ -19,4 +19,39 @@ public interface WeekMissionMapper extends BaseMapper<WeekMission> {
      * @return WeekMission
      */
     List<WeekMission> selectByCourseId(@Param("course_id") Integer course_id);
+
+
+    /**
+     * 根据周id查周任务的id
+     *
+     * @param week_id week_id
+     * @return int
+     */
+    Integer findWeekMissionIdByWeekId(@Param("week_id") Integer week_id);
+
+
+    /**
+     * 修改周任务名称
+     *
+     * @param week_mission_id   week_mission_id
+     * @param week_mission_name week_mission_name
+     * @return int
+     */
+    Integer updateName(
+            @Param("week_mission_id") Integer week_mission_id,
+            @Param("week_mission_name") String week_mission_name
+    );
+
+
+    /**
+     * 修改周任务内容
+     *
+     * @param week_mission_id      week_mission_id
+     * @param week_mission_content week_mission_content
+     * @return int
+     */
+    Integer updateContent(
+            @Param("week_mission_id") Integer week_mission_id,
+            @Param("week_mission_content") String week_mission_content
+    );
 }
