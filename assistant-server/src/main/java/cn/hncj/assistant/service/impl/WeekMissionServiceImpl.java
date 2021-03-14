@@ -36,4 +36,17 @@ public class WeekMissionServiceImpl implements WeekMissionService {
     public WeekMission selectById(Integer id) {
         return weekMissionMapper.selectById(id);
     }
+
+
+    /**
+     * 修改周任务内容
+     *
+     * @param id      id
+     * @param content content
+     * @return int
+     */
+    @Override
+    public Integer updateContent(Integer id, String content) {
+        return weekMissionMapper.updateContent(id, content);
+    }
 }

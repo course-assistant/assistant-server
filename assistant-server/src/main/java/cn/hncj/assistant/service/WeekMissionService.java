@@ -16,8 +16,19 @@ public interface WeekMissionService {
 
     /**
      * 根据id查询周任务
+     *
      * @param id id
      * @return WeekMission
      */
     WeekMission selectById(Integer id);
+
+
+    /**
+     * 修改周任务内容
+     *
+     * @param id      id
+     * @param content content
+     * @return int
+     */
+    Integer updateContent(Integer id, String content);
 }

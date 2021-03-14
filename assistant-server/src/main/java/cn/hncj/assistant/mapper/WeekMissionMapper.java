@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@SuppressWarnings("UnusedReturnValue")
 @Mapper
 @Repository
 public interface WeekMissionMapper extends BaseMapper<WeekMission> {

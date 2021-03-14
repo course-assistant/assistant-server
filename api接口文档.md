@@ -648,7 +648,36 @@ payload有两个附加部分
 - 响应数据
 
 ```json
-
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": [
+        {
+            "course_id": "1",
+            "teacher_id": "888888888",
+            "teacher_name": "张妍琰",
+            "course_name": "网站建设",
+            "course_cover": "http://p.ananas.chaoxing.com/star3/240_130c/b7b9a80175b2d80938d72fcbfdabce24.jpg",
+            "course_status": 1
+        },
+        {
+            "course_id": "9",
+            "teacher_id": "888888889",
+            "teacher_name": "赵老师",
+            "course_name": "程序设计基础",
+            "course_cover": "https://p.ananas.chaoxing.com/star3/origin/f23a4b313e1aa0a7a840ab81aabc918f.jpg",
+            "course_status": 1
+        },
+        {
+            "course_id": "10",
+            "teacher_id": "888888889",
+            "teacher_name": "赵老师",
+            "course_name": "计算机网络",
+            "course_cover": "https://p.ananas.chaoxing.com/star3/origin/a597b7c95a3e72dbbdb21f17011ce85f.jpg",
+            "course_status": 1
+        }
+    ]
+}
 ```
 
 <br>
@@ -1176,6 +1205,26 @@ payload有两个附加部分
         "week_mission_status": 1
     }
 }
+```
+
+<br>
+
+### 修改周任务内容
+
+- 请求路径：weekmission/updatecontent
+- 请求方法：post
+- 权限：教师
+- 请求参数
+
+| 参数名  | 参数说明 | 类型   | 备注     |
+| ------- | -------- | ------ | -------- |
+| id      | 周任务id | int    | 不能为空 |
+| content | 新内容   | string | 不能为空 |
+
+- 响应数据
+
+```json
+
 ```
 
 <br>

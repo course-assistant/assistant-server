@@ -31,4 +31,14 @@ public class WeekMissionController {
     }
 
 
+    /* 修改周任务内容 */
+    @PostMapping("/updatecontent")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> updateContent(
+            @RequestParam("id") Integer id,
+            @RequestParam("content") String content
+    ) {
+        weekMissionService.updateContent(id, content);
+        return ServerResponse.createSuccess("修改成功");
+    }
 }
