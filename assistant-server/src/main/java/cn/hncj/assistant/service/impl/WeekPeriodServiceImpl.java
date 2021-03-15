@@ -124,8 +124,8 @@ public class WeekPeriodServiceImpl implements WeekPeriodService {
      * @return int
      */
     @Override
-    public Integer updatePeriod(Integer id, String name, Integer type, Integer status) {
-        return periodMapper.updatePeriod(id, name, type, status);
+    public Integer updatePeriod(Integer id, String name, String content, Integer type, Integer status) {
+        return periodMapper.updatePeriod(id, name, content, type, status);
     }
 
     /**

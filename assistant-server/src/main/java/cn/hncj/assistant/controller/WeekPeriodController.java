@@ -68,16 +68,18 @@ public class WeekPeriodController {
     public ServerResponse<Object> updatePeriod(
             @RequestParam("id") Integer id,
             String name,
+            String content,
             Integer type,
             Integer status
     ) {
         // 判断是否全为空
-        if (name == null && type == null && status == null) {
+        if (name == null && type == null && status == null && content == null) {
             throw new ServerException("请至少传入一个参数");
         }
-        weekPeriodService.updatePeriod(id, name, type, status);
+        weekPeriodService.updatePeriod(id, name, content, type, status);
         return ServerResponse.createSuccess("修改成功");
     }
+
 
     /* 修改周 */
     @PostMapping("/updateweek")

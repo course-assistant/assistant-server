@@ -56,7 +56,7 @@ public interface WeekPeriodService {
      * @param status 新status
      * @return int
      */
-    Integer updatePeriod(Integer id, String name, Integer type, Integer status);
+    Integer updatePeriod(Integer id, String name, String content, Integer type, Integer status);
 
 
     /**

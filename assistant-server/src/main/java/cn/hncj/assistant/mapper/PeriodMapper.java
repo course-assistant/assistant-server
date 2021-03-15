@@ -23,6 +23,7 @@ public interface PeriodMapper extends BaseMapper<Period> {
     Integer updatePeriod(
             @Param("period_id") Integer period_id,
             @Param("period_name") String period_name,
+            @Param("period_content") String period_content,
             @Param("period_type") Integer period_type,
             @Param("period_status") Integer period_status
     );
