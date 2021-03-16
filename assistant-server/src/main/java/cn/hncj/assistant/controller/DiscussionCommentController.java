@@ -23,4 +23,15 @@ public class DiscussionCommentController {
         return ServerResponse.createSuccess("查询成功", discussionCommentService.selectDiscussionByPeriodId(id));
     }
 
+
+    @PostMapping("/issuediscussion")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> issueDiscussion(
+            @RequestParam("id") Integer id,
+            @RequestParam("title") String title,
+            @RequestParam("content") String content
+    ) {
+        discussionCommentService.issueDiscussion(id, title, content);
+        return ServerResponse.createSuccess("发布成功");
+    }
 }

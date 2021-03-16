@@ -14,4 +14,16 @@ public interface DiscussionCommentService {
      */
     List<Discussion> selectDiscussionByPeriodId(Integer period_id);
 
+
+    /**
+     * 发布课堂讨论
+     *
+     * @param period_id period_id
+     * @param title     title
+     * @param content   content
+     * @return int
+     */
+    Integer issueDiscussion(Integer period_id, String title, String content);
+
+
 }

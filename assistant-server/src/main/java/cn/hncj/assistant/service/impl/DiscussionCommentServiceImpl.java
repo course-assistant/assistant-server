@@ -7,6 +7,7 @@ import cn.hncj.assistant.service.DiscussionCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
@@ -29,5 +30,24 @@ public class DiscussionCommentServiceImpl implements DiscussionCommentService {
     @Override
     public List<Discussion> selectDiscussionByPeriodId(Integer period_id) {
         return discussionMapper.selectByPeriodId(period_id);
+    }
+
+
+    /**
+     * 发布课堂讨论
+     *
+     * @param period_id period_id
+     * @param title     title
+     * @param content   content
+     * @return int
+     */
+    @Override
+    public Integer issueDiscussion(Integer period_id, String title, String content) {
+        Discussion discussion = new Discussion()
+                .setPeriod_id(period_id)
+                .setDiscussion_title(title)
+                .setDiscussion_content(content)
+                .setDiscussion_date(new Date());
+        return discussionMapper.insert(discussion);
     }
 }
