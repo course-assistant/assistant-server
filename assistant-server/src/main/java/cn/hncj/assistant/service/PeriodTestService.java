@@ -28,8 +28,18 @@ public interface PeriodTestService {
 
     /**
      * 发布测试
+     *
      * @param id id
      * @return int
      */
     Integer issuePeriodTest(Integer id);
+
+
+    /**
+     * 删除测试
+     *
+     * @param id id
+     * @return int
+     */
+    Integer deletePeriodTest(Integer id);
 }

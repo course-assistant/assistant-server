@@ -56,5 +56,16 @@ public class PeriodTestServiceImpl implements PeriodTestService {
         return periodTestMapper.issue(id);
     }
 
+    /**
+     * 删除测试
+     *
+     * @param id id
+     * @return int
+     */
+    @Override
+    public Integer deletePeriodTest(Integer id) {
+        return periodTestMapper.deleteById(id);
+    }
+
 
 }

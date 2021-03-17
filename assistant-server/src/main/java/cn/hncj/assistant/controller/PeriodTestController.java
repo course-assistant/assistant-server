@@ -60,4 +60,13 @@ public class PeriodTestController {
         periodTestService.issuePeriodTest(id);
         return ServerResponse.createSuccess("发布成功");
     }
+
+
+    /* 删除测试 */
+    @PostMapping("/delete")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> deletePeriodTest(@RequestParam("id") Integer id){
+        periodTestService.deletePeriodTest(id);
+        return ServerResponse.createSuccess("删除成功");
+    }
 }
