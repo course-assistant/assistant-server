@@ -1,5 +1,6 @@
 package cn.hncj.assistant.service;
 
+import cn.hncj.assistant.dto.CommentDTO;
 import cn.hncj.assistant.dto.DiscussionDTO;
 import cn.hncj.assistant.entity.Discussion;
 
@@ -24,6 +25,15 @@ public interface DiscussionCommentService {
      * @return discussionDTO
      */
     DiscussionDTO selectDiscussionByDiscussionId(Integer id);
+
+
+    /**
+     * 查询讨论的评论
+     *
+     * @param id id
+     * @return commentDTO
+     */
+    List<CommentDTO> selectCommentsByDiscussionId(Integer id);
 
 
     /**

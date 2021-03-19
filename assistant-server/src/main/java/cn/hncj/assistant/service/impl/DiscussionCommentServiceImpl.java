@@ -1,5 +1,6 @@
 package cn.hncj.assistant.service.impl;
 
+import cn.hncj.assistant.dto.CommentDTO;
 import cn.hncj.assistant.dto.DiscussionDTO;
 import cn.hncj.assistant.entity.Discussion;
 import cn.hncj.assistant.mapper.CommentMapper;
@@ -43,6 +44,18 @@ public class DiscussionCommentServiceImpl implements DiscussionCommentService {
     @Override
     public DiscussionDTO selectDiscussionByDiscussionId(Integer id) {
         return discussionMapper.selectDiscussionByDiscussionId(id);
+    }
+
+
+    /**
+     * 查询讨论的评论
+     *
+     * @param id id
+     * @return commentDTO
+     */
+    @Override
+    public List<CommentDTO> selectCommentsByDiscussionId(Integer id) {
+        return commentMapper.selectCommentsByDiscussionId(id);
     }
 
 

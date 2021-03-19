@@ -1406,6 +1406,44 @@ payload有两个附加部分
 
 <br>
 
+### 根据讨论id查询评论
+
+- 请求路径：discussioncomment/selectcommentsbydisscussionid
+- 请求方法：get
+- 权限：教师/学生
+- 请求参数
+
+| 参数名 | 参数说明 | 类型 | 备注     |
+| ------ | -------- | ---- | -------- |
+| id     | 讨论id   | int  | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": [
+        {
+            "comment_id": 1,
+            "comment_content": "这是评论11",
+            "comment_date": "2021-02-28T16:00:00.000+00:00",
+            "student_name": "吴硕",
+            "student_avatar": "avatar"
+        },
+        {
+            "comment_id": 2,
+            "comment_content": "这是评论12",
+            "comment_date": "2021-02-28T16:00:00.000+00:00",
+            "student_name": "吴硕",
+            "student_avatar": "avatar"
+        }
+    ]
+}
+```
+
+<br>
+
 ### 发布课堂讨论
 
 - 请求路径：discussioncomment/issuediscussion
