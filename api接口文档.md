@@ -1467,3 +1467,27 @@ payload有两个附加部分
 ```
 
 <br>
+
+### 发布课堂讨论的评论
+
+- 请求路径：discussioncomment/issuecomment
+- 请求方法：post
+- 权限：学生
+- 请求参数
+
+| 参数名        | 参数说明 | 类型   | 备注     |
+| ------------- | -------- | ------ | -------- |
+| discussion_id | 讨论id   | int    | 不能为空 |
+| student_id    | 学生id   | int    | 不能为空 |
+| content       | 评论内容 | string | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "发布成功"
+}
+```
+
+<br>

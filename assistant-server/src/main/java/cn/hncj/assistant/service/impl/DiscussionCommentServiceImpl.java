@@ -2,6 +2,7 @@ package cn.hncj.assistant.service.impl;
 
 import cn.hncj.assistant.dto.CommentDTO;
 import cn.hncj.assistant.dto.DiscussionDTO;
+import cn.hncj.assistant.entity.Comment;
 import cn.hncj.assistant.entity.Discussion;
 import cn.hncj.assistant.mapper.CommentMapper;
 import cn.hncj.assistant.mapper.DiscussionMapper;
@@ -75,5 +76,24 @@ public class DiscussionCommentServiceImpl implements DiscussionCommentService {
                 .setDiscussion_content(content)
                 .setDiscussion_date(new Date());
         return discussionMapper.insert(discussion);
+    }
+
+
+    /**
+     * 发布评论
+     *
+     * @param discussion_id discussion_id
+     * @param student_id    student_id
+     * @param content       content
+     * @return int
+     */
+    @Override
+    public Integer issueComment(Integer discussion_id, Integer student_id, String content) {
+        Comment comment = new Comment()
+                .setDiscussion_id(discussion_id)
+                .setStudent_id(student_id)
+                .setComment_content(content)
+                .setComment_date(new Date());
+        return commentMapper.insert(comment);
     }
 }

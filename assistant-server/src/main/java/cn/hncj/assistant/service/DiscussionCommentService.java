@@ -47,4 +47,14 @@ public interface DiscussionCommentService {
     Integer issueDiscussion(Integer period_id, String title, String content);
 
 
+    /**
+     * 发布评论
+     *
+     * @param discussion_id discussion_id
+     * @param student_id    student_id
+     * @param content       content
+     * @return int
+     */
+    Integer issueComment(Integer discussion_id, Integer student_id, String content);
+
 }
