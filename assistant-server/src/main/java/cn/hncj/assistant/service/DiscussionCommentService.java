@@ -1,9 +1,11 @@
 package cn.hncj.assistant.service;
 
+import cn.hncj.assistant.dto.DiscussionDTO;
 import cn.hncj.assistant.entity.Discussion;
 
 import java.util.List;
 
+@SuppressWarnings("UnusedReturnValue")
 public interface DiscussionCommentService {
 
     /**
@@ -13,6 +15,15 @@ public interface DiscussionCommentService {
      * @return Discussion
      */
     List<Discussion> selectDiscussionByPeriodId(Integer period_id);
+
+
+    /**
+     * 根据讨论id查询讨论
+     *
+     * @param id id
+     * @return discussionDTO
+     */
+    DiscussionDTO selectDiscussionByDiscussionId(Integer id);
 
 
     /**

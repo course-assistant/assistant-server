@@ -1,5 +1,6 @@
 package cn.hncj.assistant.service.impl;
 
+import cn.hncj.assistant.dto.DiscussionDTO;
 import cn.hncj.assistant.entity.Discussion;
 import cn.hncj.assistant.mapper.CommentMapper;
 import cn.hncj.assistant.mapper.DiscussionMapper;
@@ -30,6 +31,18 @@ public class DiscussionCommentServiceImpl implements DiscussionCommentService {
     @Override
     public List<Discussion> selectDiscussionByPeriodId(Integer period_id) {
         return discussionMapper.selectByPeriodId(period_id);
+    }
+
+
+    /**
+     * 根据讨论id查询讨论
+     *
+     * @param id id
+     * @return discussionDTO
+     */
+    @Override
+    public DiscussionDTO selectDiscussionByDiscussionId(Integer id) {
+        return discussionMapper.selectDiscussionByDiscussionId(id);
     }
 
 

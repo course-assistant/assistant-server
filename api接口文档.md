@@ -1376,6 +1376,36 @@ payload有两个附加部分
 
 <br>
 
+### 根据讨论id查询课堂讨论
+
+- 请求路径：discussioncomment/selectdissbydisscussionid
+- 请求方法：get
+- 权限：教师/学生
+- 请求参数
+
+| 参数名 | 参数说明 | 类型 | 备注     |
+| ------ | -------- | ---- | -------- |
+| id     | 讨论id   | int  | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "discussion_id": 1,
+        "discussion_title": "机器学习的应用讨论",
+        "discussion_content": "请举例说明机器学习与深度学习的应用案例。",
+        "discussion_date": "2021-02-23T16:00:00.000+00:00",
+        "teacher_name": "张妍琰",
+        "teacher_avatar": "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+    }
+}
+```
+
+<br>
+
 ### 发布课堂讨论
 
 - 请求路径：discussioncomment/issuediscussion

@@ -14,4 +14,12 @@
     </select>
 
 
+    <!-- 根据讨论id查询讨论 -->
+    <select id="selectDiscussionByDiscussionId" resultType="DiscussionDTO">
+        select discussion.discussion_id,discussion.discussion_title,discussion.discussion_content,discussion.discussion_date,teacher.teacher_name,teacher.teacher_avatar
+        from discussion,period,week,course,teacher
+        where discussion.period_id = period.period_id and period.week_id = week.week_id and week.course_id = course.course_id and course.teacher_id = teacher.teacher_id
+        and discussion.discussion_id = #{discussion_id};
+    </select>
+
 </mapper>

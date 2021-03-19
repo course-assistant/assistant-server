@@ -1,5 +1,6 @@
 package cn.hncj.assistant.mapper;
 
+import cn.hncj.assistant.dto.DiscussionDTO;
 import cn.hncj.assistant.entity.Discussion;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -19,5 +20,14 @@ public interface DiscussionMapper extends BaseMapper<Discussion> {
      * @return Discussion
      */
     List<Discussion> selectByPeriodId(@Param("period_id") Integer period_id);
+
+
+    /**
+     * 根据讨论id查询讨论
+     *
+     * @param id id
+     * @return discussionDTO
+     */
+    DiscussionDTO selectDiscussionByDiscussionId(@Param("discussion_id") Integer id);
 
 }

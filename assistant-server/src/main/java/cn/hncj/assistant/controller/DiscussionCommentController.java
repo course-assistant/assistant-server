@@ -34,4 +34,13 @@ public class DiscussionCommentController {
         discussionCommentService.issueDiscussion(id, title, content);
         return ServerResponse.createSuccess("发布成功");
     }
+
+
+    /* 根据讨论id查询讨论 */
+    @GetMapping("/selectdissbydisscussionid")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> selectDiscussionByDiscussionId(@RequestParam("id") Integer id) {
+        return ServerResponse.createSuccess("查询成功", discussionCommentService.selectDiscussionByDiscussionId(id));
+    }
+
 }
