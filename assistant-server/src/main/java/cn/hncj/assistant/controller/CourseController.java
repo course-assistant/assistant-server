@@ -59,15 +59,7 @@ public class CourseController {
     }
 
 
-    /**
-     * 根据学生id查询课程
-     *
-     * @param id     学生id
-     * @param page   page
-     * @param size   size
-     * @param status status
-     * @return courses
-     */
+    /* 根据学生id查询课程 */
     @GetMapping("/findbystudentid")
     @RoleCheck(RoleCheck.STUDENT)
     public ServerResponse<Object> selectCourseByStudentId(
@@ -105,6 +97,15 @@ public class CourseController {
             return ServerResponse.createEmptyQuery();
         }
         return ServerResponse.createSuccess("查询成功", courseDTO);
+    }
+
+
+    /* 删除课程 */
+    @PostMapping("/delete")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> deleteCourse(@RequestParam("id") Integer id) {
+        courseService.deleteCourse(id);
+        return ServerResponse.createSuccess("删除成功");
     }
 
     /**

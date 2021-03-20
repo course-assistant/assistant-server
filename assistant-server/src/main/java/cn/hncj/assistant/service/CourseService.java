@@ -64,6 +64,14 @@ public interface CourseService {
     );
 
 
+    /**
+     * 删除课程
+     *
+     * @param id id
+     * @return int
+     */
+    Integer deleteCourse(Integer id);
+
 
     Integer insertCourse(
             String teacher_id,

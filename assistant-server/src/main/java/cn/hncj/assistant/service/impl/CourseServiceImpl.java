@@ -95,6 +95,7 @@ public class CourseServiceImpl implements CourseService {
         return courseMapper.updateCourse(course_id, teacher_id, course_name, course_cover, course_status);
     }
 
+
     /**
      * 添加课程
      *
@@ -111,6 +112,18 @@ public class CourseServiceImpl implements CourseService {
                 .setCourse_cover(cover)
                 .setCourse_date(new Date());
         return courseMapper.insert(course);
+    }
+
+
+    /**
+     * 删除课程
+     *
+     * @param id id
+     * @return int
+     */
+    @Override
+    public Integer deleteCourse(Integer id) {
+        return courseMapper.deleteById(id);
     }
 
 
