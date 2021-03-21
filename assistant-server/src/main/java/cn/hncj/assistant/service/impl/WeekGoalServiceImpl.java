@@ -48,4 +48,16 @@ public class WeekGoalServiceImpl implements WeekGoalService {
                 .setWeek_goal_content(content);
         return weekGoalMapper.insert(weekGoal);
     }
+
+
+    /**
+     * 删除周目标
+     *
+     * @param id id
+     * @return int
+     */
+    @Override
+    public Integer delete(Integer id) {
+        return weekGoalMapper.deleteById(id);
+    }
 }

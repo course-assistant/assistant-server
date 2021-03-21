@@ -38,4 +38,12 @@ public class WeekGoalController {
         return ServerResponse.createSuccess("添加成功");
     }
 
+
+    /* 删除周目标 */
+    @PostMapping("/delete")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> delete(@RequestParam("id") Integer id) {
+        weekGoalService.delete(id);
+        return ServerResponse.createSuccess("删除成功");
+    }
 }
