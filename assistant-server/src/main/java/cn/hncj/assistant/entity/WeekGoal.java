@@ -1,6 +1,5 @@
 package cn.hncj.assistant.entity;
 
-import cn.hncj.assistant.constance.WeekGoalType;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -20,6 +19,6 @@ public class WeekGoal {
     @TableId(type = IdType.AUTO)
     Integer week_goal_id;
     Integer week_id;
-    Integer week_goal_type;
+    String week_goal_title;
     String week_goal_content;
 }

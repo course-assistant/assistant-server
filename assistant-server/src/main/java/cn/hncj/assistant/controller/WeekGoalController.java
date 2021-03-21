@@ -30,11 +30,11 @@ public class WeekGoalController {
     @PostMapping("/insert")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> insert(
-            @RequestParam("id") Integer id,
-            @RequestParam("type") Integer type,
+            @RequestParam("id") Integer week_id,
+            @RequestParam("title") String title,
             @RequestParam("content") String content
     ) {
-        weekGoalService.insert(id, type, content);
+        weekGoalService.insert(week_id, title, content);
         return ServerResponse.createSuccess("添加成功");
     }
 

@@ -4,6 +4,7 @@ import cn.hncj.assistant.entity.WeekGoal;
 
 import java.util.List;
 
+@SuppressWarnings("UnusedReturnValue")
 public interface WeekGoalService {
 
     /**
@@ -19,11 +20,11 @@ public interface WeekGoalService {
      * 添加周目标
      *
      * @param week_id week_id
-     * @param type    type
+     * @param title   title
      * @param content content
      * @return int
      */
-    Integer insert(Integer week_id, Integer type, String content);
+    Integer insert(Integer week_id, String title, String content);
 
 
     /**
