@@ -52,6 +52,15 @@ public class DiscussionCommentController {
     }
 
 
+    /* 删除课堂讨论 */
+    @PostMapping("/deletediscussion")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> deleteDiscussion(@RequestParam("id") Integer id) {
+        discussionCommentService.deleteDiscussion(id);
+        return ServerResponse.createSuccess("删除成功");
+    }
+
+
     /* 发布评论 */
     @PostMapping("/issuecomment")
     @RoleCheck(RoleCheck.STUDENT)

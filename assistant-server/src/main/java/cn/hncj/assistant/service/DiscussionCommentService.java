@@ -48,6 +48,15 @@ public interface DiscussionCommentService {
 
 
     /**
+     * 删除课堂讨论
+     *
+     * @param id id
+     * @return int
+     */
+    Integer deleteDiscussion(Integer id);
+
+
+    /**
      * 发布评论
      *
      * @param discussion_id discussion_id

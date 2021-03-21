@@ -80,6 +80,18 @@ public class DiscussionCommentServiceImpl implements DiscussionCommentService {
 
 
     /**
+     * 删除课堂讨论
+     *
+     * @param id id
+     * @return int
+     */
+    @Override
+    public Integer deleteDiscussion(Integer id) {
+        return discussionMapper.deleteById(id);
+    }
+
+
+    /**
      * 发布评论
      *
      * @param discussion_id discussion_id
