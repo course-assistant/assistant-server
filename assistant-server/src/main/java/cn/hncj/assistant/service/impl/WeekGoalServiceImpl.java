@@ -30,4 +30,22 @@ public class WeekGoalServiceImpl implements WeekGoalService {
         queryWrapper.eq("week_id", id);
         return weekGoalMapper.selectList(queryWrapper);
     }
+
+
+    /**
+     * 添加周目标
+     *
+     * @param week_id week_id
+     * @param type    type
+     * @param content content
+     * @return int
+     */
+    @Override
+    public Integer insert(Integer week_id, Integer type, String content) {
+        WeekGoal weekGoal = new WeekGoal()
+                .setWeek_id(week_id)
+                .setWeek_goal_type(type)
+                .setWeek_goal_content(content);
+        return weekGoalMapper.insert(weekGoal);
+    }
 }

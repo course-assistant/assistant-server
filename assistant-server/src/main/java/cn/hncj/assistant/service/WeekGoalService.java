@@ -15,4 +15,14 @@ public interface WeekGoalService {
     List<WeekGoal> selectByWeekId(Integer id);
 
 
+    /**
+     * 添加周目标
+     *
+     * @param week_id week_id
+     * @param type    type
+     * @param content content
+     * @return int
+     */
+    Integer insert(Integer week_id, Integer type, String content);
+
 }
