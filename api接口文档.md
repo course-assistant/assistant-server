@@ -1246,7 +1246,17 @@ payload有两个附加部分
 - 响应数据
 
 ```json
-
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "week_mission_id": 1,
+        "week_id": 1,
+        "week_mission_name": "第01周 任务",
+        "week_mission_content": "任务1 任务2",
+        "week_mission_status": 1
+    }
+}
 ```
 
 <br>

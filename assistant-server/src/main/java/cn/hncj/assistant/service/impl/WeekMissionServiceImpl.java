@@ -3,6 +3,7 @@ package cn.hncj.assistant.service.impl;
 import cn.hncj.assistant.entity.WeekMission;
 import cn.hncj.assistant.mapper.WeekMissionMapper;
 import cn.hncj.assistant.service.WeekMissionService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,20 @@ public class WeekMissionServiceImpl implements WeekMissionService {
     @Override
     public WeekMission selectById(Integer id) {
         return weekMissionMapper.selectById(id);
+    }
+
+
+    /**
+     * 根据周id查询周任务
+     *
+     * @param id id
+     * @return WeekMission
+     */
+    @Override
+    public WeekMission selectByWeekId(Integer id) {
+        QueryWrapper<WeekMission> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("week_id", id);
+        return weekMissionMapper.selectOne(queryWrapper);
     }
 
 
