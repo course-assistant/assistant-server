@@ -1581,7 +1581,24 @@ payload有两个附加部分
 - 响应数据
 
 ```json
-
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": [
+        {
+            "week_goal_id": 1,
+            "week_id": 228,
+            "week_goal_title": "记忆目标",
+            "week_goal_content": "HTML、CSS、JavaScript"
+        },
+        {
+            "week_goal_id": 2,
+            "week_id": 228,
+            "week_goal_title": "理解目标",
+            "week_goal_content": "JQuery等前端库"
+        }
+    ]
+}
 ```
 
 <br>
@@ -1596,7 +1613,7 @@ payload有两个附加部分
 | 参数名  | 参数说明 | 类型   | 备注     |
 | ------- | -------- | ------ | -------- |
 | id      | 周id     | int    | 不能为空 |
-| type    | 类型     | int    | 不能为空 |
+| title   | 标题     | string | 不能为空 |
 | content | 内容     | string | 不能为空 |
 
 - 响应数据
