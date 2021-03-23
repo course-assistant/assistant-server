@@ -2,8 +2,10 @@ package cn.hncj.assistant.service.impl;
 
 import cn.hncj.assistant.dto.PeriodEvaluationDTO;
 import cn.hncj.assistant.entity.PeriodEvaluate;
+import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.mapper.PeriodEvaluateMapper;
 import cn.hncj.assistant.service.PeriodEvaluateService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,7 +64,15 @@ public class PeriodEvaluateServiceImpl implements PeriodEvaluateService {
      */
     @Override
     public Integer issue(Integer period_id, String student_id, String content, Integer degree, Integer quality) {
-
+        // 判断该学生是否已经进行评价
+        QueryWrapper<PeriodEvaluate> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("period_id", period_id);
+        queryWrapper.eq("student_id", student_id);
+        Integer count = periodEvaluateMapper.selectCount(queryWrapper);
+        if (count >= 1) {
+            throw new ServerException("不能重复评价");
+        }
+        // 发布
         PeriodEvaluate periodEvaluate = new PeriodEvaluate()
                 .setPeriod_id(period_id)
                 .setStudent_id(student_id)
