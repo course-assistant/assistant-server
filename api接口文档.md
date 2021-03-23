@@ -1671,6 +1671,7 @@ payload有两个附加部分
     "data": {
         "avg_quality": "2.0",
         "avg_degree": "1.0",
+        "evaluation_count": 2,
         "evaluations": [
             {
                 "student_id": "666666666",

@@ -18,5 +18,6 @@ import java.util.List;
 public class PeriodEvaluationDTO {
     String avg_quality;
     String avg_degree;
+    Integer evaluation_count;
     List<EvaluationDTO> evaluations;
 }

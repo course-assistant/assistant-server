@@ -1,5 +1,6 @@
 package cn.hncj.assistant.service.impl;
 
+import cn.hncj.assistant.dto.EvaluationDTO;
 import cn.hncj.assistant.dto.PeriodEvaluationDTO;
 import cn.hncj.assistant.entity.PeriodEvaluate;
 import cn.hncj.assistant.exception.ServerException;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
@@ -36,7 +38,7 @@ public class PeriodEvaluateServiceImpl implements PeriodEvaluateService {
         // 查询结果为空时
         if (map == null) {
             periodEvaluationDTO = new PeriodEvaluationDTO()
-                    .setAvg_quality("0.0").setAvg_degree("0.0").setEvaluations(new ArrayList<>());
+                    .setAvg_quality("0.0").setAvg_degree("0.0").setEvaluation_count(0).setEvaluations(new ArrayList<>());
             return periodEvaluationDTO;
         }
         // 保留一位小数
@@ -44,11 +46,28 @@ public class PeriodEvaluateServiceImpl implements PeriodEvaluateService {
         String avg_quality = String.format("%.1f", map.get("avg_quality"));
 
         // 查询所有评价
+        List<EvaluationDTO> evaluations = periodEvaluateMapper.selectEvaluations(period_id);
+
         periodEvaluationDTO
                 .setAvg_degree(avg_degree)
                 .setAvg_quality(avg_quality)
-                .setEvaluations(periodEvaluateMapper.selectEvaluations(period_id));
+                .setEvaluation_count(evaluations.size());
 
+        // 将空白的评论从list里面删除
+        /*
+        while (iterator.hasNext()) {
+            EvaluationDTO evaluationDTO = iterator.next();
+            if (evaluationDTO.getPeriod_evaluate_content() == null || "".equals(evaluationDTO.getPeriod_evaluate_content().trim())) {
+                iterator.remove();
+            }
+        }
+*/
+        evaluations.removeIf(
+                evaluationDTO ->
+                        evaluationDTO.getPeriod_evaluate_content() == null || "".equals(evaluationDTO.getPeriod_evaluate_content().trim())
+        );
+
+        periodEvaluationDTO.setEvaluations(evaluations);
         return periodEvaluationDTO;
     }
 
