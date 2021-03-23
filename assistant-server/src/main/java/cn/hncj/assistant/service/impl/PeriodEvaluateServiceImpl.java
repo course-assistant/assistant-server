@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
@@ -27,6 +28,12 @@ public class PeriodEvaluateServiceImpl implements PeriodEvaluateService {
     public PeriodEvaluationDTO select(Integer period_id) {
         // 查询平均分数
         PeriodEvaluationDTO periodEvaluationDTO = periodEvaluateMapper.selectAvg(period_id);
+        // 查询结果为空时
+        if (periodEvaluationDTO == null) {
+            periodEvaluationDTO = new PeriodEvaluationDTO()
+                    .setAvg_quality(0f).setAvg_degree(0f).setEvaluations(new ArrayList<>());
+            return periodEvaluationDTO;
+        }
         // 保留一位小数
         BigDecimal avg_degree = BigDecimal.valueOf(periodEvaluationDTO.getAvg_degree());
         BigDecimal avg_quality = BigDecimal.valueOf(periodEvaluationDTO.getAvg_quality());
