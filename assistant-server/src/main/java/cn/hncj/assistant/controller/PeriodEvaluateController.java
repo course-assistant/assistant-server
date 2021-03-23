@@ -18,7 +18,15 @@ public class PeriodEvaluateController {
     @Autowired
     PeriodEvaluateService periodEvaluateService;
 
+    /* 查询学时的评价 */
+    @GetMapping("/select")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> select(@RequestParam("period_id") Integer period_id) {
+        return ServerResponse.createSuccess("查询成功", periodEvaluateService.select(period_id));
+    }
 
+
+    /* 发布 */
     @PostMapping("/issue")
     @RoleCheck(RoleCheck.STUDENT)
     public ServerResponse<Object> issue(

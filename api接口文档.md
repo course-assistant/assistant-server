@@ -1651,9 +1651,53 @@ payload有两个附加部分
 
 ## 12 学时评价
 
+### 查询学时的评价
 
+- 请求路径：periodevaluation/select
+- 请求方法：get
+- 权限：教师/学生
+- 请求参数
 
+| 参数名    | 参数说明 | 类型 | 备注     |
+| --------- | -------- | ---- | -------- |
+| period_id | 学时id   | int  | 不能为空 |
 
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "avg_quality": 2.0,
+        "avg_degree": 1.0,
+        "evaluations": [
+            {
+                "student_id": "666666666",
+                "student_name": "赵同学",
+                "student_avatar": "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                "period_id": 89,
+                "period_evaluate_content": "教的还可以",
+                "period_evaluate_date": "2021-03-22T16:00:00.000+00:00",
+                "period_evaluate_quality": 4,
+                "period_evaluate_degree": 4
+            },
+            {
+                "student_id": "666666666",
+                "student_name": "赵同学",
+                "student_avatar": "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                "period_id": 89,
+                "period_evaluate_content": "老师教的很棒！",
+                "period_evaluate_date": "2021-03-22T16:00:00.000+00:00",
+                "period_evaluate_quality": 0,
+                "period_evaluate_degree": 0
+            }
+        ]
+    }
+}
+```
+
+<br>
 
 ### 发布学时评价
 
@@ -1673,7 +1717,11 @@ payload有两个附加部分
 - 响应数据
 
 ```json
-
+{
+    "code": 200,
+    "msg": "发布成功"
+}
 ```
 
 <br>
+

@@ -1,6 +1,18 @@
 package cn.hncj.assistant.service;
 
+import cn.hncj.assistant.dto.PeriodEvaluationDTO;
+
+@SuppressWarnings("UnusedReturnValue")
 public interface PeriodEvaluateService {
+
+
+    /**
+     * 查询学时的评价
+     *
+     * @param period_id period_id
+     * @return PeriodEvaluationDTO
+     */
+    PeriodEvaluationDTO select(Integer period_id);
 
 
     /**
