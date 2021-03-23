@@ -7,9 +7,9 @@ import cn.hncj.assistant.service.PeriodEvaluateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Service
@@ -26,22 +26,26 @@ public class PeriodEvaluateServiceImpl implements PeriodEvaluateService {
      */
     @Override
     public PeriodEvaluationDTO select(Integer period_id) {
+        PeriodEvaluationDTO periodEvaluationDTO = new PeriodEvaluationDTO();
+
         // 查询平均分数
-        PeriodEvaluationDTO periodEvaluationDTO = periodEvaluateMapper.selectAvg(period_id);
+        Map<String, Float> map = periodEvaluateMapper.selectAvg(period_id);
+
         // 查询结果为空时
-        if (periodEvaluationDTO == null) {
+        if (map == null) {
             periodEvaluationDTO = new PeriodEvaluationDTO()
-                    .setAvg_quality(0f).setAvg_degree(0f).setEvaluations(new ArrayList<>());
+                    .setAvg_quality("0.0").setAvg_degree("0.0").setEvaluations(new ArrayList<>());
             return periodEvaluationDTO;
         }
         // 保留一位小数
-        BigDecimal avg_degree = BigDecimal.valueOf(periodEvaluationDTO.getAvg_degree());
-        BigDecimal avg_quality = BigDecimal.valueOf(periodEvaluationDTO.getAvg_quality());
-        periodEvaluationDTO.setAvg_degree(avg_degree.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue());
-        periodEvaluationDTO.setAvg_quality(avg_quality.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue());
+        String avg_degree = String.format("%.1f", map.get("avg_degree"));
+        String avg_quality = String.format("%.1f", map.get("avg_quality"));
 
         // 查询所有评价
-        periodEvaluationDTO.setEvaluations(periodEvaluateMapper.selectEvaluations(period_id));
+        periodEvaluationDTO
+                .setAvg_degree(avg_degree)
+                .setAvg_quality(avg_quality)
+                .setEvaluations(periodEvaluateMapper.selectEvaluations(period_id));
 
         return periodEvaluationDTO;
     }

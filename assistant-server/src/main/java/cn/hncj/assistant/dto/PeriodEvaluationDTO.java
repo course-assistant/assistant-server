@@ -16,7 +16,7 @@ import java.util.List;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PeriodEvaluationDTO {
-    Float avg_quality;
-    Float avg_degree;
+    String avg_quality;
+    String avg_degree;
     List<EvaluationDTO> evaluations;
 }

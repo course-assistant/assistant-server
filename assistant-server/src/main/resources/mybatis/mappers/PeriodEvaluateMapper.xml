@@ -16,8 +16,8 @@
     </select>
 
 
-    <!-- 查询平均分数 只给两个平均分赋值 -->
-    <select id="selectAvg" resultType="PeriodEvaluationDTO">
+    <!-- 查询平均分数 -->
+    <select id="selectAvg" resultType="map">
         select avg(period_evaluate_degree) as avg_degree, avg(period_evaluate_quality) as avg_quality
         from period_evaluate
         where period_id = #{period_id};

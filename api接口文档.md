@@ -1669,8 +1669,8 @@ payload有两个附加部分
     "code": 200,
     "msg": "查询成功",
     "data": {
-        "avg_quality": 2.0,
-        "avg_degree": 1.0,
+        "avg_quality": "2.0",
+        "avg_degree": "1.0",
         "evaluations": [
             {
                 "student_id": "666666666",

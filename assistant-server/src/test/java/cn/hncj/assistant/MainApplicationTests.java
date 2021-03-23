@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 class MainApplicationTests {
@@ -42,13 +43,13 @@ class MainApplicationTests {
     @Autowired
     WeekMissionMapper weekMissionMapper;
 
+    @Autowired
+    PeriodEvaluateMapper periodEvaluateMapper;
+
     @Test
     void testMybatis() {
-//        List<User> users = userMapper.getUsers();
-//
-//        for (User user : users) {
-//            System.out.println(user);
-//        }
+        Map<String, Float> map = periodEvaluateMapper.selectAvg(89);
+        System.out.println(map);
     }
 
     @Test
