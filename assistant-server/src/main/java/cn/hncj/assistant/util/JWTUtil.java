@@ -32,10 +32,12 @@ public class JWTUtil {
     public static String issueToken(Map<String, String> payload) {
         JWTCreator.Builder builder = JWT.create();
 
-        // 默认7天过期
-        Calendar instance = Calendar.getInstance();
-        instance.add(Calendar.DATE, 7);
-        builder.withExpiresAt(instance.getTime());
+        /// 设置token过期时间
+//        Calendar instance = Calendar.getInstance();
+//        instance.add(Calendar.DATE, 30);
+//        builder.withExpiresAt(instance.getTime());
+        ///
+
 
         payload.forEach((k, v) -> {
             //noinspection Convert2MethodRef
