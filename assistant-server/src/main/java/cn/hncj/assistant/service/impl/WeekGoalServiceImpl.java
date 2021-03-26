@@ -18,8 +18,26 @@ public class WeekGoalServiceImpl implements WeekGoalService {
     WeekGoalMapper weekGoalMapper;
 
 
+    /**
+     * 添加周目标
+     *
+     * @param week_mission_id week_mission_id
+     * @param title           title
+     * @param content         content
+     * @return int
+     */
+    @Override
+    public Integer insert(Integer week_mission_id, String title, String content) {
+        WeekGoal weekGoal = new WeekGoal()
+                .setWeek_mission_id(week_mission_id)
+                .setWeek_goal_title(title)
+                .setWeek_goal_content(content);
+        return weekGoalMapper.insert(weekGoal);
+    }
 
-    ////////////
+
+    //////////////////////////////////////////
+
 
     /**
      * 根据周id查询周目标

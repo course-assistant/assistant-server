@@ -1,5 +1,6 @@
 package cn.hncj.assistant.controller;
 
+import cn.hncj.assistant.annotation.Comment;
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.service.WeekGoalService;
@@ -17,6 +18,20 @@ public class WeekGoalController {
     @Autowired
     WeekGoalService weekGoalService;
 
+
+    @Comment("给周添加周目标")
+    @PostMapping("/insert")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> insert(
+            @RequestParam("id") Integer id,
+            @RequestParam("title") String title,
+            @RequestParam("content") String content
+    ) {
+        weekGoalService.insert(id, title, content);
+        return ServerResponse.createSuccess("添加成功");
+    }
+
+    ///////////////////////////////
 
     /* 查询周目标 */
     @GetMapping("/selectbyweekid")

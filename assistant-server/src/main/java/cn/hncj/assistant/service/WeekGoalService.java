@@ -7,15 +7,17 @@ import java.util.List;
 @SuppressWarnings("UnusedReturnValue")
 public interface WeekGoalService {
 
-//    /**
-//     * 根据周任务id查询周目标
-//     *
-//     * @param id id
-//     * @return WeekGoal
-//     */
-//    List<WeekGoal> selectByWeekMissionId(Integer id);
+    /**
+     * 添加周目标
+     *
+     * @param week_mission_id week_mission_id
+     * @param title           title
+     * @param content         content
+     * @return int
+     */
+    Integer insert(Integer week_mission_id, String title, String content);
 
-    ///////
+    ///////////////////////////////////////////////
 
     /**
      * 根据周id查询周目标
