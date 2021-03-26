@@ -1,10 +1,12 @@
 package cn.hncj.assistant.aspect;
 
+import cn.hncj.assistant.annotation.Comment;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -17,28 +19,6 @@ import java.util.Date;
 @Slf4j
 @Component
 public class ControllerLogAspect {
-
-
-//    @Before("execution(* cn.hncj.assistant.controller.*.*(..))")
-//    public void before(JoinPoint joinPoint) {
-//
-//        Signature signature = joinPoint.getSignature();
-//        Object target = joinPoint.getTarget();
-//        Object[] args = joinPoint.getArgs();
-//
-//        System.out.println();
-//        log.info("执行方法: {}.{}", target.getClass().getSimpleName(), signature.getName());
-//        log.info("传递参数: {}", Arrays.toString(args));
-//    }
-//
-//
-//    @AfterReturning("execution(* cn.hncj.assistant.controller.*.*(..))")
-//    public void afterReturning(JoinPoint joinPoint) {
-//        Signature signature = joinPoint.getSignature();
-//        Object target = joinPoint.getTarget();
-//        log.info("执行完成: {}.{}", target.getClass().getSimpleName(), signature.getName());
-//    }
-
     // 环绕通知，暂时不记录返回值
     @Around("execution(* cn.hncj.assistant.controller.*.*(..))")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
@@ -47,7 +27,12 @@ public class ControllerLogAspect {
         Object[] args = pjp.getArgs();
 
         // 执行前
-        log.info("执行方法: {}.{}", target.getClass().getSimpleName(), signature.getName());
+        Comment comment = ((MethodSignature) pjp.getSignature()).getMethod().getAnnotation(Comment.class);
+        String methodComment = "";
+        if (comment != null) {
+            methodComment = comment.value();
+        }
+        log.info("执行方法: [{}] {}.{}", methodComment, target.getClass().getSimpleName(), signature.getName());
         log.info("传递参数: {}", Arrays.toString(args));
 
         // 开始执行
@@ -56,7 +41,7 @@ public class ControllerLogAspect {
         time = new Date().getTime() - time;
 
         // 执行后
-        log.info("执行完成: {}.{}", target.getClass().getSimpleName(), signature.getName());
+        log.info("执行完成: [{}] {}.{}", methodComment, target.getClass().getSimpleName(), signature.getName());
         log.info("耗时: {}ms\n", time);
 
         return proceed;

@@ -1,5 +1,6 @@
 package cn.hncj.assistant.controller;
 
+import cn.hncj.assistant.annotation.Comment;
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.service.WeekService;
@@ -17,6 +18,8 @@ public class WeekController {
     @Autowired
     WeekService weekService;
 
+
+    @Comment("根据课程id查询所有周")
     @GetMapping("/select")
     @RoleCheck(RoleCheck.USER)
     public ServerResponse<Object> selectWeek(@RequestParam("id") Integer id) {

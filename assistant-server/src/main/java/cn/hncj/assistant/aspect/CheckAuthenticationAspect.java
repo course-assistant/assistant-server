@@ -40,6 +40,8 @@ public class CheckAuthenticationAspect {
 
     @Around("checkAuthentication()")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
+
+        System.out.println();
         log.info("进行token验证");
 
         // 获取request，获取header
@@ -50,7 +52,11 @@ public class CheckAuthenticationAspect {
         }
         HttpServletRequest request = servletRequestAttributes.getRequest();
         String token = request.getHeader("token");
+
+        /*
         log.info("待验证的token:{}", token);
+        */
+
         if (token == null) {
             throw new ServerException("权限验证失败，token为null");
         }
@@ -74,9 +80,11 @@ public class CheckAuthenticationAspect {
             if (providedId == null || providedRole == null) {
                 throw new ServerException("权限验证失败，token无效 id或role为空");
             }
+            /*
             log.info("请求id：[{}]", providedId);
             log.info("providedRole：[{}]", providedRole);
             log.info("requiredRole：[{}]", requiredRole);
+            */
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServerException("权限验证失败，token无效");
