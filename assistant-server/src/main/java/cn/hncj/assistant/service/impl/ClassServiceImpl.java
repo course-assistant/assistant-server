@@ -4,6 +4,7 @@ import cn.hncj.assistant.entity.Class;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.mapper.ClassMapper;
 import cn.hncj.assistant.service.ClassService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

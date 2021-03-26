@@ -17,7 +17,8 @@ import lombok.experimental.Accessors;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Week {
     @TableId(type = IdType.AUTO)
-    private Integer week_id;
-    private Integer course_id;
-    private String week_name;
+    Integer week_id;
+    Integer course_id;
+    String week_name;
+    Integer week_status;
 }

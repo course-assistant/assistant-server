@@ -15,7 +15,7 @@
     <!-- 查询班级的学生人数 -->
     <select id="countStudent" resultType="int">
         select count(*)
-        from class_student
+        from student_class
         where class_id = #{class_id};
     </select>
 
