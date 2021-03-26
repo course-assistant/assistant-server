@@ -17,6 +17,27 @@ public interface WeekGoalService {
      */
     Integer insert(Integer week_mission_id, String title, String content);
 
+
+    /**
+     * 删除周目标
+     *
+     * @param id id
+     * @return int
+     */
+    Integer delete(Integer id);
+
+
+    /**
+     * 修改周目标
+     *
+     * @param id      id
+     * @param title   title
+     * @param content content
+     * @return int
+     */
+    Integer update(Integer id, String title, String content);
+
+
     ///////////////////////////////////////////////
 
     /**
@@ -39,11 +60,4 @@ public interface WeekGoalService {
 //    Integer insert(Integer week_id, String title, String content);
 
 
-    /**
-     * 删除周目标
-     *
-     * @param id id
-     * @return int
-     */
-    Integer delete(Integer id);
 }

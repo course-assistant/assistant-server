@@ -31,6 +31,29 @@ public class WeekGoalController {
         return ServerResponse.createSuccess("添加成功");
     }
 
+
+    @Comment("删除周目标")
+    @PostMapping("/delete")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> delete(@RequestParam("id") Integer id) {
+        weekGoalService.delete(id);
+        return ServerResponse.createSuccess("删除成功");
+    }
+
+
+    @Comment("修改周目标")
+    @PostMapping("/update")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> updateWeekGoal(
+            @RequestParam("id") Integer id,
+            String title,
+            String content
+    ) {
+        weekGoalService.update(id, title, content);
+        return ServerResponse.createSuccess("修改成功");
+    }
+
+
     ///////////////////////////////
 
     /* 查询周目标 */
@@ -41,24 +64,4 @@ public class WeekGoalController {
     }
 
 
-    /* 添加周目标 */
-//    @PostMapping("/insert")
-//    @RoleCheck(RoleCheck.TEACHER)
-//    public ServerResponse<Object> insert(
-//            @RequestParam("id") Integer week_id,
-//            @RequestParam("title") String title,
-//            @RequestParam("content") String content
-//    ) {
-//        weekGoalService.insert(week_id, title, content);
-//        return ServerResponse.createSuccess("添加成功");
-//    }
-
-
-    /* 删除周目标 */
-    @PostMapping("/delete")
-    @RoleCheck(RoleCheck.TEACHER)
-    public ServerResponse<Object> delete(@RequestParam("id") Integer id) {
-        weekGoalService.delete(id);
-        return ServerResponse.createSuccess("删除成功");
-    }
 }

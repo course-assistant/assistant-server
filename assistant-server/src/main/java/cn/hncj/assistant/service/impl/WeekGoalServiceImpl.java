@@ -1,6 +1,7 @@
 package cn.hncj.assistant.service.impl;
 
 import cn.hncj.assistant.entity.WeekGoal;
+import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.mapper.WeekGoalMapper;
 import cn.hncj.assistant.service.WeekGoalService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -36,6 +37,35 @@ public class WeekGoalServiceImpl implements WeekGoalService {
     }
 
 
+    /**
+     * 删除周目标
+     *
+     * @param id id
+     * @return int
+     */
+    @Override
+    public Integer delete(Integer id) {
+        return weekGoalMapper.deleteById(id);
+    }
+
+
+    /**
+     * 修改周目标
+     *
+     * @param id      id
+     * @param title   title
+     * @param content content
+     * @return int
+     */
+    @Override
+    public Integer update(Integer id, String title, String content) {
+        if (title == null && content == null) {
+            throw new ServerException("请至少传入一个参数");
+        }
+        return weekGoalMapper.updateWeekGoal(id, title, content);
+    }
+
+
     //////////////////////////////////////////
 
 
@@ -53,32 +83,6 @@ public class WeekGoalServiceImpl implements WeekGoalService {
     }
 
 
-//    /**
-//     * 添加周目标
-//     *
-//     * @param week_id week_id
-//     * @param title   title
-//     * @param content content
-//     * @return int
-//     */
-//    @Override
-//    public Integer insert(Integer week_id, String title, String content) {
-//        WeekGoal weekGoal = new WeekGoal()
-//                .setWeek_id(week_id)
-//                .setWeek_goal_title(title)
-//                .setWeek_goal_content(content);
-//        return weekGoalMapper.insert(weekGoal);
-//    }
 
 
-    /**
-     * 删除周目标
-     *
-     * @param id id
-     * @return int
-     */
-    @Override
-    public Integer delete(Integer id) {
-        return weekGoalMapper.deleteById(id);
-    }
 }
