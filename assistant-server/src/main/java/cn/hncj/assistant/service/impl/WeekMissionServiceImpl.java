@@ -3,6 +3,7 @@ package cn.hncj.assistant.service.impl;
 import cn.hncj.assistant.dto.WeekMissionDTO;
 import cn.hncj.assistant.entity.WeekGoal;
 import cn.hncj.assistant.entity.WeekMission;
+import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.mapper.WeekGoalMapper;
 import cn.hncj.assistant.mapper.WeekMissionMapper;
 import cn.hncj.assistant.service.WeekMissionService;
@@ -40,16 +41,6 @@ public class WeekMissionServiceImpl implements WeekMissionService {
     }
 
 
-    /**
-     * 根据课程id 查询所有周任务的id和名称
-     *
-     * @param id id
-     * @return WeekMission
-     */
-    @Override
-    public List<WeekMission> selectByCourseId(Integer id) {
-        return weekMissionMapper.selectByCourseId(id);
-    }
 
     /**
      * 根据id查询周任务
@@ -65,6 +56,44 @@ public class WeekMissionServiceImpl implements WeekMissionService {
         queryWrapper.eq("week_mission_id", id);
         weekMissionDTO.setWeek_goals(weekGoalMapper.selectList(queryWrapper));
         return weekMissionDTO;
+    }
+
+
+    /**
+     * 添加周任务
+     *
+     * @param week_id week_id
+     * @param name    name
+     * @param type    type
+     * @return int
+     */
+    @Override
+    public Integer insert(Integer week_id, String name, Integer type) {
+        if (type < 1 || type > 2){
+            throw new ServerException("type只能为0，1");
+        }
+        WeekMission weekMission = new WeekMission()
+                .setWeek_id(week_id)
+                .setWeek_mission_name(name)
+                .setWeek_mission_type(type)
+                .setWeek_mission_status(2)
+                .setWeek_mission_content("内容待编辑...");
+        return weekMissionMapper.insert(weekMission);
+    }
+
+
+    ///////////////
+
+
+    /**
+     * 根据课程id 查询所有周任务的id和名称
+     *
+     * @param id id
+     * @return WeekMission
+     */
+    @Override
+    public List<WeekMission> selectByCourseId(Integer id) {
+        return weekMissionMapper.selectByCourseId(id);
     }
 
 

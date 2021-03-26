@@ -25,6 +25,17 @@ public interface WeekMissionService {
     WeekMissionDTO selectById(Integer id);
 
 
+    /**
+     * 添加周任务
+     *
+     * @param week_id week_id
+     * @param name    name
+     * @param type    type
+     * @return int
+     */
+    Integer insert(Integer week_id, String name, Integer type);
+
+
     //////
 
     /**

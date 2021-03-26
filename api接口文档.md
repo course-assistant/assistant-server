@@ -1047,12 +1047,56 @@ payload有两个附加部分
 - 响应数据
 
 ```json
-
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "week_mission_id": 1,
+        "week_mission_name": "任务01",
+        "week_mission_content": "与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；\n在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等",
+        "week_goals": [
+            {
+                "week_goal_id": 1,
+                "week_mission_id": 1,
+                "week_goal_title": "记忆目标",
+                "week_goal_content": "HTML、CSS、JavaScriptweek_goal"
+            },
+            {
+                "week_goal_id": 2,
+                "week_mission_id": 1,
+                "week_goal_title": "理解目标",
+                "week_goal_content": "JQuery等前端库"
+            }
+        ]
+    }
+}
 ```
 
 <br>
 
+### 添加周任务
 
+- 请求路径：weekmission/insert
+- 请求方法：post
+- 权限：教师
+- 请求参数
+
+| 参数名  | 参数说明 | 类型   | 备注     |
+| ------- | -------- | ------ | -------- |
+| week_id | 周id     | int    | 不能为空 |
+| name    | 任务名称 | string | 不能为空 |
+| type    | 类型     | int    | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "添加成功"
+}
+```
+
+<br>
 
 
 

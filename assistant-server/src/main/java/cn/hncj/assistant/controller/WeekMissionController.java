@@ -1,5 +1,6 @@
 package cn.hncj.assistant.controller;
 
+import cn.hncj.assistant.annotation.Comment;
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.service.WeekMissionService;
@@ -18,7 +19,7 @@ public class WeekMissionController {
     WeekMissionService weekMissionService;
 
 
-    /* 根据周查询周任务 */
+    @Comment("根据周id查询周任务")
     @GetMapping("/selectbyweekid")
     @RoleCheck(RoleCheck.USER)
     public ServerResponse<Object> selectByWeekId(@RequestParam("id") Integer id) {
@@ -26,22 +27,34 @@ public class WeekMissionController {
     }
 
 
+    @Comment("根据周任务id查询周任务")
+    @GetMapping("/selectbyid")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> selectById(@RequestParam("id") Integer id) {
+        return ServerResponse.createSuccess("查询成功", weekMissionService.selectById(id));
+    }
 
 
+    @Comment("添加周任务")
+    @PostMapping("/insert")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> insert(
+            @RequestParam("week_id") Integer id,
+            @RequestParam("name") String name,
+            @RequestParam("type") Integer type
+    ) {
+        weekMissionService.insert(id, name, type);
+        return ServerResponse.createSuccess("添加成功");
+    }
+
+
+    ////////
 
     /* 根据课程id查询周任务 */
     @GetMapping("/selectbycourseid")
     @RoleCheck(RoleCheck.USER)
     public ServerResponse<Object> selectByCourseId(@RequestParam("id") Integer id) {
         return ServerResponse.createSuccess("查询成功", weekMissionService.selectByCourseId(id));
-    }
-
-
-    /* 根据周任务id查询周任务 */
-    @GetMapping("/selectbyid")
-    @RoleCheck(RoleCheck.USER)
-    public ServerResponse<Object> selectById(@RequestParam("id") Integer id) {
-        return ServerResponse.createSuccess("查询成功", weekMissionService.selectById(id));
     }
 
 

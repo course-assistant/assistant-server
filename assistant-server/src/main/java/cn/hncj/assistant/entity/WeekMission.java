@@ -22,4 +22,5 @@ public class WeekMission {
     String week_mission_name;
     String week_mission_content;
     Integer week_mission_status;
+    Integer week_mission_type;
 }
