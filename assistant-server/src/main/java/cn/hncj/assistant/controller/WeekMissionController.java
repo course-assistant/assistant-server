@@ -17,6 +17,18 @@ public class WeekMissionController {
     @Autowired
     WeekMissionService weekMissionService;
 
+
+    /* 根据周查询周任务 */
+    @GetMapping("/selectbyweekid")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> selectByWeekId(@RequestParam("id") Integer id) {
+        return ServerResponse.createSuccess("查询成功", weekMissionService.selectByWeekId(id));
+    }
+
+
+
+
+
     /* 根据课程id查询周任务 */
     @GetMapping("/selectbycourseid")
     @RoleCheck(RoleCheck.USER)
@@ -33,12 +45,6 @@ public class WeekMissionController {
     }
 
 
-    /* 根据周查询周任务 */
-    @GetMapping("/selectbyweekid")
-    @RoleCheck(RoleCheck.USER)
-    public ServerResponse<Object> selectByWeekId(@RequestParam("id") Integer id) {
-        return ServerResponse.createSuccess("查询成功", weekMissionService.selectByWeekId(id));
-    }
 
 
     /* 修改周任务内容 */

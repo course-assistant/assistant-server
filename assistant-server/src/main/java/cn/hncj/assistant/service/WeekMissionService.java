@@ -1,10 +1,21 @@
 package cn.hncj.assistant.service;
 
+import cn.hncj.assistant.dto.WeekMissionDTO;
 import cn.hncj.assistant.entity.WeekMission;
 
 import java.util.List;
 
 public interface WeekMissionService {
+
+    /**
+     * 根据周id查询周任务
+     *
+     * @param id id
+     * @return WeekMission
+     */
+    List<WeekMissionDTO> selectByWeekId(Integer id);
+
+
     /**
      * 根据课程id 查询所有周任务的id和名称
      *
@@ -22,14 +33,6 @@ public interface WeekMissionService {
      */
     WeekMission selectById(Integer id);
 
-
-    /**
-     * 根据周id查询周任务
-     *
-     * @param id id
-     * @return WeekMission
-     */
-    WeekMission selectByWeekId(Integer id);
 
 
     /**

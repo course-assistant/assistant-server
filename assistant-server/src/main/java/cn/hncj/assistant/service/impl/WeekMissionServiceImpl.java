@@ -1,9 +1,9 @@
 package cn.hncj.assistant.service.impl;
 
+import cn.hncj.assistant.dto.WeekMissionDTO;
 import cn.hncj.assistant.entity.WeekMission;
 import cn.hncj.assistant.mapper.WeekMissionMapper;
 import cn.hncj.assistant.service.WeekMissionService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,24 @@ public class WeekMissionServiceImpl implements WeekMissionService {
 
     @Autowired
     WeekMissionMapper weekMissionMapper;
+
+
+    /**
+     * 根据周id查询周任务
+     *
+     * @param id id
+     * @return WeekMission
+     */
+    @Override
+    public List<WeekMissionDTO> selectByWeekId(Integer id) {
+        List<WeekMissionDTO> weekMissionDTOList = weekMissionMapper.selectByWeekId(id);
+        // 查询周任务的访问量
+        for (WeekMissionDTO weekMissionDTO : weekMissionDTOList) {
+            weekMissionDTO.setViews(weekMissionMapper.countViews(weekMissionDTO.getWeek_mission_id()));
+        }
+        return weekMissionDTOList;
+    }
+
 
     /**
      * 根据课程id 查询所有周任务的id和名称
@@ -36,20 +54,6 @@ public class WeekMissionServiceImpl implements WeekMissionService {
     @Override
     public WeekMission selectById(Integer id) {
         return weekMissionMapper.selectById(id);
-    }
-
-
-    /**
-     * 根据周id查询周任务
-     *
-     * @param id id
-     * @return WeekMission
-     */
-    @Override
-    public WeekMission selectByWeekId(Integer id) {
-        QueryWrapper<WeekMission> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("week_id", id);
-        return weekMissionMapper.selectOne(queryWrapper);
     }
 
 

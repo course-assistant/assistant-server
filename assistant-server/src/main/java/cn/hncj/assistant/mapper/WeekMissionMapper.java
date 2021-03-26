@@ -1,5 +1,6 @@
 package cn.hncj.assistant.mapper;
 
+import cn.hncj.assistant.dto.WeekMissionDTO;
 import cn.hncj.assistant.entity.WeekMission;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,6 +13,26 @@ import java.util.List;
 @Mapper
 @Repository
 public interface WeekMissionMapper extends BaseMapper<WeekMission> {
+
+
+    /**
+     * 根据周id查询周任务
+     *
+     * @param id id
+     * @return WeekMissionDTO
+     */
+    List<WeekMissionDTO> selectByWeekId(@Param("week_id") Integer id);
+
+
+    /**
+     * 查询周任务的查看次数
+     *
+     * @param week_mission_id week_mission_id
+     * @return int
+     */
+    Integer countViews(@Param("week_mission_id") Integer week_mission_id);
+
+    //    ***************************************
 
     /**
      * 根据课程id 查询所有周任务的id和名称
