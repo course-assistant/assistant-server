@@ -36,6 +36,13 @@ public interface WeekMissionService {
     Integer insert(Integer week_id, String name, Integer type);
 
 
+    /**
+     * 删除周任务
+     * @param week_mission_id week_mission_id
+     * @return int
+     */
+    Integer delete(Integer week_mission_id);
+
     //////
 
     /**

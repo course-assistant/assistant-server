@@ -82,6 +82,18 @@ public class WeekMissionServiceImpl implements WeekMissionService {
     }
 
 
+    /**
+     * 删除周任务
+     *
+     * @param week_mission_id week_mission_id
+     * @return int
+     */
+    @Override
+    public Integer delete(Integer week_mission_id) {
+        return weekMissionMapper.deleteById(week_mission_id);
+    }
+
+
     ///////////////
 
 

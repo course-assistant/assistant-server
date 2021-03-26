@@ -48,6 +48,14 @@ public class WeekMissionController {
     }
 
 
+    @Comment("删除周任务")
+    @PostMapping("/delete")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> delete(@RequestParam("id") Integer id) {
+        weekMissionService.delete(id);
+        return ServerResponse.createSuccess("删除成功");
+    }
+
     ////////
 
     /* 根据课程id查询周任务 */
