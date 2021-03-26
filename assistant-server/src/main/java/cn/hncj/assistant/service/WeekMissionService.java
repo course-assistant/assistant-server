@@ -5,6 +5,7 @@ import cn.hncj.assistant.entity.WeekMission;
 
 import java.util.List;
 
+@SuppressWarnings("UnusedReturnValue")
 public interface WeekMissionService {
 
     /**
@@ -38,23 +39,11 @@ public interface WeekMissionService {
 
     /**
      * 删除周任务
+     *
      * @param week_mission_id week_mission_id
      * @return int
      */
     Integer delete(Integer week_mission_id);
-
-    //////
-
-    /**
-     * 根据课程id 查询所有周任务的id和名称
-     *
-     * @param id id
-     * @return WeekMission
-     */
-    List<WeekMission> selectByCourseId(Integer id);
-
-
-
 
 
     /**
@@ -65,4 +54,15 @@ public interface WeekMissionService {
      * @return int
      */
     Integer updateContent(Integer id, String content);
+
+    //////////////////////////////////////
+
+    /**
+     * 根据课程id 查询所有周任务的id和名称
+     *
+     * @param id id
+     * @return WeekMission
+     */
+    List<WeekMission> selectByCourseId(Integer id);
+
 }

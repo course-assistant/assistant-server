@@ -29,6 +29,14 @@
         where week_mission_id = #{week_mission_id};
     </select>
 
+
+    <!-- 修改周任务内容 -->
+    <update id="updateContent">
+        update week_mission
+        set week_mission_content = #{week_mission_content}
+        where week_mission_id = #{week_mission_id};
+    </update>
+
     <!-- ///////////// -->
 
 
@@ -60,12 +68,7 @@
     </update>
 
 
-    <!-- 修改周任务内容 -->
-    <update id="updateContent">
-        update week_mission
-        set week_mission_content = #{week_mission_content}
-        where week_mission_id = #{week_mission_id};
-    </update>
+
 
 
 </mapper>

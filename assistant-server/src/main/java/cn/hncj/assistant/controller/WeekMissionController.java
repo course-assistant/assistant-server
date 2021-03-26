@@ -56,19 +56,8 @@ public class WeekMissionController {
         return ServerResponse.createSuccess("删除成功");
     }
 
-    ////////
 
-    /* 根据课程id查询周任务 */
-    @GetMapping("/selectbycourseid")
-    @RoleCheck(RoleCheck.USER)
-    public ServerResponse<Object> selectByCourseId(@RequestParam("id") Integer id) {
-        return ServerResponse.createSuccess("查询成功", weekMissionService.selectByCourseId(id));
-    }
-
-
-
-
-    /* 修改周任务内容 */
+    @Comment("修改周任务内容")
     @PostMapping("/updatecontent")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> updateContent(
@@ -78,4 +67,16 @@ public class WeekMissionController {
         weekMissionService.updateContent(id, content);
         return ServerResponse.createSuccess("修改成功");
     }
+
+
+    ////////////////////////////////
+
+    /* 根据课程id查询周任务 */
+    @GetMapping("/selectbycourseid")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> selectByCourseId(@RequestParam("id") Integer id) {
+        return ServerResponse.createSuccess("查询成功", weekMissionService.selectByCourseId(id));
+    }
+
+
 }
