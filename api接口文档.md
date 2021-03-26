@@ -1007,7 +1007,28 @@ payload有两个附加部分
 - 响应数据
 
 ```json
-
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": [
+        {
+            "week_mission_id": 1,
+            "week_mission_name": "任务01",
+            "week_mission_type": 1,
+            "week_mission_status": 1,
+            "teacher_name": "张妍琰",
+            "views": 2
+        },
+        {
+            "week_mission_id": 2,
+            "week_mission_name": "任务02",
+            "week_mission_type": 2,
+            "week_mission_status": 2,
+            "teacher_name": "张妍琰",
+            "views": 0
+        }
+    ]
+}
 ```
 
 <br>

@@ -32,6 +32,16 @@ public interface WeekMissionMapper extends BaseMapper<WeekMission> {
      */
     Integer countViews(@Param("week_mission_id") Integer week_mission_id);
 
+
+    /**
+     * 根据周任务id查询周任务
+     *
+     * @param week_mission_id week_mission_id
+     * @return WeekMissionDTO
+     */
+    WeekMissionDTO selectById(@Param("week_mission_id") Integer week_mission_id);
+
+
     //    ***************************************
 
     /**

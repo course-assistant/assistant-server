@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 public class WeekGoal {
     @TableId(type = IdType.AUTO)
     Integer week_goal_id;
-    Integer week_id;
+    Integer week_mission_id;
     String week_goal_title;
     String week_goal_content;
 }

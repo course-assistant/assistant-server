@@ -1,9 +1,12 @@
 package cn.hncj.assistant.service.impl;
 
 import cn.hncj.assistant.dto.WeekMissionDTO;
+import cn.hncj.assistant.entity.WeekGoal;
 import cn.hncj.assistant.entity.WeekMission;
+import cn.hncj.assistant.mapper.WeekGoalMapper;
 import cn.hncj.assistant.mapper.WeekMissionMapper;
 import cn.hncj.assistant.service.WeekMissionService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,9 @@ public class WeekMissionServiceImpl implements WeekMissionService {
 
     @Autowired
     WeekMissionMapper weekMissionMapper;
+
+    @Autowired
+    WeekGoalMapper weekGoalMapper;
 
 
     /**
@@ -52,8 +58,13 @@ public class WeekMissionServiceImpl implements WeekMissionService {
      * @return WeekMission
      */
     @Override
-    public WeekMission selectById(Integer id) {
-        return weekMissionMapper.selectById(id);
+    public WeekMissionDTO selectById(Integer id) {
+        WeekMissionDTO weekMissionDTO = weekMissionMapper.selectById(id);
+        // 查询所有周目标
+        QueryWrapper<WeekGoal> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("week_mission_id", id);
+        weekMissionDTO.setWeek_goals(weekGoalMapper.selectList(queryWrapper));
+        return weekMissionDTO;
     }
 
 

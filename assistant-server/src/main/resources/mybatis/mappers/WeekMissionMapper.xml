@@ -22,6 +22,13 @@
     </select>
 
 
+    <!-- 根据周任务id查询周任务 -->
+    <select id="selectById" resultType="WeekMissionDTO">
+        select week_mission_id, week_mission_name, week_mission_content
+        from week_mission
+        where week_mission_id = #{week_mission_id};
+    </select>
+
     <!-- ///////////// -->
 
 

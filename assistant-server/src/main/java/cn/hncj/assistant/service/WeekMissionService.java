@@ -17,6 +17,17 @@ public interface WeekMissionService {
 
 
     /**
+     * 根据id查询周任务
+     *
+     * @param id id
+     * @return WeekMission
+     */
+    WeekMissionDTO selectById(Integer id);
+
+
+    //////
+
+    /**
      * 根据课程id 查询所有周任务的id和名称
      *
      * @param id id
@@ -25,13 +36,6 @@ public interface WeekMissionService {
     List<WeekMission> selectByCourseId(Integer id);
 
 
-    /**
-     * 根据id查询周任务
-     *
-     * @param id id
-     * @return WeekMission
-     */
-    WeekMission selectById(Integer id);
 
 
 
