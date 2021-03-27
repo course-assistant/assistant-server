@@ -36,6 +36,22 @@ public class StudentServiceImpl implements StudentService {
         return studentDTO;
     }
 
+
+    /**
+     * 根据班级id查询所有学生
+     *
+     * @param class_id class_id
+     * @return student
+     */
+    @Override
+    public StudentDTO selectStudentsByClassId(Integer class_id) {
+        StudentDTO studentDTO = new StudentDTO();
+        studentDTO.setStudents(studentMapper.selectStudentsByClassId(class_id));
+        studentDTO.setTotal(studentDTO.getStudents().size());
+        return studentDTO;
+    }
+
+
     /**
      * 根据学生id查询学生
      *
@@ -52,20 +68,6 @@ public class StudentServiceImpl implements StudentService {
         return student;
     }
 
-
-    /**
-     * 根据 classId 查询学生
-     *
-     * @param class_id class_id
-     * @return student
-     */
-    @Override
-    public StudentDTO selectStudentsByClassId(Integer class_id) {
-        StudentDTO studentDTO = new StudentDTO();
-        studentDTO.setStudents(studentMapper.selectStudentsByClassId(class_id));
-        studentDTO.setTotal(studentDTO.getStudents().size());
-        return studentDTO;
-    }
 
     @Override
     public int insertStudent(String id, String administrator_id, String name, Integer sex, String phone, String email) throws ServerException {

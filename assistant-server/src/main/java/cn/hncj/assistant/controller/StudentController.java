@@ -1,5 +1,6 @@
 package cn.hncj.assistant.controller;
 
+import cn.hncj.assistant.annotation.Comment;
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.dto.StudentDTO;
@@ -40,15 +41,11 @@ public class StudentController {
     }
 
 
-    /* 根据班级查询所有学生 */
+    @Comment("根据班级id查询所有学生")
     @GetMapping("/selectbyclassid")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> selectStudentsByClassId(@RequestParam("class_id") Integer class_id) {
-        StudentDTO studentDTO = studentService.selectStudentsByClassId(class_id);
-        if (studentDTO.getStudents().isEmpty()) {
-            return ServerResponse.createEmptyQuery();
-        }
-        return ServerResponse.createSuccess("查询成功", studentDTO);
+        return ServerResponse.createSuccess("查询成功", studentService.selectStudentsByClassId(class_id));
     }
 
 
