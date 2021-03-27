@@ -30,4 +30,16 @@ public class WeekServiceImpl implements WeekService {
         wrapper.eq("course_id", course_id);
         return weekMapper.selectList(wrapper);
     }
+
+
+    /**
+     * 根据周id查询周
+     *
+     * @param week_id week_id
+     * @return week
+     */
+    @Override
+    public Week selectById(Integer week_id) {
+        return weekMapper.selectById(week_id);
+    }
 }

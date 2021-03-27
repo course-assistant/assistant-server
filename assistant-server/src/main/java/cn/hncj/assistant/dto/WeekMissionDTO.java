@@ -18,6 +18,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class WeekMissionDTO {
     Integer week_mission_id;
+    Integer week_id;
+    String week_name;
     String week_mission_name;
     Integer week_mission_type;
     Integer week_mission_status;

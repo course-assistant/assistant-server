@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
+@SuppressWarnings({"SpringJavaAutowiredFieldsWarningInspection", "SpellCheckingInspection"})
 @Slf4j
 @CrossOrigin
 @RestController
@@ -24,6 +24,14 @@ public class WeekController {
     @RoleCheck(RoleCheck.USER)
     public ServerResponse<Object> selectWeek(@RequestParam("id") Integer id) {
         return ServerResponse.createSuccess("查询成功", weekService.selectWeek(id));
+    }
+
+
+    @Comment("根据周id查询周")
+    @GetMapping("/selectbyid")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> selectById(@RequestParam("id") Integer id) {
+        return ServerResponse.createSuccess("查询成功", weekService.selectById(id));
     }
 
 }

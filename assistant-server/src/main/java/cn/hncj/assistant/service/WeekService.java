@@ -18,6 +18,15 @@ public interface WeekService {
     List<Week> selectWeek(Integer course_id);
 
 
+    /**
+     * 根据周id查询周
+     *
+     * @param week_id week_id
+     * @return week
+     */
+    Week selectById(Integer week_id);
+
+
 }
 
 
