@@ -3,7 +3,6 @@ package cn.hncj.assistant.controller;
 import cn.hncj.assistant.annotation.Comment;
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
-import cn.hncj.assistant.dto.CourseDTO;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 
 @SuppressWarnings({"SpringJavaAutowiredFieldsWarningInspection", "SpellCheckingInspection", "DuplicatedCode"})
 @Slf4j
@@ -33,27 +31,11 @@ public class CourseController {
             @RequestParam("size") Integer size,
             Integer status
     ) {
-        List<CourseDTO> courses;
-        // 根据情况返回
-        if (status == null) {
-            courses = courseService.selectCourseByTeacherId(id, page, size, 0);
-            if (courses.isEmpty()) {
-                return ServerResponse.createEmptyQuery();
-            }
-            return ServerResponse.createSuccess("查询成功", courses);
-        }
-        if (status < 0 || status > 3) {
-            throw new ServerException("status只能为0 1 2 3");
-        }
-        courses = courseService.selectCourseByTeacherId(id, page, size, status);
-        if (courses.isEmpty()) {
-            return ServerResponse.createEmptyQuery();
-        }
-        return ServerResponse.createSuccess("查询成功", courses);
+        return ServerResponse.createSuccess("查询成功", courseService.selectCourseByTeacherId(id, page, size, status));
     }
 
 
-    /* 根据学生id查询课程 */
+    @Comment("根据学生id查询课程")
     @GetMapping("/findbystudentid")
     @RoleCheck(RoleCheck.STUDENT)
     public ServerResponse<Object> selectCourseByStudentId(
@@ -62,35 +44,15 @@ public class CourseController {
             @RequestParam("size") Integer size,
             Integer status
     ) {
-        List<CourseDTO> courses;
-        // 根据情况返回
-        if (status == null) {
-            courses = courseService.selectCourseByStudentId(id, page, size, 0);
-            if (courses.isEmpty()) {
-                return ServerResponse.createEmptyQuery();
-            }
-            return ServerResponse.createSuccess("查询成功", courses);
-        }
-        if (status < 0 || status > 3) {
-            throw new ServerException("status只能为0 1 2 3");
-        }
-        courses = courseService.selectCourseByStudentId(id, page, size, status);
-        if (courses.isEmpty()) {
-            return ServerResponse.createEmptyQuery();
-        }
-        return ServerResponse.createSuccess("查询成功", courses);
+        return ServerResponse.createSuccess("查询成功", courseService.selectCourseByStudentId(id, page, size, status));
     }
 
 
-    /* 根据课程id查询课程 */
+    @Comment("根据课程id查询课程")
     @GetMapping("/findbyid")
     @RoleCheck(RoleCheck.USER)
     public ServerResponse<Object> findByCourseId(@RequestParam("id") Integer id) {
-        CourseDTO courseDTO = courseService.findByCourseId(id);
-        if (courseDTO == null) {
-            return ServerResponse.createEmptyQuery();
-        }
-        return ServerResponse.createSuccess("查询成功", courseDTO);
+        return ServerResponse.createSuccess("查询成功", courseService.findByCourseId(id));
     }
 
 

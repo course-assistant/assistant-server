@@ -724,8 +724,8 @@ payload有两个附加部分
 | name        | 课程名     | string | 不能为空 |
 | cover       | 课程封面   | string | 不能为空 |
 | week        | 周数       | int    | 不能为空 |
-| odd_period  | 单周学时数 | int    | 不能为空 |
-| even_period | 双周学时数 | int    | 不能为空 |
+| odd_lesson  | 单周学时数 | int    | 不能为空 |
+| even_lesson | 双周学时数 | int    | 不能为空 |
 
 - 响应数据
 
