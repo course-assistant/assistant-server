@@ -10,6 +10,7 @@ import cn.hncj.assistant.service.WeekMissionService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,7 +40,6 @@ public class WeekMissionServiceImpl implements WeekMissionService {
         }
         return weekMissionDTOList;
     }
-
 
 
     /**
@@ -83,18 +83,6 @@ public class WeekMissionServiceImpl implements WeekMissionService {
 
 
     /**
-     * 删除周任务
-     *
-     * @param week_mission_id week_mission_id
-     * @return int
-     */
-    @Override
-    public Integer delete(Integer week_mission_id) {
-        return weekMissionMapper.deleteById(week_mission_id);
-    }
-
-
-    /**
      * 修改周任务内容
      *
      * @param id      id
@@ -104,6 +92,42 @@ public class WeekMissionServiceImpl implements WeekMissionService {
     @Override
     public Integer updateContent(Integer id, String content) {
         return weekMissionMapper.updateContent(id, content);
+    }
+
+
+    /**
+     * 发布周任务
+     *
+     * @param ids id数组
+     * @return int
+     */
+    @Override
+    @Transactional
+    public Integer issue(Integer[] ids) {
+        int num = 0;
+        for (Integer id : ids) {
+            weekMissionMapper.issue(id);
+            num++;
+        }
+        return num;
+    }
+
+
+    /**
+     * 删除周任务
+     *
+     * @param ids id数组
+     * @return int
+     */
+    @Override
+    @Transactional
+    public Integer delete(Integer[] ids) {
+        int num = 0;
+        for (Integer id : ids) {
+            weekMissionMapper.deleteById(id);
+            num++;
+        }
+        return num;
     }
 
 

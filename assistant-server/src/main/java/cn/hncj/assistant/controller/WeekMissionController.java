@@ -51,10 +51,20 @@ public class WeekMissionController {
     @Comment("删除周任务")
     @PostMapping("/delete")
     @RoleCheck(RoleCheck.TEACHER)
-    public ServerResponse<Object> delete(@RequestParam("id") Integer id) {
-        weekMissionService.delete(id);
+    public ServerResponse<Object> delete(@RequestParam("ids") Integer[] ids) {
+        weekMissionService.delete(ids);
         return ServerResponse.createSuccess("删除成功");
     }
+
+
+    @Comment("发布周任务")
+    @PostMapping("/issue")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> issue(@RequestParam("ids") Integer[] ids) {
+        weekMissionService.issue(ids);
+        return ServerResponse.createSuccess("发布成功");
+    }
+
 
 
     @Comment("修改周任务内容")

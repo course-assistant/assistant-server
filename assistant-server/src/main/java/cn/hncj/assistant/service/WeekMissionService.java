@@ -38,15 +38,6 @@ public interface WeekMissionService {
 
 
     /**
-     * 删除周任务
-     *
-     * @param week_mission_id week_mission_id
-     * @return int
-     */
-    Integer delete(Integer week_mission_id);
-
-
-    /**
      * 修改周任务内容
      *
      * @param id      id
@@ -54,6 +45,24 @@ public interface WeekMissionService {
      * @return int
      */
     Integer updateContent(Integer id, String content);
+
+
+    /**
+     * 发布周任务
+     *
+     * @param ids id数组
+     * @return int
+     */
+    Integer issue(Integer[] ids);
+
+
+    /**
+     * 删除周任务
+     *
+     * @param ids id数组
+     * @return int
+     */
+    Integer delete(Integer[] ids);
 
     //////////////////////////////////////
 

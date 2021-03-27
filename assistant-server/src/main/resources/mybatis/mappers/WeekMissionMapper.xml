@@ -38,6 +38,15 @@
         where week_mission_id = #{week_mission_id};
     </update>
 
+
+    <!-- 发布单个任务 -->
+    <update id="issue">
+        update week_mission
+        set week_mission_status = 1
+        where week_mission_id = #{week_mission_id};
+    </update>
+
+
     <!-- ///////////// -->
 
 
