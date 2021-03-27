@@ -34,9 +34,15 @@ public class WeekMissionServiceImpl implements WeekMissionService {
     @Override
     public List<WeekMissionDTO> selectByWeekId(Integer id) {
         List<WeekMissionDTO> weekMissionDTOList = weekMissionMapper.selectByWeekId(id);
-        // 查询周任务的访问量
+
         for (WeekMissionDTO weekMissionDTO : weekMissionDTOList) {
+            // 查询周任务的访问量
             weekMissionDTO.setViews(weekMissionMapper.countViews(weekMissionDTO.getWeek_mission_id()));
+
+            // 查询所有周目标
+            QueryWrapper<WeekGoal> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("week_mission_id", weekMissionDTO.getWeek_mission_id());
+            weekMissionDTO.setWeek_goals(weekGoalMapper.selectList(queryWrapper));
         }
         return weekMissionDTOList;
     }

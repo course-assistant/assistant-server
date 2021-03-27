@@ -24,7 +24,7 @@ public class WeekMissionDTO {
     Integer week_mission_type;
     Integer week_mission_status;
     String week_mission_content;
-    String teacher_name;
+//    String teacher_name;
     Integer views;
     List<WeekGoal> week_goals;
 }
