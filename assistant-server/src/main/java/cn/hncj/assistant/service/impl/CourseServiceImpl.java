@@ -1,13 +1,11 @@
 package cn.hncj.assistant.service.impl;
 
 import cn.hncj.assistant.dto.CourseDTO;
+import cn.hncj.assistant.entity.Class;
 import cn.hncj.assistant.entity.Course;
 import cn.hncj.assistant.entity.Week;
 import cn.hncj.assistant.exception.ServerException;
-import cn.hncj.assistant.mapper.CourseMapper;
-import cn.hncj.assistant.mapper.PeriodMapper;
-import cn.hncj.assistant.mapper.WeekMapper;
-import cn.hncj.assistant.mapper.WeekMissionMapper;
+import cn.hncj.assistant.mapper.*;
 import cn.hncj.assistant.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +30,9 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     WeekMissionMapper weekMissionMapper;
+
+    @Autowired
+    ClassMapper classMapper;
 
 
     /**
@@ -88,7 +89,7 @@ public class CourseServiceImpl implements CourseService {
     public CourseDTO findByCourseId(Integer id) {
         CourseDTO courseDTO = courseMapper.findByCourseId(id);
         if (courseDTO == null) {
-            throw new ServerException("查询结果为空");
+            throw new ServerException("该课程不存在");
         }
         return courseDTO;
     }
@@ -131,6 +132,13 @@ public class CourseServiceImpl implements CourseService {
                     .setWeek_status(2);
             weekMapper.insert(w);
         }
+
+        // 3 添加一个默认班级
+        Class aClass = new Class()
+                .setCourse_id(course.getCourse_id())
+                .setClass_name("默认班级");
+        classMapper.insert(aClass);
+
         return 1;
     }
 

@@ -45,11 +45,13 @@
     </select>
 
 
+    <!-- 根据课程id查询课程 -->
     <select id="findByCourseId" resultType="CourseDTO">
         select course.course_id,course.course_name,course.teacher_id,teacher.teacher_name,course.course_cover
         from course,teacher
         where course.teacher_id = teacher.teacher_id and course.course_id=#{course_id};
     </select>
+
 
     <!-- 修改课程 -->
     <update id="updateCourse">
