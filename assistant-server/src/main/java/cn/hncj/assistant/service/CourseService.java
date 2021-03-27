@@ -49,19 +49,19 @@ public interface CourseService {
     Integer updateCourse(Map<String, Object> map);
 
 
-    /**
-     * 添加课程
-     *
-     * @param teacher_id 教师id
-     * @param name       name
-     * @param cover      cover
-     * @return int
-     */
-    Integer insertCourse(
-            String teacher_id,
-            String name,
-            String cover
-    );
+//    /**
+//     * 添加课程
+//     *
+//     * @param teacher_id 教师id
+//     * @param name       name
+//     * @param cover      cover
+//     * @return int
+//     */
+//    Integer insertCourse(
+//            String teacher_id,
+//            String name,
+//            String cover
+//    );
 
 
     /**
@@ -73,13 +73,24 @@ public interface CourseService {
     Integer deleteCourse(Integer id);
 
 
+    /**
+     * 手动添加课程
+     *
+     * @param teacher_id  教师id
+     * @param name        课程名
+     * @param cover       库课程封面
+     * @param week        课程的周数
+     * @param odd_lesson  单周的课时数
+     * @param even_lesson 双周的课时数
+     * @return int
+     */
     Integer insertCourse(
             String teacher_id,
             String name,
             String cover,
             Integer week,
-            Integer oddPeriod,
-            Integer evenPeriod
+            Integer odd_lesson,
+            Integer even_lesson
     );
 
 }

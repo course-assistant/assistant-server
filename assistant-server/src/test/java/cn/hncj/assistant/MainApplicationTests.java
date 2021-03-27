@@ -48,8 +48,8 @@ class MainApplicationTests {
 
     @Test
     void testMybatis() {
-        Map<String, Float> map = periodEvaluateMapper.selectAvg(89);
-        System.out.println(map);
+//        Map<String, Float> map = periodEvaluateMapper.selectAvg(89);
+//        System.out.println(map);
     }
 
     @Test

@@ -1,5 +1,6 @@
 package cn.hncj.assistant.controller;
 
+import cn.hncj.assistant.annotation.Comment;
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
 import cn.hncj.assistant.dto.CourseDTO;
@@ -22,15 +23,8 @@ public class CourseController {
     @Autowired
     CourseService courseService;
 
-    /**
-     * 根据教师id查询课程
-     *
-     * @param id     教师id
-     * @param page   page
-     * @param size   size
-     * @param status status
-     * @return courses
-     */
+
+    @Comment("根据教师id查询课程")
     @GetMapping("/findbyteacherid")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> selectCourseByTeacherId(
@@ -100,7 +94,7 @@ public class CourseController {
     }
 
 
-    /* 删除课程 */
+    @Comment("删除课程")
     @PostMapping("/delete")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> deleteCourse(@RequestParam("id") Integer id) {
@@ -108,14 +102,8 @@ public class CourseController {
         return ServerResponse.createSuccess("删除成功");
     }
 
-    /**
-     * 添加课程
-     *
-     * @param teacher_id 教师id
-     * @param name       name
-     * @param cover      cover
-     * @return response
-     */
+
+    @Comment("手动添加课程")
     @PostMapping("/insert")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> insert(
@@ -123,9 +111,9 @@ public class CourseController {
             @RequestParam("name") String name,
             @RequestParam("cover") String cover,
             @RequestParam("week") Integer week,
-            @RequestParam("odd_period") Integer odd_period,
-            @RequestParam("even_period") Integer even_period) {
-        courseService.insertCourse(teacher_id, name, cover, week, odd_period, even_period);
+            @RequestParam("odd_lesson") Integer odd_lesson,
+            @RequestParam("even_lesson") Integer even_lesson) {
+        courseService.insertCourse(teacher_id, name, cover, week, odd_lesson, even_lesson);
         return ServerResponse.createSuccess("添加成功");
     }
 

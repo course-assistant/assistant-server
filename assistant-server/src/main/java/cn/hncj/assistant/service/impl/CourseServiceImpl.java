@@ -2,9 +2,7 @@ package cn.hncj.assistant.service.impl;
 
 import cn.hncj.assistant.dto.CourseDTO;
 import cn.hncj.assistant.entity.Course;
-import cn.hncj.assistant.entity.Period;
 import cn.hncj.assistant.entity.Week;
-import cn.hncj.assistant.entity.WeekMission;
 import cn.hncj.assistant.mapper.CourseMapper;
 import cn.hncj.assistant.mapper.PeriodMapper;
 import cn.hncj.assistant.mapper.WeekMapper;
@@ -96,24 +94,24 @@ public class CourseServiceImpl implements CourseService {
     }
 
 
-    /**
-     * 添加课程
-     *
-     * @param teacher_id 教师id
-     * @param name       name
-     * @param cover      cover
-     * @return int
-     */
-    @Override
-    public Integer insertCourse(String teacher_id, String name, String cover) {
-        Course course = new Course()
-                .setTeacher_id(teacher_id)
-                .setCourse_name(name)
-                .setCourse_cover(cover)
-                .setCourse_date(new Date());
-        return courseMapper.insert(course);
-    }
-
+//    /**
+//     * 添加课程
+//     *
+//     * @param teacher_id 教师id
+//     * @param name       name
+//     * @param cover      cover
+//     * @return int
+//     */
+//    @Override
+//    public Integer insertCourse(String teacher_id, String name, String cover) {
+//        Course course = new Course()
+//                .setTeacher_id(teacher_id)
+//                .setCourse_name(name)
+//                .setCourse_cover(cover)
+//                .setCourse_date(new Date());
+//        return courseMapper.insert(course);
+//    }
+//
 
     /**
      * 删除课程
@@ -128,74 +126,114 @@ public class CourseServiceImpl implements CourseService {
 
 
     /**
-     * 添加课程
+     * 手动添加课程
      *
-     * @param teacher_id 教师id
-     * @param name       课程名
-     * @param cover      封面
-     * @param week       周数
-     * @param oddPeriod  单周学时数
-     * @param evenPeriod 双周学时数
+     * @param teacher_id  教师id
+     * @param name        课程名
+     * @param cover       库课程封面
+     * @param week        课程的周数
+     * @param odd_lesson  单周的课时数
+     * @param even_lesson 双周的课时数
      * @return int
      */
-    @Transactional
     @Override
-    public Integer insertCourse(String teacher_id, String name, String cover, Integer week, Integer oddPeriod, Integer evenPeriod) {
-        /*
-         * 1. 插入课程
-         * 2. 获取插入的主键
-         * 3. 给课程插入周数
-         * 4. 在插入周的同时插入周的学时
-         * 5. 给周插入周任务
-         * */
+    @Transactional
+    public Integer insertCourse(String teacher_id, String name, String cover, Integer week, Integer odd_lesson, Integer even_lesson) {
+        /* 1.创建课程=
+         * 2.添加课程的周
+         * 3.添加默认班级
+         */
 
-        // 先插入一个课程
+        // 1 创建一个课程
         Course course = new Course()
                 .setTeacher_id(teacher_id)
                 .setCourse_name(name)
                 .setCourse_cover(cover)
+                .setCourse_status(1)
                 .setCourse_date(new Date());
         courseMapper.insert(course);
-        // 获取刚刚插入的主键
-        Integer courseId = course.getCourse_id();
 
-        // 准备插入周数
-        int periodNum = 1;
+        // 2 创建课程的周
         for (int i = 1; i <= week; i++) {
-            // 插入周
-            Week newWeek = new Week()
-                    .setCourse_id(courseId)
-                    .setWeek_name(String.format("第%02d周", i));
-            weekMapper.insert(newWeek);
-            Integer weekId = newWeek.getWeek_id();
-
-            // 给每个周插入学时
-            // 判断当前周是单周还是双周
-            int num = oddPeriod;
-            if (i % 2 == 0) {
-                num = evenPeriod;
-            }
-            for (int j = 0; j < num; j++) {
-                Period period = new Period()
-                        .setWeek_id(weekId)
-                        .setPeriod_name(String.format("第%02d学时", periodNum))
-                        .setPeriod_content("内容")
-                        .setPeriod_type(1)
-                        .setPeriod_status(1);
-                periodMapper.insert(period);
-                periodNum++;
-            }
-
-            // 插入周任务
-            weekMissionMapper.insert(new WeekMission()
-                    .setWeek_id(newWeek.getWeek_id())
-                    .setWeek_mission_content("任务详情（待编辑）")
-                    .setWeek_mission_name(newWeek.getWeek_name() + " 任务")
-                    .setWeek_mission_status(1)
-            );
+            Week w = new Week()
+                    .setCourse_id(course.getCourse_id())
+                    .setWeek_name(String.format("第%02d周", i))
+                    .setWeek_status(2);
+            weekMapper.insert(w);
         }
-        return null;
+        return 1;
     }
+
+
+//    /**
+//     * 添加课程
+//     *
+//     * @param teacher_id 教师id
+//     * @param name       课程名
+//     * @param cover      封面
+//     * @param week       周数
+//     * @param oddPeriod  单周学时数
+//     * @param evenPeriod 双周学时数
+//     * @return int
+//     */
+//    @Transactional
+//    @Override
+//    public Integer insertCourse(String teacher_id, String name, String cover, Integer week, Integer oddPeriod, Integer evenPeriod) {
+//        /*
+//         * 1. 插入课程
+//         * 2. 获取插入的主键
+//         * 3. 给课程插入周数
+//         * 4. 在插入周的同时插入周的学时
+//         * 5. 给周插入周任务
+//         * */
+//
+//        // 先插入一个课程
+//        Course course = new Course()
+//                .setTeacher_id(teacher_id)
+//                .setCourse_name(name)
+//                .setCourse_cover(cover)
+//                .setCourse_date(new Date());
+//        courseMapper.insert(course);
+//        // 获取刚刚插入的主键
+//        Integer courseId = course.getCourse_id();
+//
+//        // 准备插入周数
+//        int periodNum = 1;
+//        for (int i = 1; i <= week; i++) {
+//            // 插入周
+//            Week newWeek = new Week()
+//                    .setCourse_id(courseId)
+//                    .setWeek_name(String.format("第%02d周", i));
+//            weekMapper.insert(newWeek);
+//            Integer weekId = newWeek.getWeek_id();
+//
+//            // 给每个周插入学时
+//            // 判断当前周是单周还是双周
+//            int num = oddPeriod;
+//            if (i % 2 == 0) {
+//                num = evenPeriod;
+//            }
+//            for (int j = 0; j < num; j++) {
+//                Period period = new Period()
+//                        .setWeek_id(weekId)
+//                        .setPeriod_name(String.format("第%02d学时", periodNum))
+//                        .setPeriod_content("内容")
+//                        .setPeriod_type(1)
+//                        .setPeriod_status(1);
+//                periodMapper.insert(period);
+//                periodNum++;
+//            }
+//
+//            // 插入周任务
+//            weekMissionMapper.insert(new WeekMission()
+//                    .setWeek_id(newWeek.getWeek_id())
+//                    .setWeek_mission_content("任务详情（待编辑）")
+//                    .setWeek_mission_name(newWeek.getWeek_name() + " 任务")
+//                    .setWeek_mission_status(1)
+//            );
+//        }
+//        return null;
+//    }
 
 
 }
