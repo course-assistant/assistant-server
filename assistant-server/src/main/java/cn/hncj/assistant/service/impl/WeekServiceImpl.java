@@ -5,6 +5,7 @@ import cn.hncj.assistant.entity.Week;
 import cn.hncj.assistant.mapper.WeekMapper;
 import cn.hncj.assistant.service.WeekService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,9 @@ import java.util.List;
 
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Service
-public class WeekServiceImpl implements WeekService {
+public class WeekServiceImpl
+        extends ServiceImpl<WeekMapper, Week>
+        implements WeekService {
 
     @Autowired
     WeekMapper weekMapper;

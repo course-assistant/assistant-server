@@ -2,11 +2,12 @@ package cn.hncj.assistant.service;
 
 
 import cn.hncj.assistant.entity.Week;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 
 @SuppressWarnings("UnusedReturnValue")
-public interface WeekService {
+public interface WeekService extends IService<Week> {
 
 
     /**
