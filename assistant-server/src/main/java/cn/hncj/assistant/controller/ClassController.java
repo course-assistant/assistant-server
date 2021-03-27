@@ -1,15 +1,14 @@
 package cn.hncj.assistant.controller;
 
+import cn.hncj.assistant.annotation.Comment;
 import cn.hncj.assistant.annotation.RoleCheck;
 import cn.hncj.assistant.common.ServerResponse;
-import cn.hncj.assistant.entity.Class;
 import cn.hncj.assistant.service.ClassService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 
 @SuppressWarnings({"SpringJavaAutowiredFieldsWarningInspection", "SpellCheckingInspection"})
 @Slf4j
@@ -21,31 +20,23 @@ public class ClassController {
     @Autowired
     ClassService classService;
 
-    /* 根据课程id查询班级 */
+    @Comment("根据课程id查询班级")
     @GetMapping("/findbycourseid")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> selectByCourseId(@RequestParam("course_id") String course_id) {
-        List<Class> classes = classService.selectByCourseId(course_id);
-        if (classes.isEmpty()) {
-            return ServerResponse.createEmptyQuery();
-        }
-        return ServerResponse.createSuccess("查询成功", classes);
+        return ServerResponse.createSuccess("查询成功", classService.selectByCourseId(course_id));
     }
 
 
-    /* 根据班级id查询班级 */
+    @Comment("根据班级id查询班级")
     @GetMapping("/findbyclassid")
     @RoleCheck(RoleCheck.USER)
     public ServerResponse<Object> selectByClassId(@RequestParam("class_id") Integer class_id) {
-        Class cls = classService.selectByClassId(class_id);
-        if (cls == null) {
-            return ServerResponse.createEmptyQuery();
-        }
-        return ServerResponse.createSuccess("查询成功", cls);
+        return ServerResponse.createSuccess("查询成功", classService.selectByClassId(class_id));
     }
 
 
-    /* 查询班级的学生人数 */
+    @Comment("查询班级的学生人数")
     @GetMapping("/countbycourseid")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> countStudent(@RequestParam("class_id") Integer class_id) {
@@ -55,7 +46,7 @@ public class ClassController {
     }
 
 
-    /* 添加班级 */
+    @Comment("添加班级")
     @PostMapping("insert")
     @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> insert(

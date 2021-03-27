@@ -4,7 +4,6 @@ import cn.hncj.assistant.entity.Class;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.mapper.ClassMapper;
 import cn.hncj.assistant.service.ClassService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +27,7 @@ public class ClassServiceImpl implements ClassService {
         return classMapper.selectByCourseId(course_id);
     }
 
+
     /**
      * 根据班级id查询班级
      *
@@ -36,7 +36,11 @@ public class ClassServiceImpl implements ClassService {
      */
     @Override
     public Class selectByClassId(Integer classId) {
-        return classMapper.selectById(classId);
+        Class aClass = classMapper.selectById(classId);
+        if (aClass == null) {
+            throw new ServerException("不存在该班级");
+        }
+        return aClass;
     }
 
 
