@@ -1042,7 +1042,79 @@ payload有两个附加部分
 
 <br>
 
-## 8 周任务
+## 8 课
+
+### 根据课程id查询周和课
+
+- 请求路径：lesson/selectbycourseid
+- 请求方法：get
+- 权限：教师/学生
+- 请求参数
+
+| 参数名 | 参数说明 | 类型 | 备注     |
+| ------ | -------- | ---- | -------- |
+| id     | 课程id   | int  | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": [
+        {
+            "week_id": 1,
+            "week_name": "第01周",
+            "lessons": [
+                {
+                    "lesson_id": 1,
+                    "week_id": 1,
+                    "lesson_name": "第01课",
+                    "lesson_index": 1,
+                    "lesson_type": 1,
+                    "lesson_status": 1
+                },
+                {
+                    "lesson_id": 2,
+                    "week_id": 1,
+                    "lesson_name": "第02课",
+                    "lesson_index": 2,
+                    "lesson_type": 2,
+                    "lesson_status": 2
+                }
+            ]
+        },
+        {
+            "week_id": 2,
+            "week_name": "第02周",
+            "lessons": [
+                {
+                    "lesson_id": 3,
+                    "week_id": 2,
+                    "lesson_name": "第03课",
+                    "lesson_index": 3,
+                    "lesson_type": 1,
+                    "lesson_status": 2
+                },
+                {
+                    "lesson_id": 4,
+                    "week_id": 2,
+                    "lesson_name": "第04课",
+                    "lesson_index": 4,
+                    "lesson_type": 1,
+                    "lesson_status": 2
+                }
+            ]
+        }
+    ]
+}
+```
+
+<br>
+
+<br>
+
+## 9 周任务
 
 ### 根据周id查询周任务
 
@@ -1218,7 +1290,7 @@ payload有两个附加部分
 
 <br>
 
-## 9 周目标
+## 10 周目标
 
 ### 给周添加周目标
 
