@@ -60,4 +60,13 @@ public interface ClassService {
      */
     Integer selection(String student_id, String invite_code);
 
+
+    /**
+     * 教师给学生选课
+     *
+     * @param student_id student_id
+     * @param class_id   class_id
+     * @return int
+     */
+    Integer selectionByTeacher(String student_id, Integer class_id);
 }

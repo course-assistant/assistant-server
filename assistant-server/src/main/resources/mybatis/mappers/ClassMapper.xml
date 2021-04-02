@@ -29,7 +29,7 @@
 
     <!-- 学生选课 -->
     <insert id="selection">
-        insert into class_student
+        insert into student_class
         values(#{student_id},#{class_id});
     </insert>
 

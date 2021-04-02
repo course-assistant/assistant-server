@@ -3,6 +3,7 @@ package cn.hncj.assistant.service.impl;
 import cn.hncj.assistant.entity.Class;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.mapper.ClassMapper;
+import cn.hncj.assistant.mapper.StudentMapper;
 import cn.hncj.assistant.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class ClassServiceImpl implements ClassService {
 
     @Autowired
     ClassMapper classMapper;
+
+    @Autowired
+    StudentMapper studentMapper;
 
     /**
      * 根据课程id查询班级
@@ -101,6 +105,26 @@ public class ClassServiceImpl implements ClassService {
         } catch (Exception e) {
             throw new ServerException("邀请码错误");
         }
+    }
+
+    /**
+     * 教师给学生选课
+     *
+     * @param student_id student_id
+     * @param class_id   class_id
+     * @return int
+     */
+    @Override
+    public Integer selectionByTeacher(String student_id, Integer class_id) {
+        // 判断学生和课程是否都存在
+        if (studentMapper.selectById(student_id) == null) {
+            throw new ServerException("学生不存在");
+        }
+        if (classMapper.selectById(class_id) == null) {
+            throw new ServerException("班级不存在");
+        }
+
+        return classMapper.selection(student_id, class_id);
     }
 
 }

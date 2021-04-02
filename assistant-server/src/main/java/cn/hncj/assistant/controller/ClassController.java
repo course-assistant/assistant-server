@@ -78,4 +78,17 @@ public class ClassController {
         return ServerResponse.createSuccess("选课成功");
     }
 
+
+    /* 教师给学生选课 */
+    @Comment("教师给学生选课")
+    @PostMapping("/selectionbyteacher")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> selectionByTeacher(
+            @RequestParam("student_id") String student_id,
+            @RequestParam("class_id") Integer class_id
+    ) {
+        classService.selectionByTeacher(student_id, class_id);
+        return ServerResponse.createSuccess("选课成功");
+    }
+
 }
