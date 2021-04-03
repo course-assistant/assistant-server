@@ -57,6 +57,7 @@ public class ExceptionControllerAdvice {
 
 
     /* 数据库相关异常 */
+    // 重复插入
     @ExceptionHandler(DuplicateKeyException.class)
     public Object DuplicateKeyException(){
         return ServerResponse.createInternalError("数据库试图插入重复的值");

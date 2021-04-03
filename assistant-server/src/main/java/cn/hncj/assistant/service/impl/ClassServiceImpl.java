@@ -1,8 +1,10 @@
 package cn.hncj.assistant.service.impl;
 
+import cn.hncj.assistant.dto.CourseDTO;
 import cn.hncj.assistant.entity.Class;
 import cn.hncj.assistant.exception.ServerException;
 import cn.hncj.assistant.mapper.ClassMapper;
+import cn.hncj.assistant.mapper.CourseMapper;
 import cn.hncj.assistant.mapper.StudentMapper;
 import cn.hncj.assistant.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class ClassServiceImpl implements ClassService {
 
     @Autowired
     StudentMapper studentMapper;
+
+    @Autowired
+    CourseMapper courseMapper;
 
     /**
      * 根据课程id查询班级
@@ -100,11 +105,14 @@ public class ClassServiceImpl implements ClassService {
         // 根据邀请码解析出课程id
         try {
             code = Integer.parseInt(invite_code);
-            code = code ^ 0x1111;
-            return classMapper.selection(student_id, code);
         } catch (Exception e) {
             throw new ServerException("邀请码错误");
         }
+        Integer class_id = code ^ 0x1111;
+        if (repeatSelection(student_id, class_id)) {
+            throw new ServerException("重复选课");
+        }
+        return classMapper.selection(student_id, class_id);
     }
 
     /**
@@ -123,8 +131,27 @@ public class ClassServiceImpl implements ClassService {
         if (classMapper.selectById(class_id) == null) {
             throw new ServerException("班级不存在");
         }
-
+        // 判断学生是否已经在此课程中
+        if (repeatSelection(student_id, class_id)) {
+            throw new ServerException("重复选课");
+        }
         return classMapper.selection(student_id, class_id);
+    }
+
+
+    // 判断学生是否重复选课
+    boolean repeatSelection(String student_id, Integer class_id) {
+        // 查询该学生上的所有课
+        List<CourseDTO> courseDTOS = courseMapper.selectCourseByStudentId(student_id, 0, 1000, 0);
+        // 查询该班级id对应的课
+        Class aClass = classMapper.selectById(class_id);
+        // 如果有一样的，说明重复选课
+        for (CourseDTO courseDTO : courseDTOS) {
+            if (aClass.getCourse_id().toString().equals(courseDTO.getCourse_id())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
