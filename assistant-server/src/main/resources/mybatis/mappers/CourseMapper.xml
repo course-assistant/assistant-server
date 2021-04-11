@@ -65,4 +65,13 @@
     </update>
 
 
+    <!-- 查询课程的学生人数 -->
+    <select id="countStudent" resultType="int">
+        select count(*) from student_class
+        where class_id in (
+            select class_id from class
+            where course_id = #{course_id}
+        );
+    </select>
+
 </mapper>

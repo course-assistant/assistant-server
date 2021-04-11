@@ -75,5 +75,12 @@ public interface CourseMapper extends BaseMapper<Course> {
     );
 
 
+    /**
+     * 查询课程的学生人数
+     *
+     * @param course_id course_id
+     * @return int
+     */
+    Integer countStudent(@Param("course_id") Integer course_id);
 
 }
