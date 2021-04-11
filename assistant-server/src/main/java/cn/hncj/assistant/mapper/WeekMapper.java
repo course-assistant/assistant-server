@@ -1,10 +1,14 @@
 package cn.hncj.assistant.mapper;
 
+import cn.hncj.assistant.dto.WeekDTO;
+import cn.hncj.assistant.dto.WeekMissionDTO2;
 import cn.hncj.assistant.entity.Week;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Mapper
 @Repository
@@ -18,7 +22,22 @@ public interface WeekMapper extends BaseMapper<Week> {
      * @return int
      */
     Integer updateWeek(
-            @RequestParam("week_id") Integer week_id,
-            @RequestParam("week_name") String week_name);
+            @Param("week_id") Integer week_id,
+            @Param("week_name") String week_name);
 
+
+    /**
+     * 查询weekDTO
+     *
+     * @param id course_id
+     * @return WeekDTO
+     */
+    List<WeekDTO> selectWeekDTO(@Param("course_id") Integer id);
+
+
+    List<WeekMissionDTO2> selectWeekMissionDTO2(@Param("week_id") Integer week_id);
+
+
+    // 查询周任务的完成人数
+    Integer countMissionViews(@Param("week_mission_id") Integer id);
 }

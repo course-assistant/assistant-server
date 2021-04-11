@@ -16,6 +16,22 @@ public interface WeekMissionMapper extends BaseMapper<WeekMission> {
 
 
     /**
+     * 根据课程id查询所有周任务的id
+     *
+     * @param id course_id
+     * @return int
+     */
+    List<Integer> selectWeekMissionIdsByCourseId(@Param("course_id") Integer id);
+
+
+    /* 判断学生有没有查看该任务 */
+    Integer viewsMission(
+            @Param("student_id") String student_id,
+            @Param("week_mission_id") Integer mission_id
+    );
+
+
+    /**
      * 根据周id查询周任务
      *
      * @param id id

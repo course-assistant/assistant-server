@@ -6,6 +6,22 @@
 <!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
 <mapper namespace="cn.hncj.assistant.mapper.WeekMissionMapper">
 
+    <!-- 根据课程id查询所有周任务的id -->
+    <select id="selectWeekMissionIdsByCourseId" resultType="int">
+        select week_mission_id
+        from week_mission, week, course
+        where week_mission.week_id = week.week_id and week.course_id = course.course_id and week.week_status = 1
+        and course.course_id = #{course_id};
+    </select>
+
+
+    <select id="viewsMission" resultType="int">
+        select count(*)
+        from student_view_mission
+        where student_id = #{student_id} and week_mission_id = #{week_mission_id};
+    </select>
+
+
     <!-- 根据周id查询周任务 -->
     <select id="selectByWeekId" resultType="WeekMissionDTO">
         select wm.week_mission_id, wm.week_mission_name, wm.week_mission_content, wm.week_mission_type, wm.week_mission_status

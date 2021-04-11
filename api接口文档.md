@@ -1139,6 +1139,112 @@ payload有两个附加部分
 
 ## 9 周任务
 
+### 查询周任务
+
+- 请求路径：weekmission/selectweek
+- 请求方法：get
+- 权限：教师/学生
+- 请求参数
+
+| 参数名    | 参数说明 | 类型 | 备注     |
+| --------- | -------- | ---- | -------- |
+| course_id | 课程id   | int  | 不能为空 |
+
+- 响应数据
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "student_ok_num": 1,
+        "student_total_num": 4,
+        "week_published_num": 1,
+        "week_total_num": 2,
+        "weeks": [
+            {
+                "week_id": 1,
+                "week_name": "第01周",
+                "week_status": 1,
+                "missions": [
+                    {
+                        "week_mission_id": 1,
+                        "week_id": 1,
+                        "week_name": "第01周",
+                        "week_mission_name": "任务01",
+                        "week_mission_content": "与现实生活一致：与现实生活的流程、\n逻辑保持一致，遵循用户习惯的语言和概念；",
+                        "ok_num": 2,
+                        "week_goals": [
+                            {
+                                "week_goal_id": 1,
+                                "week_mission_id": 1,
+                                "week_goal_title": "记忆目标",
+                                "week_goal_content": "HTML、CSS、JavaScript"
+                            },
+                            {
+                                "week_goal_id": 2,
+                                "week_mission_id": 1,
+                                "week_goal_title": "理解目标",
+                                "week_goal_content": "JQuery等前端库"
+                            }
+                        ]
+                    },
+                    {
+                        "week_mission_id": 2,
+                        "week_id": 1,
+                        "week_name": "第01周",
+                        "week_mission_name": "任务02",
+                        "week_mission_content": "2与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；\n在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等",
+                        "ok_num": 1,
+                        "week_goals": [
+                            {
+                                "week_goal_id": 10,
+                                "week_mission_id": 2,
+                                "week_goal_title": "测试目标",
+                                "week_goal_content": "啦啦啦啦啦啦啦啦啦啦"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "week_id": 2,
+                "week_name": "第02周",
+                "week_status": 2,
+                "missions": [
+                    {
+                        "week_mission_id": 3,
+                        "week_id": 2,
+                        "week_name": "第02周",
+                        "week_mission_name": "任务01",
+                        "week_mission_content": "与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；\n 在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等",
+                        "ok_num": 0,
+                        "week_goals": []
+                    },
+                    {
+                        "week_mission_id": 4,
+                        "week_id": 2,
+                        "week_name": "第02周",
+                        "week_mission_name": "任务02",
+                        "week_mission_content": "与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；\n 在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等",
+                        "ok_num": 0,
+                        "week_goals": []
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+<br>
+
+
+
+
+
+
+
 ### 根据周id查询周任务
 
 - 请求路径：weekmission/selectbyweekid

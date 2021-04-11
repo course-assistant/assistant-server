@@ -60,4 +60,12 @@ public class WeekController {
         return ServerResponse.createSuccess("删除成功");
     }
 
+
+    @GetMapping("/selectweek")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> select(@RequestParam("course_id") Integer id) {
+        return ServerResponse.createSuccess("查询成功", weekService.select(id));
+    }
+
+
 }

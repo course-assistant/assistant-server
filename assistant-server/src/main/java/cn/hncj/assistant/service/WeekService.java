@@ -1,6 +1,7 @@
 package cn.hncj.assistant.service;
 
 
+import cn.hncj.assistant.dto.WeekInfoDTO;
 import cn.hncj.assistant.entity.Week;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -27,6 +28,14 @@ public interface WeekService extends IService<Week> {
      */
     Week selectById(Integer week_id);
 
+
+    /**
+     * 查询周信息
+     *
+     * @param course_id course_id
+     * @return WeekInfoDTO
+     */
+    WeekInfoDTO select(Integer course_id);
 
 }
 

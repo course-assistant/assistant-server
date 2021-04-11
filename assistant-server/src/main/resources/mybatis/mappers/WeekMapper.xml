@@ -13,4 +13,29 @@
         where week_id = #{week_id};
     </update>
 
+
+    <!-- 查询weekDTO -->
+    <select id="selectWeekDTO" resultType="WeekDTO">
+        select week_id, week_name, week_status
+        from week
+        where course_id = #{course_id};
+    </select>
+
+
+    <select id="selectWeekMissionDTO2" resultType="WeekMissionDTO2">
+        select week_mission.week_mission_id, week_mission.week_mission_name, week_mission.week_mission_content, week.week_id, week.week_name
+        from week_mission, week
+        where week_mission.week_id = week.week_id
+        and week.week_id = #{week_id};
+    </select>
+
+
+    <select id="countMissionViews" resultType="int">
+        select count(*)
+        from student_view_mission
+        where week_mission_id = #{week_mission_id};
+    </select>
+
+
+
 </mapper>

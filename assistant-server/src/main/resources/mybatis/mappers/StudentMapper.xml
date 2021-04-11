@@ -52,4 +52,13 @@
         where student_id=#{student_id}
     </update>
 
+
+    <select id="selectIdByCourseId" resultType="string">
+        select student_class.student_id as student_id from student_class
+        where class_id in (
+            select class_id from class
+            where course_id = #{course_id}
+        );
+    </select>
+
 </mapper>

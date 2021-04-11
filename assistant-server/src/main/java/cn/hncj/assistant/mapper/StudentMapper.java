@@ -33,4 +33,8 @@ public interface StudentMapper extends BaseMapper<Student> {
             @Param("student_email") String student_email,
             @Param("student_status") Integer student_status
     );
+
+
+    /* 查询课程的所有学生id */
+    List<String> selectIdByCourseId(@Param("course_id") Integer course_id);
 }
