@@ -7,6 +7,7 @@ server:
 #    key-alias: alias
 
 # 远程数据库数据源 Hikari
+# 测试环境
 spring:
   datasource:
     username: root
@@ -18,33 +19,19 @@ spring:
       maximum-pool-size: 60
       minimum-idle: 10
 
-# 本地数据库数据源 Hikari
+
+# 线上环境
 #spring:
 #  datasource:
 #    username: root
-#    password: mysql
+#    password: wsfyz
 #    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://127.0.0.1:3306/hncj_course_assistant?serverTimezone=UTC&useSSL=true
+#    url: jdbc:mysql://123.56.156.212:3306/hncj_course_assistant_current?serverTimezone=UTC&useSSL=true
 #    hikari:
 #      connection-timeout: 30000
 #      maximum-pool-size: 60
 #      minimum-idle: 10
 
-
-# 本地数据库数据源 Druid
-#spring:
-#  datasource:
-#    type: com.alibaba.druid.pool.DruidDataSource
-#    username: root
-#    password: mysql
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://127.0.0.1:3306/hncj_course_assistant?serverTimezone=UTC&useSSL=true
-
-
-# 整合mybatis
-#mybatis:
-#  type-aliases-package: cn.hncj.assistant.entity
-#  mapper-locations: classpath:mybatis/mappers/*.xml
 
 # mybatis-plus
 mybatis-plus:
