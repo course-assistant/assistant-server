@@ -28,15 +28,6 @@ public interface DiscussionCommentService {
 
 
     /**
-     * 查询讨论的评论
-     *
-     * @param id id
-     * @return commentDTO
-     */
-    List<CommentDTO> selectCommentsByDiscussionId(Integer id);
-
-
-    /**
      * 发布课堂讨论
      *
      * @param course_id period_id
@@ -57,6 +48,15 @@ public interface DiscussionCommentService {
 
 
     /**
+     * 查询讨论的评论
+     *
+     * @param id id
+     * @return commentDTO
+     */
+    List<CommentDTO> selectCommentsByDiscussionId(Integer id);
+
+
+    /**
      * 发布评论
      *
      * @param discussion_id discussion_id
@@ -65,5 +65,7 @@ public interface DiscussionCommentService {
      * @return int
      */
     Integer issueComment(Integer discussion_id, Integer student_id, String content);
+
+
 
 }

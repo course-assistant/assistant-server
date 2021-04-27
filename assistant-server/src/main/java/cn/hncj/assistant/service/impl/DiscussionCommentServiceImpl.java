@@ -49,18 +49,6 @@ public class DiscussionCommentServiceImpl implements DiscussionCommentService {
 
 
     /**
-     * 查询讨论的评论
-     *
-     * @param id id
-     * @return commentDTO
-     */
-    @Override
-    public List<CommentDTO> selectCommentsByDiscussionId(Integer id) {
-        return commentMapper.selectCommentsByDiscussionId(id);
-    }
-
-
-    /**
      * 发布课堂讨论
      *
      * @param course_id course_id
@@ -88,6 +76,18 @@ public class DiscussionCommentServiceImpl implements DiscussionCommentService {
     @Override
     public Integer deleteDiscussion(Integer id) {
         return discussionMapper.deleteById(id);
+    }
+
+
+    /**
+     * 查询讨论的评论
+     *
+     * @param id id
+     * @return commentDTO
+     */
+    @Override
+    public List<CommentDTO> selectCommentsByDiscussionId(Integer id) {
+        return commentMapper.selectCommentsByDiscussionId(id);
     }
 
 

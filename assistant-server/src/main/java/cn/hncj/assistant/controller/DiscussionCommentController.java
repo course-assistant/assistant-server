@@ -56,4 +56,24 @@ public class DiscussionCommentController {
     }
 
 
+    @Comment("根据讨论id查询评论")
+    @GetMapping("/selectcommentsbydisscussionid")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> selectCommentsByDiscussionId(@RequestParam("id") Integer id) {
+        return ServerResponse.createSuccess("查询成功", discussionCommentService.selectCommentsByDiscussionId(id));
+    }
+
+
+    @Comment("发布评论")
+    @PostMapping("/issuecomment")
+    @RoleCheck(RoleCheck.STUDENT)
+    public ServerResponse<Object> issueComment(
+            @RequestParam("discussion_id") Integer discussion_id,
+            @RequestParam("student_id") Integer student_id,
+            @RequestParam("content") String content
+    ) {
+        discussionCommentService.issueComment(discussion_id, student_id, content);
+        return ServerResponse.createSuccess("发布成功");
+    }
+
 }
