@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
+<mapper namespace="cn.hncj.assistant.mapper.ClassMapper">
+    <!-- 根据课程id查询班级 -->
+    <select id="selectByCourseId" resultType="class">
+        select * from class
+        where course_id = #{course_id}          ;
+    </select>
+
+
+    <!-- 查询班级的学生人数 -->
+    <select id="countStudent" resultType="int">
+        select count(*)
+        from student_class
+        where class_id = #{class_id};
+    </select>
+
+
+    <!-- 修改班级名 -->
+    <update id="updateName">
+        update class
+        set class_name = #{class_name}
+        where class_id = #{class_id};
+    </update>
+
+    <!-- 学生选课 -->
+    <insert id="selection">
+        insert into student_class
+        values(#{student_id},#{class_id});
+    </insert>
+
+</mapper>

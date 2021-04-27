@@ -115,7 +115,7 @@ public class WeekServiceImpl
         // 查询这门课的所有任务
         List<Integer> missionIds = weekMissionMapper.selectWeekMissionIdsByCourseId(course_id);
 
-        System.out.println(Arrays.toString(missionIds.toArray()));
+//        System.out.println(Arrays.toString(missionIds.toArray()));
 
         // 记录所有任务数
         int missions = missionIds.size();

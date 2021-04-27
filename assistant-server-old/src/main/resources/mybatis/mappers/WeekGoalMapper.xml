@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
+<mapper namespace="cn.hncj.assistant.mapper.WeekGoalMapper">
+
+    <!-- 修改周目标 -->
+    <update id="updateWeekGoal">
+        update week_goal
+        <set>
+            <if test="week_goal_title != null">week_goal_title=#{week_goal_title},</if>
+            <if test="week_goal_content != null">week_goal_content=#{week_goal_content}</if>
+        </set>
+        where week_goal_id=#{week_goal_id};
+    </update>
+</mapper>

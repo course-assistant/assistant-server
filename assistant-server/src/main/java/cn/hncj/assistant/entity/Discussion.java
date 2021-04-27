@@ -20,7 +20,7 @@ import java.util.Date;
 public class Discussion {
     @TableId(type = IdType.AUTO)
     Integer discussion_id;
-    Integer period_id;
+    Integer course_id;
     String discussion_title;
     String discussion_content;
     Date discussion_date;

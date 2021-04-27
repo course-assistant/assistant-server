@@ -25,14 +25,14 @@ public class DiscussionCommentServiceImpl implements DiscussionCommentService {
 
 
     /**
-     * 根据学时id查询课堂讨论
+     * 根据课程id查询课堂讨论
      *
-     * @param period_id period_id
+     * @param course_id course_id
      * @return Discussion
      */
     @Override
-    public List<Discussion> selectDiscussionByPeriodId(Integer period_id) {
-        return discussionMapper.selectByPeriodId(period_id);
+    public List<Discussion> selectDiscussionByCourseId(Integer course_id) {
+        return discussionMapper.selectByCourseId(course_id);
     }
 
 
@@ -63,15 +63,15 @@ public class DiscussionCommentServiceImpl implements DiscussionCommentService {
     /**
      * 发布课堂讨论
      *
-     * @param period_id period_id
+     * @param course_id course_id
      * @param title     title
      * @param content   content
      * @return int
      */
     @Override
-    public Integer issueDiscussion(Integer period_id, String title, String content) {
+    public Integer issueDiscussion(Integer course_id, String title, String content) {
         Discussion discussion = new Discussion()
-                .setPeriod_id(period_id)
+                .setCourse_id(course_id)
                 .setDiscussion_title(title)
                 .setDiscussion_content(content)
                 .setDiscussion_date(new Date());

@@ -14,12 +14,12 @@ import java.util.List;
 public interface DiscussionMapper extends BaseMapper<Discussion> {
 
     /**
-     * 根据学时id查询课堂讨论
+     * 根据课程id查询课堂讨论
      *
-     * @param period_id period_id
+     * @param course_id course_id
      * @return Discussion
      */
-    List<Discussion> selectByPeriodId(@Param("period_id") Integer period_id);
+    List<Discussion> selectByCourseId(@Param("course_id") Integer course_id);
 
 
     /**

@@ -61,6 +61,7 @@ public class WeekController {
     }
 
 
+    @Comment("查询周信息")
     @GetMapping("/selectweek")
     @RoleCheck(RoleCheck.USER)
     public ServerResponse<Object> select(@RequestParam("course_id") Integer id) {

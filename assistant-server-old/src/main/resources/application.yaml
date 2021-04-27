@@ -1,0 +1,52 @@
+server:
+  port: 8686
+#  ssl:
+#    key-store: classpath:key.jks
+#    key-store-password: MLBthTME
+#    key-store-type: JKS
+#    key-alias: alias
+
+# 远程数据库数据源 Hikari
+# 测试环境
+spring:
+  datasource:
+    username: root
+    password: wsfyz
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://123.56.156.212:3306/hncj_course_assistant?serverTimezone=UTC&useSSL=true
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 60
+      minimum-idle: 10
+
+
+# 线上环境
+#spring:
+#  datasource:
+#    username: root
+#    password: wsfyz
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://123.56.156.212:3306/hncj_course_assistant_current?serverTimezone=UTC&useSSL=true
+#    hikari:
+#      connection-timeout: 30000
+#      maximum-pool-size: 60
+#      minimum-idle: 10
+
+
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:mybatis/mappers/*.xml
+  type-aliases-package: cn.hncj.assistant.entity, cn.hncj.assistant.dto
+  configuration:
+    map-underscore-to-camel-case: false
+
+
+# 日志等级debug，输出mybatis的日志
+logging:
+#  pattern:
+#    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{20} - [%method,%line] : %msg%n"
+  level:
+    # 将mapper的日志设为debug
+    cn.hncj.assistant.mapper.*: debug
+
+

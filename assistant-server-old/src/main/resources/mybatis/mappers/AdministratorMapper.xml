@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
+<mapper namespace="cn.hncj.assistant.mapper.AdministratorMapper">
+
+    <select id="verifyAdministrator" resultType="int">
+        select count(*) from administrator
+        where administrator_id = #{administrator_id} and administrator_password = #{administrator_password};
+    </select>
+</mapper>

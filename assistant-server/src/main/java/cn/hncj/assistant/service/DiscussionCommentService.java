@@ -10,12 +10,12 @@ import java.util.List;
 public interface DiscussionCommentService {
 
     /**
-     * 根据学时id查询课堂讨论
+     * 根据课程id查询课堂讨论
      *
-     * @param period_id period_id
+     * @param course_id course_id
      * @return Discussion
      */
-    List<Discussion> selectDiscussionByPeriodId(Integer period_id);
+    List<Discussion> selectDiscussionByCourseId(Integer course_id);
 
 
     /**
@@ -39,12 +39,12 @@ public interface DiscussionCommentService {
     /**
      * 发布课堂讨论
      *
-     * @param period_id period_id
+     * @param course_id period_id
      * @param title     title
      * @param content   content
      * @return int
      */
-    Integer issueDiscussion(Integer period_id, String title, String content);
+    Integer issueDiscussion(Integer course_id, String title, String content);
 
 
     /**

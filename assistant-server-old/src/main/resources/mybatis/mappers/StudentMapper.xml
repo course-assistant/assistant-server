@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
+<mapper namespace="cn.hncj.assistant.mapper.StudentMapper">
+    <!-- 验证学生账号和密码 -->
+    <select id="verifyStudent" resultType="int">
+        select count(*) from student
+        where student_id = #{student_id} and student_password = #{student_password};
+    </select>
+
+
+    <!-- 查询所有学生 -->
+    <select id="selectStudents" resultType="student">
+        select
+        student_id,administrator_id,student_name,student_sex,student_avatar,student_phone,student_email,student_status
+
+        from student
+
+        <if test="condition != null">
+            where student_id like concat('%',#{condition},'%')
+        </if>
+
+        limit #{start}, #{size};
+    </select>
+
+
+    <!-- 根据班级id查询所有学生 -->
+    <select id="selectStudentsByClassId" resultType="student">
+        select
+        student_id,administrator_id,student_name,student_sex,student_avatar,student_phone,student_email,student_status
+        from student
+        where student_id = any (
+            select student_id from student_class
+            where class_id = #{class_id}
+        );
+    </select>
+
+
+    <!-- 修改学生 -->
+    <update id="updateStudent">
+        update student
+        <set>
+            <if test="student_password != null">student_password=#{student_password},</if>
+            <if test="student_avatar != null">student_avatar=#{student_avatar},</if>
+            <if test="student_phone != null">student_phone=#{student_phone},</if>
+            <if test="student_email != null">student_email=#{student_email},</if>
+            <if test="student_status != null">student_status=#{student_status}</if>
+        </set>
+        where student_id=#{student_id}
+    </update>
+
+
+    <select id="selectIdByCourseId" resultType="string">
+        select student_class.student_id as student_id from student_class
+        where class_id in (
+            select class_id from class
+            where course_id = #{course_id}
+        );
+    </select>
+
+</mapper>

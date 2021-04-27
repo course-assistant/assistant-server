@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
+<mapper namespace="cn.hncj.assistant.mapper.WeekMissionMapper">
+
+    <!-- 根据课程id查询所有周任务的id -->
+    <select id="selectWeekMissionIdsByCourseId" resultType="int">
+        select week_mission_id
+        from week_mission, week, course
+        where week_mission.week_id = week.week_id and week.course_id = course.course_id and week.week_status = 1
+        and course.course_id = #{course_id};
+    </select>
+
+
+    <select id="viewsMission" resultType="int">
+        select count(*)
+        from student_view_mission
+        where student_id = #{student_id} and week_mission_id = #{week_mission_id};
+    </select>
+
+
+    <!-- 根据周id查询周任务 -->
+    <select id="selectByWeekId" resultType="WeekMissionDTO">
+        select wm.week_mission_id, wm.week_mission_name, wm.week_mission_content, wm.week_mission_type, wm.week_mission_status
+        from week_mission wm, week w
+        where wm.week_id = w.week_id
+        and w.week_id = #{week_id};
+    </select>
+
+
+    <!-- 查询周任务的查看次数 -->
+    <select id="countViews" resultType="int">
+        select count(*) from student_view_mission
+        where week_mission_id = #{week_mission_id};
+    </select>
+
+
+    <!-- 根据周任务id查询周任务 -->
+    <select id="selectById" resultType="WeekMissionDTO">
+        select wm.week_mission_id, wm.week_mission_name, wm.week_mission_content, w.week_id, w.week_name
+        from week_mission wm,week w
+        where wm.week_id = w.week_id
+        and week_mission_id = #{week_mission_id};
+    </select>
+
+
+    <!-- 修改周任务内容 -->
+    <update id="updateContent">
+        update week_mission
+        set week_mission_content = #{week_mission_content}
+        where week_mission_id = #{week_mission_id};
+    </update>
+
+
+    <!-- 发布单个任务 -->
+    <update id="issue">
+        update week_mission
+        set week_mission_status = 1
+        where week_mission_id = #{week_mission_id};
+    </update>
+
+
+    <!-- ///////////// -->
+
+
+    <!-- 根据课程id 查询所有周任务的id和名称 -->
+    <select id="selectByCourseId" resultType="weekMission">
+        select week_mission.week_id, week_mission.week_mission_id,week_mission.week_mission_name
+        from week_mission
+        where week_mission.week_id = any(
+            select week_id
+            from week
+            where week.course_id = #{course_id}
+        );
+    </select>
+
+
+    <!-- 根据周id查周任务的id -->
+    <select id="findWeekMissionIdByWeekId" resultType="int">
+        select week_mission_id
+        from week_mission
+        where week_id = #{week_id};
+    </select>
+
+
+    <!-- 修改周任务名称 -->
+    <update id="updateName">
+        update week_mission
+        set week_mission_name = #{week_mission_name}
+        where week_mission_id = #{week_mission_id};
+    </update>
+
+
+
+
+
+</mapper>

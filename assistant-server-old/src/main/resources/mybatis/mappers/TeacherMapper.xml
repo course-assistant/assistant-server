@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
+<mapper namespace="cn.hncj.assistant.mapper.TeacherMapper">
+
+    <!-- 验证教师账号和密码 -->
+    <select id="verifyTeacher" resultType="int">
+        select count(*) from teacher
+        where teacher_id = #{teacher_id} and teacher_password = #{teacher_password};
+    </select>
+
+    <!-- 查询所有教师 -->
+    <select id="selectTeachers" resultType="teacher">
+        select
+        teacher_id,administrator_id,teacher_name,teacher_sex,teacher_avatar,teacher_phone,teacher_email,teacher_status
+        from teacher
+
+        <if test="condition != null">
+            where teacher_id like concat('%',#{condition},'%')
+        </if>
+
+        limit #{start}, #{size};
+    </select>
+
+    <!-- 修改教师 -->
+    <update id="updateTeacher">
+        update teacher
+        <set>
+            <if test="teacher_password != null">teacher_password=#{teacher_password},</if>
+            <if test="teacher_avatar != null">teacher_avatar=#{teacher_avatar},</if>
+            <if test="teacher_phone != null">teacher_phone=#{teacher_phone},</if>
+            <if test="teacher_email != null">teacher_email=#{teacher_email},</if>
+            <if test="teacher_status != null">teacher_status=#{teacher_status}</if>
+        </set>
+        where teacher_id=#{teacher_id}
+    </update>
+
+
+    <!-- 改密码 -->
+    <update id="changePassword">
+        update teacher
+        set teacher_password = #{teacher_password}
+        where teacher_id = #{teacher_id};
+    </update>
+
+</mapper>
