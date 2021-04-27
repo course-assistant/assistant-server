@@ -64,7 +64,7 @@ public interface DiscussionCommentService {
      * @param content       content
      * @return int
      */
-    Integer issueComment(Integer discussion_id, Integer student_id, String content);
+    Integer issueComment(Integer discussion_id, String student_id, String content);
 
 
 

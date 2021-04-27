@@ -69,7 +69,7 @@ public class DiscussionCommentController {
     @RoleCheck(RoleCheck.STUDENT)
     public ServerResponse<Object> issueComment(
             @RequestParam("discussion_id") Integer discussion_id,
-            @RequestParam("student_id") Integer student_id,
+            @RequestParam("student_id") String student_id,
             @RequestParam("content") String content
     ) {
         discussionCommentService.issueComment(discussion_id, student_id, content);

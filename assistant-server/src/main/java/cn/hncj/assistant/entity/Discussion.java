@@ -24,4 +24,5 @@ public class Discussion {
     String discussion_title;
     String discussion_content;
     Date discussion_date;
+    Integer discussion_status;
 }

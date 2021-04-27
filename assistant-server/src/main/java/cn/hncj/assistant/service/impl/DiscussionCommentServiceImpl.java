@@ -62,7 +62,8 @@ public class DiscussionCommentServiceImpl implements DiscussionCommentService {
                 .setCourse_id(course_id)
                 .setDiscussion_title(title)
                 .setDiscussion_content(content)
-                .setDiscussion_date(new Date());
+                .setDiscussion_date(new Date())
+                .setDiscussion_status(1);
         return discussionMapper.insert(discussion);
     }
 
@@ -100,7 +101,7 @@ public class DiscussionCommentServiceImpl implements DiscussionCommentService {
      * @return int
      */
     @Override
-    public Integer issueComment(Integer discussion_id, Integer student_id, String content) {
+    public Integer issueComment(Integer discussion_id, String student_id, String content) {
         Comment comment = new Comment()
                 .setDiscussion_id(discussion_id)
                 .setStudent_id(student_id)

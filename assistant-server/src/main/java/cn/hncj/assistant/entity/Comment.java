@@ -21,7 +21,7 @@ public class Comment {
     @TableId(type = IdType.AUTO)
     Integer comment_id;
     Integer discussion_id;
-    Integer student_id;
+    String student_id;
     String comment_content;
     Date comment_date;
 }
