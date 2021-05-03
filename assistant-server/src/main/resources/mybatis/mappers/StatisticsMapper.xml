@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
+<mapper namespace="cn.hncj.assistant.mapper.StatisticsMapper">
+
+    <!-- 获取概要信息 -->
+    <select id="profile" resultType="map">
+        select * from student where student_id = "666666666";
+    </select>
+
+
+    <!-- 统计任务数 -->
+    <select id="countMission" resultType="int">
+        select count(*)
+        from course c, week w, week_mission wm
+        where wm.week_id = w.week_id and w.course_id = c.course_id
+        and c.course_id = #{course_id};
+    </select>
+
+    <!-- 统计讨论数 -->
+    <select id="countDiscussion" resultType="int">
+        select count(*)
+        from discussion
+        where course_id = #{course_id};
+    </select>
+
+
+</mapper>
