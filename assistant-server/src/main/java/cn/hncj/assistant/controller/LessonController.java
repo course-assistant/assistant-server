@@ -19,11 +19,38 @@ public class LessonController {
     @Autowired
     LessonService lessonService;
 
-    @Comment("根据课程id查询周和课")
+    @Comment("根据课程id课")
     @GetMapping("/selectbycourseid")
     @RoleCheck(RoleCheck.USER)
     public ServerResponse<Object> selectWeekLesson(@RequestParam("id") Integer id) {
-        return ServerResponse.createSuccess("查询成功", lessonService.selectWeekLesson(id));
+        return ServerResponse.createSuccess("查询成功", lessonService.selectLessons(id));
+    }
+
+
+    @Comment("添加课时")
+    @PostMapping("/insert")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> insert(
+            @RequestParam("id") Integer id,
+            @RequestParam("name") String name,
+            @RequestParam("content") String content
+    ) {
+        lessonService.insert(id, name, content);
+        return ServerResponse.createSuccess("添加成功");
+    }
+
+
+    @Comment("删除课时")
+    @PostMapping("/delete")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> delete(
+            @RequestParam("id") Integer id
+    ) {
+
+        lessonService.removeById(id);
+//        lessonService.delete(id);
+        return ServerResponse.createSuccess("删除成功");
+//        return null;
     }
 
 }

@@ -1,9 +1,7 @@
 package cn.hncj.assistant.service.impl;
 
 
-import cn.hncj.assistant.dto.WeekLessonDTO;
 import cn.hncj.assistant.entity.Lesson;
-import cn.hncj.assistant.entity.Week;
 import cn.hncj.assistant.mapper.LessonMapper;
 import cn.hncj.assistant.mapper.WeekMapper;
 import cn.hncj.assistant.service.LessonService;
@@ -12,7 +10,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
@@ -34,23 +31,27 @@ public class LessonServiceImpl
      * @return WeekLessonDTO
      */
     @Override
-    public List<WeekLessonDTO> selectWeekLesson(Integer id) {
-        ArrayList<WeekLessonDTO> list = new ArrayList<>();
+    public List<Lesson> selectLessons(Integer id) {
+        QueryWrapper<Lesson> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("course_id", id);
+        return lessonMapper.selectList(queryWrapper);
+    }
 
-        // 查询所有周
-        QueryWrapper<Week> queryWrapper = new QueryWrapper<Week>().eq("course_id", id);
-        List<Week> weeks = weekMapper.selectList(queryWrapper);
-
-        // 根据周查询周里的课程
-        for (Week week : weeks) {
-            WeekLessonDTO weekLessonDTO = new WeekLessonDTO();
-            weekLessonDTO.setWeek_id(week.getWeek_id()).setWeek_name(week.getWeek_name());
-            // 查询里面的课程
-            List<Lesson> lessons = lessonMapper.selectList(new QueryWrapper<Lesson>().eq("week_id", week.getWeek_id()));
-            weekLessonDTO.setLessons(lessons);
-            list.add(weekLessonDTO);
-        }
-
-        return list;
+    /**
+     * 添加课时
+     *
+     * @param id      id
+     * @param name    name
+     * @param content content
+     * @return int
+     */
+    @Override
+    public Integer insert(Integer id, String name, String content) {
+        Lesson lesson = new Lesson()
+                .setCourse_id(id)
+                .setLesson_name(name)
+                .setLesson_content(content)
+                .setLesson_status(2);
+        return lessonMapper.insert(lesson);
     }
 }
