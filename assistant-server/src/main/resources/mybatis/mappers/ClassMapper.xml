@@ -33,4 +33,11 @@
         values(#{student_id},#{class_id});
     </insert>
 
+
+    <!-- 将学生移出班级 -->
+    <delete id="removeStudent">
+        delete from student_class
+        where student_id = #{student_id} and class_id = #{class_id};
+    </delete>
+
 </mapper>

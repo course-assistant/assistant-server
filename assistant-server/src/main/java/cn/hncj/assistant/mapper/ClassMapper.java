@@ -50,4 +50,13 @@ public interface ClassMapper extends BaseMapper<Class> {
      */
     Integer selection(@Param("student_id") String student_id, @Param("class_id") Integer class_id);
 
+
+    /**
+     * 将学生移出班级
+     *
+     * @param student_id student_id
+     * @param class_id   class_id
+     * @return int
+     */
+    Integer removeStudent(String student_id, Integer class_id);
 }

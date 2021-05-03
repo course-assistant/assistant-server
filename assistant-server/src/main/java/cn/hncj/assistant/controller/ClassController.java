@@ -79,7 +79,6 @@ public class ClassController {
     }
 
 
-    /* 教师给学生选课 */
     @Comment("教师给学生选课")
     @PostMapping("/selectionbyteacher")
     @RoleCheck(RoleCheck.TEACHER)
@@ -89,6 +88,17 @@ public class ClassController {
     ) {
         classService.selectionByTeacher(student_id, class_id);
         return ServerResponse.createSuccess("选课成功");
+    }
+
+    @Comment("将学生移出班级")
+    @PostMapping("/removestudent")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> removeStudent(
+            @RequestParam("student_id") String student_id,
+            @RequestParam("class_id") Integer class_id
+    ) {
+        classService.removeStudent(student_id, class_id);
+        return ServerResponse.createSuccess("选移除功");
     }
 
 }

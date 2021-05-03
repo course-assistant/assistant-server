@@ -139,6 +139,19 @@ public class ClassServiceImpl implements ClassService {
     }
 
 
+    /**
+     * 将学生移出班级
+     *
+     * @param student_id student_id
+     * @param class_id   class_id
+     * @return int
+     */
+    @Override
+    public Integer removeStudent(String student_id, Integer class_id) {
+        return classMapper.removeStudent(student_id, class_id);
+    }
+
+
     // 判断学生是否重复选课
     boolean repeatSelection(String student_id, Integer class_id) {
         // 查询该学生上的所有课
