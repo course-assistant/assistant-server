@@ -72,10 +72,8 @@ public class CourseController {
             @RequestParam("teacher_id") String teacher_id,
             @RequestParam("name") String name,
             @RequestParam("cover") String cover,
-            @RequestParam("week") Integer week,
-            @RequestParam("odd_lesson") Integer odd_lesson,
-            @RequestParam("even_lesson") Integer even_lesson) {
-        courseService.insertCourse(teacher_id, name, cover, week, odd_lesson, even_lesson);
+            @RequestParam("week") Integer week) {
+        courseService.insertCourse(teacher_id, name, cover, week);
         return ServerResponse.createSuccess("添加成功");
     }
 

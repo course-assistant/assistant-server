@@ -20,5 +20,6 @@ public class Week {
     Integer week_id;
     Integer course_id;
     String week_name;
+    Integer week_index;
     Integer week_status;
 }

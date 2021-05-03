@@ -102,13 +102,11 @@ public class CourseServiceImpl implements CourseService {
      * @param name        课程名
      * @param cover       库课程封面
      * @param week        课程的周数
-     * @param odd_lesson  单周的课时数
-     * @param even_lesson 双周的课时数
      * @return int
      */
     @Override
     @Transactional
-    public Integer insertCourse(String teacher_id, String name, String cover, Integer week, Integer odd_lesson, Integer even_lesson) {
+    public Integer insertCourse(String teacher_id, String name, String cover, Integer week) {
         /*
          * 1.创建课程
          * 2.添加课程的周
@@ -129,6 +127,7 @@ public class CourseServiceImpl implements CourseService {
             Week w = new Week()
                     .setCourse_id(course.getCourse_id())
                     .setWeek_name(String.format("第%02d周", i))
+                    .setWeek_index(i)
                     .setWeek_status(2);
             weekMapper.insert(w);
         }
