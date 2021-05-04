@@ -39,7 +39,12 @@ public class LessonServiceImpl
         // 再依次查询平均分
         for (LessonDTO lessonDTO : lessonDTOS) {
             Map<String, Object> map = lessonMapper.selectAvgEvaluation(lessonDTO.getLesson_id());
-
+            System.out.println("map " + map);
+            if (map == null || map.get("degree") == null || map.get("quality") == null) {
+                lessonDTO.setDegree("0.0");
+                lessonDTO.setQuality("0.0");
+                continue;
+            }
             // 暂时不四舍五入，用这个简单的方法
             lessonDTO.setDegree(String.valueOf(((BigDecimal) map.get("degree")).floatValue()).substring(0, 3));
             lessonDTO.setQuality(String.valueOf(((BigDecimal) map.get("quality")).floatValue()).substring(0, 3));
