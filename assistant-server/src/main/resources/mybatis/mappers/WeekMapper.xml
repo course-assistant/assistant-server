@@ -23,7 +23,7 @@
 
 
     <select id="selectWeekMissionDTO2" resultType="WeekMissionDTO2">
-        select week_mission.week_mission_id, week_mission.week_mission_name, week_mission.week_mission_content, week.week_id, week.week_name
+        select week_mission.week_mission_id, week_mission.week_mission_name, week_mission.week_mission_content, week_mission.week_mission_status, week.week_id, week.week_name
         from week_mission, week
         where week_mission.week_id = week.week_id
         and week.week_id = #{week_id};

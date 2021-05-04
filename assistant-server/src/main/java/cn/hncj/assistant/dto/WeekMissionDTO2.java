@@ -22,6 +22,7 @@ public class WeekMissionDTO2 {
     String week_name;
     String week_mission_name;
     String week_mission_content;
+    Integer week_mission_status;
     Integer ok_num;
     List<WeekGoal> week_goals;
 }
