@@ -29,7 +29,7 @@ public class LessonController {
 
     @Comment("添加课时")
     @PostMapping("/insert")
-    @RoleCheck(RoleCheck.USER)
+    @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> insert(
             @RequestParam("id") Integer id,
             @RequestParam("name") String name,
@@ -42,12 +42,24 @@ public class LessonController {
 
     @Comment("删除课时")
     @PostMapping("/delete")
-    @RoleCheck(RoleCheck.USER)
+    @RoleCheck(RoleCheck.TEACHER)
     public ServerResponse<Object> delete(
             @RequestParam("id") Integer id
     ) {
         lessonService.removeById(id);
         return ServerResponse.createSuccess("删除成功");
+    }
+
+
+    @Comment("修改课时")
+    @PostMapping("/update")
+    @RoleCheck(RoleCheck.TEACHER)
+    public ServerResponse<Object> update(
+            @RequestParam("id") Integer id,
+            @RequestParam("content") String content
+    ) {
+        lessonService.updateLesson(id, content);
+        return ServerResponse.createSuccess("修改成功");
     }
 
 }

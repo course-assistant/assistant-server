@@ -64,4 +64,16 @@ public class LessonServiceImpl
                 .setLesson_status(2);
         return lessonMapper.insert(lesson);
     }
+
+    /**
+     * 修改课时内容
+     *
+     * @param id      id
+     * @param content content
+     * @return int
+     */
+    @Override
+    public Integer updateLesson(Integer id, String content) {
+        return lessonMapper.updateLesson(id, content);
+    }
 }

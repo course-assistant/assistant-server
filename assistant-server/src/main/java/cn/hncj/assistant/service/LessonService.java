@@ -29,4 +29,14 @@ public interface LessonService extends IService<Lesson> {
      */
     Integer insert(Integer id, String name, String content);
 
+
+    /**
+     * 修改课时内容
+     *
+     * @param id      id
+     * @param content content
+     * @return int
+     */
+    Integer updateLesson(Integer id, String content);
+
 }

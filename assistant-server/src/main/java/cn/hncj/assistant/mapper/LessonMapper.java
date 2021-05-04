@@ -30,4 +30,15 @@ public interface LessonMapper extends BaseMapper<Lesson> {
      * @return map
      */
     Map<String, Object> selectAvgEvaluation(@Param("lesson_id") Integer lesson_id);
+
+
+    /**
+     * 修改课时内容
+     *
+     * @param id      id
+     * @param content content
+     * @return int
+     */
+    Integer updateLesson(@Param("lesson_id") Integer id, @Param("lesson_content") String content);
+
 }

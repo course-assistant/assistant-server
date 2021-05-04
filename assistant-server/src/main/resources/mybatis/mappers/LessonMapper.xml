@@ -20,4 +20,12 @@
         where lesson_id = #{lesson_id};
     </select>
 
+
+    <!-- 修改课时内容 -->
+    <update id="updateLesson">
+        update lesson
+        set lesson_content = #{lesson_content}
+        where lesson_id = #{lesson_id};
+    </update>
+
 </mapper>
