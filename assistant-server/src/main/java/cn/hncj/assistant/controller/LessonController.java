@@ -46,11 +46,8 @@ public class LessonController {
     public ServerResponse<Object> delete(
             @RequestParam("id") Integer id
     ) {
-
         lessonService.removeById(id);
-//        lessonService.delete(id);
         return ServerResponse.createSuccess("删除成功");
-//        return null;
     }
 
 }

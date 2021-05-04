@@ -1,16 +1,18 @@
 package cn.hncj.assistant.service.impl;
 
 
+import cn.hncj.assistant.dto.LessonDTO;
 import cn.hncj.assistant.entity.Lesson;
 import cn.hncj.assistant.mapper.LessonMapper;
 import cn.hncj.assistant.mapper.WeekMapper;
 import cn.hncj.assistant.service.LessonService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Service
@@ -25,16 +27,24 @@ public class LessonServiceImpl
     LessonMapper lessonMapper;
 
     /**
-     * 根据课程id查询周和课
+     * 根据课程id查询课
      *
      * @param id 课程id
      * @return WeekLessonDTO
      */
     @Override
-    public List<Lesson> selectLessons(Integer id) {
-        QueryWrapper<Lesson> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("course_id", id);
-        return lessonMapper.selectList(queryWrapper);
+    public List<LessonDTO> selectLessons(Integer id) {
+        // 先查询出Lesson
+        List<LessonDTO> lessonDTOS = lessonMapper.selectLessons(id);
+        // 再依次查询平均分
+        for (LessonDTO lessonDTO : lessonDTOS) {
+            Map<String, Object> map = lessonMapper.selectAvgEvaluation(lessonDTO.getLesson_id());
+
+            // 暂时不四舍五入，用这个简单的方法
+            lessonDTO.setDegree(String.valueOf(((BigDecimal) map.get("degree")).floatValue()).substring(0, 3));
+            lessonDTO.setQuality(String.valueOf(((BigDecimal) map.get("quality")).floatValue()).substring(0, 3));
+        }
+        return lessonDTOS;
     }
 
     /**

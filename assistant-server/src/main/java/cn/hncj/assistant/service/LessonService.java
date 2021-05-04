@@ -1,6 +1,7 @@
 package cn.hncj.assistant.service;
 
 
+import cn.hncj.assistant.dto.LessonDTO;
 import cn.hncj.assistant.entity.Lesson;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -15,7 +16,7 @@ public interface LessonService extends IService<Lesson> {
      * @param id 课程id
      * @return WeekLessonDTO
      */
-    List<Lesson> selectLessons(Integer id);
+    List<LessonDTO> selectLessons(Integer id);
 
 
     /**
