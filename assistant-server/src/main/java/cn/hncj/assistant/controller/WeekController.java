@@ -69,4 +69,21 @@ public class WeekController {
     }
 
 
+    @Comment("发布任务")
+    @PostMapping("/issuemission")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> issueMission(@RequestParam("id") Integer id) {
+        return ServerResponse.createSuccess("发布成功", weekService.issueMission(id));
+    }
+
+
+    @Comment("删除任务")
+    @PostMapping("/deletemission")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> deleteMission(@RequestParam("id") Integer id) {
+        return ServerResponse.createSuccess("删除成功", weekService.deleteMission(id));
+    }
+
+
+
 }

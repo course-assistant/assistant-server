@@ -37,6 +37,23 @@ public interface WeekService extends IService<Week> {
      */
     WeekInfoDTO select(Integer course_id);
 
+
+    /**
+     * 发布任务
+     *
+     * @param mission_id mission_id
+     * @return int
+     */
+    Integer issueMission(Integer mission_id);
+
+    /**
+     * 删除任务
+     *
+     * @param mission_id mission_id
+     * @return int
+     */
+    Integer deleteMission(Integer mission_id);
+
 }
 
 

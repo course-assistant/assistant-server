@@ -13,7 +13,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -101,6 +100,30 @@ public class WeekServiceImpl
         weekInfoDTO.setStudent_ok_num(countFinishedAllWeekStudent(course_id));
 
         return weekInfoDTO;
+    }
+
+
+    /**
+     * 发布任务
+     *
+     * @param mission_id mission_id
+     * @return int
+     */
+    @Override
+    public Integer issueMission(Integer mission_id) {
+        return weekMissionMapper.issue(mission_id);
+    }
+
+
+    /**
+     * 删除任务
+     *
+     * @param mission_id mission_id
+     * @return int
+     */
+    @Override
+    public Integer deleteMission(Integer mission_id) {
+        return weekMissionMapper.deleteById(mission_id);
     }
 
 
