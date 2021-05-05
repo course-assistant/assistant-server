@@ -31,7 +31,7 @@ public class DiscussionCommentServiceImpl implements DiscussionCommentService {
      * @return Discussion
      */
     @Override
-    public List<Discussion> selectDiscussionByCourseId(Integer course_id) {
+    public List<DiscussionDTO> selectDiscussionByCourseId(Integer course_id) {
         return discussionMapper.selectByCourseId(course_id);
     }
 

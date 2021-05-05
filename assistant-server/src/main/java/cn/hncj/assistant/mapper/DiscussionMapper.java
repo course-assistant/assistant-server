@@ -19,7 +19,7 @@ public interface DiscussionMapper extends BaseMapper<Discussion> {
      * @param course_id course_id
      * @return Discussion
      */
-    List<Discussion> selectByCourseId(@Param("course_id") Integer course_id);
+    List<DiscussionDTO> selectByCourseId(@Param("course_id") Integer course_id);
 
 
     /**

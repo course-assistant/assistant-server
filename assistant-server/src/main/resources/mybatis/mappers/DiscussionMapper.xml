@@ -7,8 +7,8 @@
 <mapper namespace="cn.hncj.assistant.mapper.DiscussionMapper">
 
     <!-- 根据学时id查询课堂讨论 -->
-    <select id="selectByCourseId" resultType="discussion">
-        select d.discussion_id, d.discussion_title, d.discussion_content, d.discussion_date
+    <select id="selectByCourseId" resultType="DiscussionDTO">
+        select d.discussion_id, d.discussion_title, d.discussion_content, d.discussion_date, t.teacher_name, t.teacher_avatar
         from discussion d, course c, teacher t
         where d.course_id = c.course_id and c.teacher_id = t.teacher_id
         and c.course_id = #{course_id};

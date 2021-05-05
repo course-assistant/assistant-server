@@ -15,7 +15,7 @@ public interface DiscussionCommentService {
      * @param course_id course_id
      * @return Discussion
      */
-    List<Discussion> selectDiscussionByCourseId(Integer course_id);
+    List<DiscussionDTO> selectDiscussionByCourseId(Integer course_id);
 
 
     /**
