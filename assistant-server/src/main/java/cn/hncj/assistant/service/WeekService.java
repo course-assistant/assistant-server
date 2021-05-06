@@ -64,6 +64,16 @@ public interface WeekService extends IService<Week> {
      */
     Integer deleteMission(Integer mission_id);
 
+
+    /**
+     * 学生查看任务
+     *
+     * @param student_id student_id
+     * @param mission_id mission_id
+     * @return int
+     */
+    Integer viewMission(String student_id, Integer mission_id);
+
 }
 
 

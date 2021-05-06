@@ -43,4 +43,8 @@ public interface WeekMapper extends BaseMapper<Week> {
 
     // 查询周任务的完成人数
     Integer countMissionViews(@Param("week_mission_id") Integer id);
+
+
+    // 学生查看任务
+    Integer viewMission(@Param("student_id") String student_id, @Param("week_mission_id") Integer week_mission_id);
 }

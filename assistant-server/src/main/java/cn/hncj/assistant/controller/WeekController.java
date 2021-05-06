@@ -93,5 +93,15 @@ public class WeekController {
     }
 
 
+    @Comment("学生查看任务")
+    @PostMapping("/viewmission")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> viewMission(
+            @RequestParam("student_id") String student_id,
+            @RequestParam("mission_id") Integer mission_id
+    ) {
+        return ServerResponse.createSuccess("添加成功", weekService.viewMission(student_id, mission_id));
+    }
+
 
 }

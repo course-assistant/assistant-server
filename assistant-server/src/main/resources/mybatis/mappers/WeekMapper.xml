@@ -43,4 +43,9 @@
     </select>
 
 
+    <insert id="viewMission">
+        INSERT INTO student_view_mission (`week_mission_id`, `student_id`) VALUES (#{week_mission_id},#{student_id});
+    </insert>
+
+
 </mapper>

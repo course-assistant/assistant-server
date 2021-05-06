@@ -141,6 +141,25 @@ public class WeekServiceImpl
     }
 
 
+    /**
+     * 学生查看任务
+     *
+     * @param student_id student_id
+     * @param mission_id mission_id
+     * @return int
+     */
+    @Override
+    public Integer viewMission(String student_id, Integer mission_id) {
+        Integer n;
+        try {
+            n = weekMapper.viewMission(student_id, mission_id);
+        } catch (Exception e) {
+            return 0;
+        }
+        return n;
+    }
+
+
     @Autowired
     StudentMapper studentMapper;
 
