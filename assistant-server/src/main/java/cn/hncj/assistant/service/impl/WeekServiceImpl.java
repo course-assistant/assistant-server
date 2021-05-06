@@ -61,6 +61,20 @@ public class WeekServiceImpl
 
 
     /**
+     * 根据周任务id查询周任务
+     *
+     * @param id id
+     * @return WeekMissionDTO2
+     */
+    @Override
+    public WeekMissionDTO2 selectMissionById(Integer id) {
+        WeekMissionDTO2 weekMissionDTO2 = weekMapper.selectMissionById(id);
+        weekMissionDTO2.setWeek_goals(weekGoalMapper.selectList(new QueryWrapper<WeekGoal>().eq("week_mission_id", weekMissionDTO2.getWeek_mission_id())));
+        return weekMissionDTO2;
+    }
+
+
+    /**
      * 查询周信息
      *
      * @param course_id course_id

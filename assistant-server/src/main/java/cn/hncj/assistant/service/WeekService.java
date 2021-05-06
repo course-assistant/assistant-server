@@ -2,6 +2,7 @@ package cn.hncj.assistant.service;
 
 
 import cn.hncj.assistant.dto.WeekInfoDTO;
+import cn.hncj.assistant.dto.WeekMissionDTO2;
 import cn.hncj.assistant.entity.Week;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -27,6 +28,15 @@ public interface WeekService extends IService<Week> {
      * @return week
      */
     Week selectById(Integer week_id);
+
+
+    /**
+     * 根据周任务id查询周任务
+     *
+     * @param id id
+     * @return WeekMissionDTO2
+     */
+    WeekMissionDTO2 selectMissionById(Integer id);
 
 
     /**

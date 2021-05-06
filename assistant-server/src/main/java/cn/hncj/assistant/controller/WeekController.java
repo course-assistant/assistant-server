@@ -36,6 +36,14 @@ public class WeekController {
     }
 
 
+    @Comment("根据周任务id查询周任务")
+    @GetMapping("/selectmissionbyid")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> selectMissionById(@RequestParam("id") Integer id) {
+        return ServerResponse.createSuccess("查询成功", weekService.selectMissionById(id));
+    }
+
+
     @Comment("添加周")
     @PostMapping("/insert")
     @RoleCheck(RoleCheck.TEACHER)

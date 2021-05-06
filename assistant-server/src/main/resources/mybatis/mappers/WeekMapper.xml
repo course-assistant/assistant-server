@@ -30,12 +30,17 @@
     </select>
 
 
+    <select id="selectMissionById" resultType="WeekMissionDTO2">
+        select week_mission_id, week_mission_name, week_mission_content
+        from week_mission
+        where week_mission_id = #{week_mission_id};
+    </select>
+
     <select id="countMissionViews" resultType="int">
         select count(*)
         from student_view_mission
         where week_mission_id = #{week_mission_id};
     </select>
-
 
 
 </mapper>

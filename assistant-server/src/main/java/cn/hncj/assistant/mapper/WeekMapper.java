@@ -38,6 +38,9 @@ public interface WeekMapper extends BaseMapper<Week> {
     List<WeekMissionDTO2> selectWeekMissionDTO2(@Param("week_id") Integer week_id);
 
 
+    WeekMissionDTO2 selectMissionById(@Param("week_mission_id") Integer id);
+
+
     // 查询周任务的完成人数
     Integer countMissionViews(@Param("week_mission_id") Integer id);
 }
