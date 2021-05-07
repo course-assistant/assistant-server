@@ -12,17 +12,21 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @CrossOrigin
 @RestController
-@RequestMapping("/periodevaluation")
+@RequestMapping("/pevaluation")
 public class PeriodEvaluateController {
 
     @Autowired
     PeriodEvaluateService periodEvaluateService;
 
+
+
+
+
     /* 查询学时的评价 */
     @GetMapping("/select")
     @RoleCheck(RoleCheck.USER)
-    public ServerResponse<Object> select(@RequestParam("period_id") Integer period_id) {
-        return ServerResponse.createSuccess("查询成功", periodEvaluateService.select(period_id));
+    public ServerResponse<Object> select(@RequestParam("id") Integer lesson_id) {
+        return ServerResponse.createSuccess("查询成功", periodEvaluateService.select(lesson_id));
     }
 
 

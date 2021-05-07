@@ -9,10 +9,10 @@ public interface PeriodEvaluateService {
     /**
      * 查询学时的评价
      *
-     * @param period_id period_id
+     * @param lesson_id lesson_id
      * @return PeriodEvaluationDTO
      */
-    PeriodEvaluationDTO select(Integer period_id);
+    PeriodEvaluationDTO select(Integer lesson_id);
 
 
     /**
