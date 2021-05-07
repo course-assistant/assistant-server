@@ -5,5 +5,7 @@
 
 <!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
 <mapper namespace="cn.hncj.assistant.mapper.EvaluationMapper">
-
+    <insert id="issue">
+        insert into student_evaluate(student_id,evaluation_id) values(#{student_id},#{evaluation_id});
+    </insert>
 </mapper>
