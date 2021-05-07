@@ -27,6 +27,14 @@ public class LessonController {
     }
 
 
+    @Comment("根据课时id查课时")
+    @GetMapping("/selectbylessonid")
+    @RoleCheck(RoleCheck.USER)
+    public ServerResponse<Object> selectByLessonId(@RequestParam("id") Integer id) {
+        return ServerResponse.createSuccess("查询成功", lessonService.selectByLessonId(id));
+    }
+
+
     @Comment("添加课时")
     @PostMapping("/insert")
     @RoleCheck(RoleCheck.TEACHER)

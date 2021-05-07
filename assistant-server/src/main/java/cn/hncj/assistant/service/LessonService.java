@@ -19,6 +19,9 @@ public interface LessonService extends IService<Lesson> {
     List<LessonDTO> selectLessons(Integer id);
 
 
+    Lesson selectByLessonId(Integer id);
+
+
     /**
      * 添加课时
      *

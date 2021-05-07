@@ -52,6 +52,11 @@ public class LessonServiceImpl
         return lessonDTOS;
     }
 
+    @Override
+    public Lesson selectByLessonId(Integer id) {
+        return lessonMapper.selectById(id);
+    }
+
     /**
      * 添加课时
      *
